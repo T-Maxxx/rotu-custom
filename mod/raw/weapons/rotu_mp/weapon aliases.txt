@@ -1,0 +1,17 @@
+m14_acog_mp --> f2000
+m1014_reflex_mp --> spas12
+rpd_acog_mp --> aug
+g3_acog_mp --> thundergun
+m60e4_acog_mp --> aa12
+barret_acog_mp --> raygun
+saw_acog_mp --> minigun
+ak74u_acog_mp --> tesla
+mp5_acog_mp --> mp5k
+skorpion_acog_mp --> flamethrower
+flash_grenade_mp --> quad_idle
+smoke_grenade_mp --> quad_sprint
+concussion_grenade_mp --> quad_crawl
+g3_gl_mp --> quad_attack
+deserteagle_mp --> intervention
+m60e4_acog_mp --> tomahawk
+m14_reflex_mp --> ammobox

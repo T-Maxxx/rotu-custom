@@ -1,0 +1,930 @@
+VERSION             "1"
+CONFIG              "C:\trees\cod3\cod3\bin\StringEd.cfg"
+FILENOTES           ""
+
+/////////////////////////////////
+// Admin menu ban/kick reasons //
+/////////////////////////////////
+
+REFERENCE           REASON_DECISION
+LANG_ENGLISH        "Admin decision"
+
+REFERENCE           REASON_GLITCHING
+LANG_ENGLISH        "Glitching"
+
+REFERENCE           REASON_CHEATING
+LANG_ENGLISH        "Cheating"
+
+REFERENCE           REASON_BADLANGUAGE
+LANG_ENGLISH        "Bad language"
+
+REFERENCE           REASON_SILENT
+LANG_ENGLISH        "Don't show reason"
+
+//////////
+// Misc //
+//////////
+
+REFERENCE           CANCEL
+LANG_ENGLISH        "Cancel"
+
+REFERENCE           ACCEPT
+LANG_ENGLISH        "Accept"
+
+REFERENCE           BUTTON_TEXT_FORMAT
+LANG_ENGLISH        "&&1: &&2"
+
+///////////////////////////
+// Admin menu change map //
+///////////////////////////
+
+REFERENCE           CHANGEMAP_BACKSPACE
+LANG_ENGLISH        "Backspace"
+
+REFERENCE           CHANGEMAP_ACCEPTMAP
+LANG_ENGLISH        "Accept map"
+
+REFERENCE           CHANGEMAP_INSTRUCTIONS
+LANG_ENGLISH        " Type a few sequential characters. When\n one map remains, click 'Accept Map'. Click\n 'Backspace' to remove the last character.\n Key substitutions:\n        '^2=^7' for '^1space^7',    '^2.^7' for '^1_^7',    '^2[^7' for '^1(^7',    '^2]^7' for '^1)^7'"
+
+REFERENCE           CHANGEMAP_FILTER
+LANG_ENGLISH        "Filter: "
+
+///////////////////////
+// Admin menu common //
+///////////////////////
+
+REFERENCE           AM_NEXTPLAYER
+LANG_ENGLISH        "^2Next Player >>"
+
+REFERENCE           AM_PREVIOUSPLAYER
+LANG_ENGLISH        "^2Previous Player <<"
+
+REFERENCE           AM_NAME
+LANG_ENGLISH        "Name: ^2"
+
+REFERENCE           AM_HEALTH
+LANG_ENGLISH        "Health: ^2"
+
+REFERENCE           AM_RPD
+LANG_ENGLISH        "Rank/Prestige/Demerits: ^2"
+
+REFERENCE           AM_TEAM
+LANG_ENGLISH        "Team: ^2"
+
+REFERENCE           AM_STATUS
+LANG_ENGLISH        "Status: ^2"
+
+REFERENCE           AM_WARNS
+LANG_ENGLISH        "Warnings(Next Action) Lang./Gen.: ^2"
+
+REFERENCE           AM_SKD // Scores/Kills/Deaths
+LANG_ENGLISH        "S/K/D: ^2"
+
+REFERENCE           AM_GUID
+LANG_ENGLISH        "GUID: ^2"
+
+REFERENCE           AM_LOGGEDAS
+LANG_ENGLISH        "Logged in as: "
+
+REFERENCE           AM_ADMINSESSION
+LANG_ENGLISH        "Admin Session: "
+
+REFERENCE           AM_PERMISSIONS
+LANG_ENGLISH        "Permissions: "
+
+////////////////////////////
+// Admin menu: punishment //
+////////////////////////////
+
+REFERENCE           AM_PUNISHMENT_DOWN
+LANG_ENGLISH        "Down"
+
+REFERENCE           AM_PUNISHMENT_BOOM
+LANG_ENGLISH        "Boom (kill)"
+
+REFERENCE           AM_PUNISHMENT_DROPWEAPON
+LANG_ENGLISH        "Drop weapon"
+
+REFERENCE           AM_PUNISHMENT_DISARM
+LANG_ENGLISH        "Disarm"
+
+REFERENCE           AM_PUNISHMENT_DEMOTE
+LANG_ENGLISH        "Demote"
+
+////////////////////////
+// Admin menu: reward //
+////////////////////////
+
+REFERENCE           AM_REWARD_PROMOTE
+LANG_ENGLISH        "Promote"
+
+REFERENCE           AM_REWARD_RESTOREAMMOPRIMARY
+LANG_ENGLISH        "Restore primary weapon"
+
+REFERENCE           AM_REWARD_RESTOREAMMOSIDEARM
+LANG_ENGLISH        "Restore sidearm"
+
+REFERENCE           AM_REWARD_UPGRADEPOINTS
+LANG_ENGLISH        "Give upgrade points"
+
+////////////////////////////////
+// Admin menu: banning common //
+////////////////////////////////
+
+REFERENCE           AM_WARN
+LANG_ENGLISH        "Warn"
+
+REFERENCE           AM_KICK
+LANG_ENGLISH        "Kick"
+
+REFERENCE           AM_BAN
+LANG_ENGLISH        "Ban"
+
+REFERENCE           AM_TEMPBAN
+LANG_ENGLISH        "Temporary ban"
+
+REFERENCE           AM_REMOVEWARN
+LANG_ENGLISH        "Remove warnings"
+
+//////////////////////
+// Admin menu: misc //
+//////////////////////
+
+REFERENCE           AM_BOUNCE
+LANG_ENGLISH        "Bounce"
+
+REFERENCE           AM_TELEPORT
+LANG_ENGLISH        "Teleport"
+
+REFERENCE           AM_VISIBILITY
+LANG_ENGLISH        "Toggle session visibility"
+
+REFERENCE           AM_KILLZOMBIES
+LANG_ENGLISH        "Kill zombies"
+
+REFERENCE           AM_DEV
+LANG_ENGLISH        "Development"
+
+////////////////////////////////
+// Admin menu: assist players //
+////////////////////////////////
+
+REFERENCE           AM_ASSIST_SPAWNSPECTATOR
+LANG_ENGLISH        "Spawn spectator"
+
+REFERENCE           AM_ASSIST_CURE
+LANG_ENGLISH        "Cure"
+
+REFERENCE           AM_ASSIST_REVIVE
+LANG_ENGLISH        "Revive"
+
+REFERENCE           AM_ASSIST_AMMO
+LANG_ENGLISH        "Ammo can"
+
+REFERENCE           AM_ASSIST_AURA
+LANG_ENGLISH        "Healing Aura"
+
+///////////////////////////////
+// Admin menu: game specific //
+///////////////////////////////
+
+REFERENCE           AM_GAME_RESTARTWAVE
+LANG_ENGLISH        "Restart wave"
+
+REFERENCE           AM_GAME_RESTARTMAP
+LANG_ENGLISH        "Restart map"
+
+REFERENCE           AM_GAME_FINISHWAVE
+LANG_ENGLISH        "Finish wave"
+
+REFERENCE           AM_GAME_FINISHMAP
+LANG_ENGLISH        "Finish map"
+
+REFERENCE           AM_GAME_CHANGEMAP
+LANG_ENGLISH        "Change map"
+
+////////////////////////////
+// Admin menu: categories //
+////////////////////////////
+
+REFERENCE           AM_CATEGORY_PUNISHMENT
+LANG_ENGLISH        "^3Punishment"
+
+REFERENCE           AM_CATEGORY_REWARD
+LANG_ENGLISH        "^3Reward"
+
+REFERENCE           AM_CATEGORY_BANNING
+LANG_ENGLISH        "^3Banning"
+
+REFERENCE           AM_CATEGORY_MISC
+LANG_ENGLISH        "^3Miscellaneous"
+
+REFERENCE           AM_CATEGORY_ASSIST
+LANG_ENGLISH        "^3Assist"
+
+REFERENCE           AM_CATEGORY_GAME
+LANG_ENGLISH        "^3Game"
+
+//////////////////////////
+// Admin menu: teleport //
+//////////////////////////
+
+REFERENCE           AM_TELEPORT_SPAWN
+LANG_ENGLISH        "Teleport to spawn"
+
+REFERENCE           AM_TELEPORT_HERE
+LANG_ENGLISH        "Teleport to you"
+
+REFERENCE           AM_TELEPORT_FORWARD
+LANG_ENGLISH        "Teleport forward"
+
+////////////////////////
+// Admin menu: disarm //
+////////////////////////
+
+REFERENCE           AM_DISARM_CURRENT
+LANG_ENGLISH        "Take current weapon"
+
+REFERENCE           AM_DISARM_ALL
+LANG_ENGLISH        "Take ^2all ^7weapons"
+
+/////////////////////////////////
+// Admin menu: remove warnings //
+/////////////////////////////////
+
+REFERENCE           AM_REMOVEWARNINGS_ONE
+LANG_ENGLISH        "^2One ^7Warning"
+
+REFERENCE           AM_REMOVEWARNINGS_ONELANG
+LANG_ENGLISH        "^2One ^7Language Warning"
+
+REFERENCE           AM_REMOVEWARNINGS_ALL
+LANG_ENGLISH        "^2All ^7Warnings"
+
+/////////////////////
+// Class selection //
+/////////////////////
+
+REFERENCE           SELECTCLASS
+LANG_ENGLISH        "SELECT CLASS"
+
+REFERENCE           AVAILABLECLASSES
+LANG_ENGLISH        "Available classes"
+
+////////////////////////////////////
+// Ingame pause menu (class.menu) //
+////////////////////////////////////
+
+REFERENCE           PAUSEMENU_TITLE
+LANG_ENGLISH        "PAUSE"
+
+REFERENCE           PAUSEMENU_CHOOSECLASS
+LANG_ENGLISH        "Choose class"
+
+REFERENCE           PAUSEMENU_CHANGETEAM
+LANG_ENGLISH        "Change team"
+
+REFERENCE           PAUSEMENU_CONTROLS
+LANG_ENGLISH        "Controls"
+
+REFERENCE           PAUSEMENU_OPTIONS
+LANG_ENGLISH        "Options"
+
+REFERENCE           PAUSEMENU_PRESTIGE
+LANG_ENGLISH        "Prestige"
+
+REFERENCE           PAUSEMENU_PRESTIGE_DESC
+LANG_ENGLISH        "<ADD PRESTIGE DESCRIPTION>"
+
+REFERENCE           PAUSEMENU_MUTE
+LANG_ENGLISH        "Mute players"
+
+REFERENCE           LEAVE_GAME
+LANG_ENGLISH        "Leave game"
+
+////////////////////
+// Prestige popup // TODO
+////////////////////
+
+REFERENCE           PRESTIGE_RESET_TITLE1
+LANG_ENGLISH        "<get me from menu.str>"
+
+REFERENCE           PRESTIGE_RESET_WARNING1
+LANG_ENGLISH        "<get me from menu.str>"
+
+REFERENCE           PRESTIGE_RESET_TITLE2
+LANG_ENGLISH        "get me from menu.str(3 not 2)>"
+
+REFERENCE           PRESTIGE_RESET_WARNING2
+LANG_ENGLISH        "get me from menu.str(3 not 2)>"
+
+REFERENCE           PRESTIGE_ENTER
+LANG_ENGLISH        "Enter prestige"
+
+/////////////////
+// Development //
+/////////////////
+
+REFERENCE           DEV_GIVEEQUIPMENTSHOP
+LANG_ENGLISH        "Give equipment shop"
+
+REFERENCE           DEV_GIVEWEAPONSHOP
+LANG_ENGLISH        "Give weapon shop"
+
+REFERENCE           DEV_DELCLOSESTSHOP
+LANG_ENGLISH        "Delete closest Shop"
+
+REFERENCE           DEV_SAVETRADERS
+LANG_ENGLISH        "Save tradespawns"
+
+REFERENCE           DEV_TOGGLEGIVEWPS
+LANG_ENGLISH        "Toggle give waypoints"
+
+REFERENCE           DEV_AUTOLINKWPS
+LANG_ENGLISH        "Autolink waypoints"
+
+REFERENCE           DEV_LINKWP
+LANG_ENGLISH        "Link waypoint"
+
+REFERENCE           DEV_DELWP
+LANG_ENGLISH        "Delete waypoint"
+
+REFERENCE           DEV_DELLINK
+LANG_ENGLISH        "Delete link"
+
+REFERENCE           DEV_CYCLEWPTYPE
+LANG_ENGLISH        "Cycle waypoint type"
+
+REFERENCE           DEV_SAVEWPS
+LANG_ENGLISH        "Save waypoints"
+
+REFERENCE           DEV_CURRENTWP
+LANG_ENGLISH        "Current waypoint: ^2"
+
+REFERENCE           DEV_CURRENTWPTYPE
+LANG_ENGLISH        "Current waypoint type: ^2"
+
+REFERENCE           DEV_CURRENTWPLINK
+LANG_ENGLISH        "Current waypoint link: ^2"
+
+/////////////////
+// Extras shop //
+/////////////////
+// TODO Crazy Earl from borderlands 'Whattcha buyin', eh? :)
+
+REFERENCE           EXTRASSHOP_TITLE
+LANG_ENGLISH        "SHOP"
+
+REFERENCE           EXTRASSHOP_ITEMS
+LANG_ENGLISH        "Items:"
+
+REFERENCE           EXTRASSHOP_RESTOREHEALTH
+LANG_ENGLISH        "1. Restore Health"
+
+REFERENCE           EXTRASSHOP_RESTOREAMMO
+LANG_ENGLISH        "2. Restore Ammo"
+
+REFERENCE           EXTRASSHOP_CURE
+LANG_ENGLISH        "3. Cure Infection"
+
+REFERENCE           EXTRASSHOP_FRAG
+LANG_ENGLISH        "Frag Grenade"
+
+REFERENCE           EXTRASSHOP_C4
+LANG_ENGLISH        "C4"
+
+REFERENCE           EXTRASSHOP_RAYGUN
+LANG_ENGLISH        "Raygun"
+
+REFERENCE           EXTRASSHOP_DEFENCES
+LANG_ENGLISH        "Defences:"
+
+REFERENCE           EXTRASSHOP_BARREL
+LANG_ENGLISH        "Barrel"
+
+REFERENCE           EXTRASSHOP_CLAYMORE
+LANG_ENGLISH        "Claymore"
+
+REFERENCE           EXTRASSHOP_BARREL_EXP
+LANG_ENGLISH        "Exploding barrel"
+
+REFERENCE           EXTRASSHOP_TURRET_GRENADE
+LANG_ENGLISH        "Grenade turret"
+
+REFERENCE           EXTRASSHOP_TURRET_BARREL
+LANG_ENGLISH        "Barrel with SAW"
+
+REFERENCE           EXTRASSHOP_TURRET_MINIGUN
+LANG_ENGLISH        "Minigun turret"
+
+REFERENCE           EXTRASSHOP_PORTAL
+LANG_ENGLISH        "Portal"
+
+REFERENCE           EXTRASSHOP_TNT
+LANG_ENGLISH        "TNT"
+
+REFERENCE           EXTRASSHOP_FMT_AVAIL
+LANG_ENGLISH        "^2&&1: &&2"
+
+REFERENCE           EXTRASSHOP_FMT
+LANG_ENGLISH        "^1&&1: &&2"
+
+////////////////////////
+// Ingame player menu //
+////////////////////////
+
+REFERENCE           QM_PM_TITLE
+LANG_ENGLISH        "PLAYER MENU"
+
+REFERENCE           QM_PM_FLASHLIGHT
+LANG_ENGLISH        "1. Toggle flashlight"
+
+REFERENCE           QM_PM_THIRDPERSON
+LANG_ENGLISH        "2. Toggle thirdperson"
+
+REFERENCE           QM_PM_RESPAWN
+LANG_ENGLISH        "3. Respawn"
+
+REFERENCE           QM_PM_TOGGLECONTROLS
+LANG_ENGLISH        "4. Controls"
+
+//////////////////////////
+// Ingame wm_quick menu //
+//////////////////////////
+
+REFERENCE           QM_EXIT
+LANG_ENGLISH        "Esc. Exit"
+
+////////////////////////////
+// Spend skillpoints menu //
+////////////////////////////
+
+REFERENCE           SP_TITLE
+LANG_ENGLISH        "SPEND SKILLPOINTS"
+
+REFERENCE           SP_SECTION_TITLE
+LANG_ENGLISH        "Classes:"
+
+/////////////////
+// Class names //
+/////////////////
+
+REFERENCE           SOLDIER
+LANG_ENGLISH        "Soldier"
+
+REFERENCE           STEALTH
+LANG_ENGLISH        "Assasin"
+
+REFERENCE           ARMORED
+LANG_ENGLISH        "Armored"
+
+REFERENCE           ENGINEER
+LANG_ENGLISH        "Engineer"
+
+REFERENCE           SCOUT
+LANG_ENGLISH        "Scout"
+
+REFERENCE           MEDIC
+LANG_ENGLISH        "Medic"
+
+//////////////////////
+// Change team menu //
+//////////////////////
+
+REFERENCE           CT_TITLE
+LANG_ENGLISH        "CHOOSE TEAM"
+
+REFERENCE           CT_SURVIVORS
+LANG_ENGLISH        "^5Survivors"
+
+REFERENCE           CT_SPECTATOR
+LANG_ENGLISH        "Spectators"
+
+/////////////////////////
+// Additional controls //
+/////////////////////////
+
+REFERENCE           AC_TITLE
+LANG_ENGLISH        "Rot^1U^7 controls"
+
+REFERENCE           BIND_FLASHLIGHT
+LANG_ENGLISH        "Toggle flashlight"
+
+REFERENCE           BIND_THIRDPERSON
+LANG_ENGLISH        "Toggle thirdperson"
+
+///////////////
+// Main menu //
+///////////////
+
+REFERENCE           MOD
+LANG_ENGLISH        "Reign of the ^1Undead^7 2.2.2"
+
+REFERENCE           WEBSITE_TITLE
+LANG_ENGLISH        "Reign of the ^1Undead^7 by T-Max website: &&1"
+
+REFERENCE           WEBSITE_LINK
+LANG_ENGLISH        "<TODO: github link>"
+
+REFERENCE           ABOUT
+LANG_ENGLISH        "About Rot^1U^7"
+
+//////////////////////
+// About popup menu //
+//////////////////////
+
+REFERENCE           ABOUT_TITLE
+LANG_ENGLISH        "Reign of the ^1Undead^7 2.2.2 by T-Max" // TODO: remove name when versioning will be available.
+
+REFERENCE           ABOUT_DEVELOPER_TITLE
+LANG_ENGLISH        "Developer:"
+
+REFERENCE           ABOUT_DEVELOPER
+LANG_ENGLISH        "     T-Max, GitHub contributors"
+
+REFERENCE           ABOUT_BASED_TITLE
+LANG_ENGLISH        "Based on:"
+
+REFERENCE           ABOUT_BASED
+LANG_ENGLISH        "Rot^1U^7 2.2.2 by Mark A. Taff"
+
+REFERENCE           ABOUT_ORIGINAL_TITLE
+LANG_ENGLISH        "Original Developer:"
+
+REFERENCE           ABOUT_ORIGINAL
+LANG_ENGLISH        "Bipo"
+
+REFERENCE           ABOUT_CONTRIB_TITLE
+LANG_ENGLISH        "Contributors:"
+
+REFERENCE           ABOUT_CONTRIB1
+LANG_ENGLISH        "                           BraX, Mr-X, Etheross, Hacker 22,"
+
+REFERENCE           ABOUT_CONTRIB2
+LANG_ENGLISH        "                           Viking, Coverop"
+
+REFERENCE           ABOUT_WEBSITE
+LANG_ENGLISH        "Website: &&1"
+
+////////////////////////
+// Quick actions menu //
+////////////////////////
+
+REFERENCE           QA_TITLE
+LANG_ENGLISH        "QUICK ACTIONS"
+
+REFERENCE           QA_SPENDSP
+LANG_ENGLISH        "1. Spend &&1 skillpoints"
+
+REFERENCE           QA_QUICKMESSAGE
+LANG_ENGLISH        "2. ^1<Not implemented>^7"
+
+REFERENCE           QA_QUICKRESPONSE
+LANG_ENGLISH        "3. ^1<Not implemented>^7"
+
+REFERENCE           QA_ADMINMENU
+LANG_ENGLISH        "4. Admin menu"
+
+REFERENCE           QA_DEVMENU
+LANG_ENGLISH        "5. Development menu"
+
+//////////////
+// hud.menu //
+//////////////
+
+REFERENCE           UPGRADE_POINTS
+LANG_ENGLISH        "Upgrade points: &&1"
+
+REFERENCE           SPECIAL_LOCKED
+LANG_ENGLISH        "^1Special locked"
+
+REFERENCE           SPECIAL_AVAILABLE
+LANG_ENGLISH        "^2Special available"
+
+REFERENCE           SPECIAL_RECHARGING
+LANG_ENGLISH        "^1Special recharging"
+
+REFERENCE           SPECIAL_ACTIVATED
+LANG_ENGLISH        "^1Special activated"
+
+REFERENCE           SPECIAL_UNAVAILABLE
+LANG_ENGLISH        "^1Special unavailable"
+
+REFERENCE           YOU_ARE_BEING_REVIVED_BY
+LANG_ENGLISH        "You are being revived by &&1"
+
+//////////////////
+// Connect menu //
+//////////////////
+
+REFERENCE           SURV
+LANG_ENGLISH        "Reign of the ^1Undead^7 2.2.2"
+
+////////////////////
+// _adminCommands //
+////////////////////
+
+REFERENCE           PLR_DEMOTED_ONE_RANK
+LANG_ENGLISH        "Player demoted one rank"
+
+REFERENCE           TOOK_750RANKPTS
+LANG_ENGLISH        "Took 750 rank points"
+
+REFERENCE           CMD_FAILED
+LANG_ENGLISH        "Command failed"
+
+REFERENCE           GAVE_750RANKPTS
+LANG_ENGLISH        "Gave 750 rank points"
+
+REFERENCE           PLR_PROMOTED_1RANK
+LANG_ENGLISH        "Player promoted one rank"
+
+REFERENCE           PLAYER_KICKED
+LANG_ENGLISH        "Player kicked."
+
+REFERENCE           YOU_MAY_RECONNECT
+LANG_ENGLISH        "You may re-connect immediately.  Further sanctions may be taken at the admin's discretion."
+
+/////////////////////
+// _adminInterface //
+/////////////////////
+
+REFERENCE           NO_ACCESS_TO_MENU
+LANG_ENGLISH        "You don't have permission to access this menu"
+
+REFERENCE           NO_ACCESS_TO_USE_CMD
+LANG_ENGLISH        "You don't have permission to use this command"
+
+REFERENCE           PLR_INVALID_SELECT_NEXT
+LANG_ENGLISH        "Player invalid, selecting next player"
+
+REFERENCE           PLR_INVALID_CMD_CANCEL_SELECT_NEXT
+LANG_ENGLISH        "Player invalid, admin command canceled, next player selected"
+
+REFERENCE           PLAYER_LOCKED
+LANG_ENGLISH        "Player locked"
+
+REFERENCE           PLR_UNDEFINED_CANT_WARN
+LANG_ENGLISH        "Player is undefined, can't warn them"
+
+REFERENCE           PLR_WARNED
+LANG_ENGLISH        "Player warned"
+
+REFERENCE           PLR_UNDEFINED_CANT_BAN
+LANG_ENGLISH        "Player is undefined, can't ban them"
+
+REFERENCE           PLR_BEING_BANNED
+LANG_ENGLISH        "Player being banned..."
+
+REFERENCE           PLR_UNDEFINED_CANT_REMOVE_WARNS
+LANG_ENGLISH        "Player is undefined, can't remove warnings"
+
+REFERENCE           ONE_WARN_REMOVED
+LANG_ENGLISH        "One warning removed"
+
+REFERENCE           ONE_LANG_WARN_REMOVED
+LANG_ENGLISH        "One language warning removed"
+
+REFERENCE           ALL_WARNS_REMOVED
+LANG_ENGLISH        "All warnings removed"
+
+REFERENCE           PLR_UNDEFINED_CANT_DEMOTE
+LANG_ENGLISH        "Player is undefined, can't demote them"
+
+REFERENCE           PLR_UNDEFINED_CANT_PROMOTE
+LANG_ENGLISH        "Player is undefined, can't promote them"
+
+REFERENCE           PLR_UNDEFINED_CANT_RESTOREPRIMARY
+LANG_ENGLISH        "Player is undefined, can't restore their primary weapon"
+
+REFERENCE           RESTORED_PRIMARY_WEAPON
+LANG_ENGLISH        "Restored primary weapon"
+
+REFERENCE           PLR_UNDEFINED_CANT_RESTORESIDEARM
+LANG_ENGLISH        "Player is undefined, can't restore their sidearm"
+
+REFERENCE           RESTORED_SIDE_ARM
+LANG_ENGLISH        "Restored sidearm"
+
+REFERENCE           GAVE_PLR_2K_UP
+LANG_ENGLISH        "Gave player 2000 upgrade points"
+
+REFERENCE           PLR_BEING_KICKED
+LANG_ENGLISH        "Player being kicked..."
+
+REFERENCE           PLR_BEING_TEMPBANNED
+LANG_ENGLISH        "Player being temporary banned..."
+
+REFERENCE           ZOMBIES_KILLED
+LANG_ENGLISH        "Zombies killed"
+
+REFERENCE           MAP_RESTARTING
+LANG_ENGLISH        "Map restarting"
+
+REFERENCE           WAVE_FINISHED
+LANG_ENGLISH        "Wave finished"
+
+REFERENCE           MAP_FINISHED
+LANG_ENGLISH        "Map finished"
+
+REFERENCE           MAP_BEING_CHANGED
+LANG_ENGLISH        "Map being changed"
+
+REFERENCE           CHANGE_MAP_LOCKED
+LANG_ENGLISH        "Change map command is locked"
+
+REFERENCE           PLR_UNDEFINED_CANT_DROP
+LANG_ENGLISH        "Player is undefined, can't drop their weapon"
+
+REFERENCE           PLR_DEAD_CANT_DROP
+LANG_ENGLISH        "Can't drop weapon of a player that isn't alive"
+
+REFERENCE           WEAPON_DROPPED
+LANG_ENGLISH        "Weapon dropped"
+
+REFERENCE           WEAPON_NOT_DROPPED_NO_AMMO
+LANG_ENGLISH        "Weapon not dropped because it had no ammunition"
+
+REFERENCE           VISIBLE
+LANG_ENGLISH        "^2Visible"
+
+REFERENCE           SESSION_VISIBLE
+LANG_ENGLISH        "Session is now visible"
+
+REFERENCE           SESSION_HIDDEN
+LANG_ENGLISH        "Session is now hidden"
+
+REFERENCE           PLR_UNDEFINED_CANT_AMMOBOX
+LANG_ENGLISH        "Player is undefined, can't drop ammo box near them"
+
+REFERENCE           PLR_DEAD_CANT_AMMOBOX
+LANG_ENGLISH        "Can't drop ammo box near a player that isn't alive"
+
+REFERENCE           AMMOBOX_DROPPED
+LANG_ENGLISH        "Ammo box dropped"
+
+REFERENCE           PLR_UNDEFINED_CANT_HEALINGAURA
+LANG_ENGLISH        "Player is undefined, can't place a healing aura"
+
+REFERENCE           PLR_DEAD_CANT_HEALINGAURA
+LANG_ENGLISH        "Can't place healing aura by a player that isn't alive"
+
+REFERENCE           HEALING_AURA_PLACED
+LANG_ENGLISH        "Healing aura placed"
+
+REFERENCE           PLR_UNDEFINED_CANT_DISARM
+LANG_ENGLISH        "Player is undefined, can't disarm them"
+
+REFERENCE           PLR_DEAD_CANT_DISARM
+LANG_ENGLISH        "Can't disarm a player that isn't alive"
+
+REFERENCE           PLR_DISARMED
+LANG_ENGLISH        "Player disarmed"
+
+REFERENCE           PLR_UNDEFINED_CANT_TAKEWEAP
+LANG_ENGLISH        "Player is undefined, can't take their current weapon"
+
+REFERENCE           PLR_DEAD_CANT_TAKEWEAP
+LANG_ENGLISH        "Can't take a weapon from a player that isn't alive"
+
+REFERENCE           WEAP_TAKEN
+LANG_ENGLISH        "Weapon taken"
+
+REFERENCE           PLR_UNDEFINED_CANT_HEAL
+LANG_ENGLISH        "Player is undefined, can't heal them"
+
+REFERENCE           PLR_DEAD_CANT_HEAL
+LANG_ENGLISH        "Can't heal a player that isn't alive"
+
+REFERENCE           PLR_HEALED
+LANG_ENGLISH        "Player healed"
+
+REFERENCE           PLR_UNDEFINED_CANT_CURE
+LANG_ENGLISH        "Player is undefined, can't cure them"
+
+REFERENCE           PLR_DEAD_CANT_CURE
+LANG_ENGLISH        "Can't cure a player that isn't alive"
+
+REFERENCE           PLR_CURED_CANT_CURE
+LANG_ENGLISH        "Can't cure a player that isn't infected"
+
+REFERENCE           PLR_CURED
+LANG_ENGLISH        "Player cured"
+
+REFERENCE           PLR_UNDEFINED_CANT_SPAWN
+LANG_ENGLISH        "Player is undefined, can't spawn them"
+
+REFERENCE           PLR_ALIVE_CANT_SPAWN
+LANG_ENGLISH        "Can't spawn a player that is already alive"
+
+REFERENCE           PLR_SPAWNED
+LANG_ENGLISH        "Player spawned"
+
+REFERENCE           PLR_NOT_SPAWNED
+LANG_ENGLISH        "Player not spawned"
+
+REFERENCE           PLR_UNDEFINED_CANT_BOUNCE
+LANG_ENGLISH        "Player is undefined, can't bounce them"
+
+REFERENCE           PLR_DEAD_CANT_BOUNCE
+LANG_ENGLISH        "Can't bounce a player that isn't alive"
+
+REFERENCE           PLR_BOUNCED
+LANG_ENGLISH        "Player bounced"
+
+REFERENCE           PLR_UNDEFINED_CANT_TELEPORT
+LANG_ENGLISH        "Player is undefined, can't teleport them"
+
+REFERENCE           PLR_DEAD_CANT_TELEPORT
+LANG_ENGLISH        "Can't teleport a player that isn't alive"
+
+REFERENCE           PLR_TELEPORTED
+LANG_ENGLISH        "Player teleported"
+
+REFERENCE           PLR_UNDEFINED_CANT_DOWN
+LANG_ENGLISH        "Player is undefined, can't down them"
+
+REFERENCE           PLR_DEAD_CANT_DOWN
+LANG_ENGLISH        "Can't down a player that isn't alive"
+
+REFERENCE           PLR_DOWNED
+LANG_ENGLISH        "Player downed"
+
+REFERENCE           PLR_UNDEFINED_CANT_REVIVE
+LANG_ENGLISH        "Player is undefined, can't revive them"
+
+REFERENCE           PLR_ZOM_CANT_REVIVE
+LANG_ENGLISH        "Can't revive a zombie"
+
+REFERENCE           PLR_INFECTED_CANT_REVIVE
+LANG_ENGLISH        "Player must be cured before being revived"
+
+REFERENCE           PLR_ALIVE_CANT_REVIVE
+LANG_ENGLISH        "Can't revive a player that isn't down"
+
+REFERENCE           PLR_REVIVED
+LANG_ENGLISH        "Player revived"
+
+REFERENCE           PLR_UNDEFINED_CANT_EXPLODE
+LANG_ENGLISH        "Player is undefined, can't explode them"
+
+REFERENCE           PLR_DEAD_CANT_EXPLODE
+LANG_ENGLISH        "Can't explode a player that isn't alive"
+
+REFERENCE           PLR_EXPLODED
+LANG_ENGLISH        "Player exploded"
+
+//////////////
+// _classes //
+//////////////
+
+REFERENCE           NONE
+LANG_ENGLISH        "None"
+
+///////////////////////
+// createserver.menu //
+///////////////////////
+
+
+REFERENCE           IP
+LANG_ENGLISH        "IP address: "
+
+REFERENCE           PORT
+LANG_ENGLISH        "Port: "
+
+REFERENCE           ZOMCOUNT
+LANG_ENGLISH        "Amount of bots: "
+
+REFERENCE           HEALTH
+LANG_ENGLISH        "Zombie health: "
+
+REFERENCE           DIFFICULTY
+LANG_ENGLISH        "Difficulty: "
+
+REFERENCE           EASY
+LANG_ENGLISH        "Easy"
+
+REFERENCE           NORMAL
+LANG_ENGLISH        "Normal"
+
+REFERENCE           HARD
+LANG_ENGLISH        "Hard"
+
+REFERENCE           VERYHARD
+LANG_ENGLISH        "Very hard"
+
+REFERENCE           DEVELOPER
+LANG_ENGLISH        "Developer mode: "
+
+///////////////////////
+// changeweapon.menu //
+///////////////////////
+
+REFERENCE           ATTACHMENTS
+LANG_ENGLISH        "Possible attachments:"
+
+//REFERENCE           
+//LANG_ENGLISH        ""
+
+ENDMARKER

@@ -1,0 +1,37 @@
+iwmap 4
+"000_Global" flags  active
+"The Map" flags 
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+ ( 40 24 0 ) ( -40 24 0 ) ( -40 -24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -24 56 ) ( -40 24 56 ) ( 40 24 56 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -20 56 ) ( 40 -20 56 ) ( 40 -20 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 36 -24 56 ) ( 36 24 56 ) ( 36 24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 40 20 56 ) ( -40 20 56 ) ( -40 20 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -36 24 56 ) ( -36 -24 56 ) ( -36 -24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+"targetname " "ammostock"
+"classname" "trigger_use_touch"
+// brush 0
+{
+ ( -7 -47 32 ) ( 57 -47 32 ) ( 57 33 32 ) trigger 64 64 -6054 -2347 -180 0 lightmap_gray 16384 16384 840 -135 180 0
+ ( 57 33 101 ) ( 57 -47 101 ) ( -7 -47 101 ) trigger 64 64 -6054 -2347 -180 0 lightmap_gray 16384 16384 840 -135 180 0
+ ( 57 24 79 ) ( -7 24 79 ) ( -7 24 7 ) trigger 64 -64 -6054 744 180 0 lightmap_gray 16384 -16384 840 744 -180 0
+ ( -40 33 79 ) ( -40 -47 79 ) ( -40 -47 7 ) trigger 64 -64 2347 744 180 0 lightmap_gray 16384 -16384 135 744 180 0
+ ( -8 -24 79 ) ( 56 -24 79 ) ( 56 -24 7 ) trigger 64 -64 -6054 744 180 0 lightmap_gray 16384 -16384 840 744 -180 0
+ ( 40 -47 79 ) ( 40 33 79 ) ( 40 33 7 ) trigger 64 -64 2347 744 -180 0 lightmap_gray 16384 -16384 135 744 -180 0
+}
+}
+// entity 2
+{
+"angles" "0 270 0"
+"classname" "misc_model"
+"model" "com_bomb_objective"
+"origin" "0.1 0.9 0.0"
+}

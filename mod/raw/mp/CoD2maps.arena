@@ -1,0 +1,77 @@
+{
+    map "mp_surv_testmap"
+    longname "MPUI_TESTMAP"
+    gametype "surv"
+}
+
+{
+    map "mp_bloc"
+    longname "MPUI_BLOC"
+    gametype "surv"
+}
+
+{
+    map "mp_bog"
+    longname "MPUI_BOG"
+    gametype "surv"
+}
+
+{
+    map "mp_carentan"
+    longname "MPUI_CARENTAN"
+    gametype "surv"
+}
+
+{
+    map "mp_countdown"
+    longname "MPUI_COUNTDOWN"
+    gametype "surv"
+}
+
+{
+    map "mp_creek"
+    longname "MPUI_CREEK"
+    gametype "surv"
+}
+
+{
+    map "mp_farm"
+    longname "MPUI_FARM"
+    gametype "surv"
+}
+
+{
+    map "mp_killhouse"
+    longname "MPUI_KILLHOUSE"
+    gametype "surv"
+}
+
+{
+    map "mp_overgrown"
+    longname "MPUI_OVERGROWN"
+    gametype "surv"
+}
+
+{
+    map "mp_pipeline"
+    longname "MPUI_PIPELINE"
+    gametype "surv"
+}
+
+{
+    map "mp_shipment"
+    longname "MPUI_SHIPMENT"
+    gametype "surv"
+}
+
+{
+    map "mp_strike"
+    longname "MPUI_STRIKE"
+    gametype "surv"
+}
+
+{
+    map "mp_cargoship"
+    longname "MPUI_CARGOSHIP"
+    gametype "surv"
+}

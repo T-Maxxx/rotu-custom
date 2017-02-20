@@ -1,0 +1,28 @@
+Headicon instructions
+
+1. Create a source image in inkscape, setting the opacity of the colored parts to be
+about 70% opaque.  Use a 64x64 pixel canvas.  Save the svg file in svnimages in your
+svn working copy.
+2. Export the svg image to a png image, saved in pngimages in your svn working copy.
+3. Open the png image with gimp 2.8 (with the dds plugin installed).  Export the
+image to dds, using BC3/DXT5, no mipmaps, no dithering.  Save the dds image to
+ddsimages in your svn working copy.
+4. Run updateLocalInstall.bat to copy these files to the Mod folder in your cod4 install.
+5. Open Asset Manager, then open source_data\headicons.gdt
+6. Select material, then click 'new entry', then give the new material a name. Set
+material type to 'effect', surfaceType to none, blendFunc to 'blend', then set
+the Color map to the dds file in your cod4 mod folder.  Then PC Convert-->Current
+Asset Only.
+7. Copy the material file from raw/materials to the materials folder in your working
+copy.  Copy the material property file from raw/material_properties to your
+material_properties folder in your working copy. Copy the iwi image from raw/images
+to the images folder in your working copy.
+8. Add a material line to mod.csv for your new material
+9. Precache the new material in scripts\players\_players.gsc
+10. Run updateLocalInstall.bat to copy this files to the Mod folder in your cod4 install.
+11. Run compileMod.bat
+13. Run playMod.bat to evaluate your new headicon.
+
+Prestige instructions
+
+Same basic procedure, but 'material type' must be set to '2d' instead of 'effect'.

@@ -1,0 +1,3 @@
+mod/bin/Release/*
+!mod/bin/Release/dummy
+mod/zone/english/*.ff

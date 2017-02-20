@@ -1,0 +1,324 @@
+/* Localized. */
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_X_START          -50
+#define CHOICE_Y_START          150//172 //213  // controls where choice start from top left corner
+
+#define PLAYER_INFO_X           5
+#define PLAYER_INFO_Y           27//64 //145
+
+/*#undef CHOICE_SIZE_X
+#define CHOICE_SIZE_X           50
+
+
+#undef CHOICE_X_SPACING
+#define CHOICE_X_SPACING        250*/
+
+#define CHOICE_GROUP            "cmds"
+
+#define CHOICE_SEP_1            2       // seperator appears after item 2
+#define CHOICE_SEP_2            7       // seperator appears after item 7
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+{
+    menuDef
+    {
+        name            "admin"
+        fullscreen      0
+        rect            0 0 640 480
+        focuscolor      COLOR_FOCUSED
+        style           WINDOW_STYLE_EMPTY
+        blurWorld       0.1
+        border          0
+        legacySplitScreenScale
+
+        onOpen          { exec "set admin_page 0"; }
+        onEsc           { scriptMenuResponse "admin_menu_close"; close self; }
+
+        /// @depends: admin_ban.menu, admin_warn.menu, admin_kick.menu, admin_temp_ban.menu
+        /// These submenus are required due to arbitrary size limits on individual menus
+        /// new menus must be noted in mod.csv, and precached in scripts\include\adminCommon::precache()
+        CHOICE_BUTTON_VIS( 1, "@ROTUUI_AM_NEXTPLAYER", scriptMenuResponse "admin_next";, 1 )
+        CHOICE_BUTTON_VIS( 2, "@ROTUUI_AM_PREVIOUSPLAYER", scriptMenuResponse "admin_prev";, 1 )
+
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_1, 1 )
+
+        // Punishment.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_PUNISHMENT_DOWN", scriptMenuResponse "admin_down";, when(dvarString("admin_page")=="0")  )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_PUNISHMENT_BOOM", scriptMenuResponse "admin_boom";, when(dvarString("admin_page")=="0") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_PUNISHMENT_DROPWEAPON", scriptMenuResponse "admin_drop";, when(dvarString("admin_page")=="0") )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_PUNISHMENT_DISARM", exec "admin_page disarm";, when(dvarString("admin_page")=="0") )
+        CHOICE_BUTTON_VIS( 7, "@ROTUUI_AM_PUNISHMENT_DEMOTE", scriptMenuResponse "admin_demote";, when(dvarString("admin_page")=="0") )
+
+        // Reward.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_REWARD_PROMOTE", scriptMenuResponse "admin_promote";, when(dvarString("admin_page")=="5")  )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_REWARD_RESTOREAMMOPRIMARY", scriptMenuResponse "admin_restore_primary_weapon";, when(dvarString("admin_page")=="5") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_REWARD_RESTOREAMMOSIDEARM", scriptMenuResponse "admin_restore_sidearm";, when(dvarString("admin_page")=="5") )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_REWARD_UPGRADEPOINTS", scriptMenuResponse "admin_give_upgrade_points";, when(dvarString("admin_page")=="5") )
+
+        // Banning.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_WARN", open admin_warn;, when(dvarString("admin_page")=="1")  )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_KICK", open admin_kick;, when(dvarString("admin_page")=="1")  )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_BAN", open admin_ban;, when(dvarString("admin_page")=="1")  )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_TEMPBAN", open admin_temp_ban;, when(dvarString("admin_page")=="1")  )
+        CHOICE_BUTTON_VIS( 7, "@ROTUUI_AM_REMOVEWARN", exec "admin_page rw";, when(dvarString("admin_page")=="1")  )
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, 1 )
+
+        // Miscellaneous.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_BOUNCE", scriptMenuResponse "admin_bounce";, when(dvarString("admin_page")=="2") )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_TELEPORT", exec "admin_page tp";, when(dvarString("admin_page")=="2") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_VISIBILITY", scriptMenuResponse "admin_session_visibility";, when(dvarString("admin_page")=="2") )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_KILLZOMBIES", scriptMenuResponse "admin_kill_zombies";, when(dvarString("admin_page")=="2") )
+//        CHOICE_BUTTON_VIS( 7, "@ROTUUI_AM_DEV", open admin_dev;, when(dvarString("admin_page")=="2")  )
+
+        // Assist Players.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_ASSIST_SPAWNSPECTATOR", scriptMenuResponse "admin_spawn";, when(dvarString("admin_page")=="3") )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_ASSIST_CURE", scriptMenuResponse "admin_cure";, when(dvarString("admin_page")=="3") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_ASSIST_REVIVE", scriptMenuResponse "admin_revive";, when(dvarString("admin_page")=="3") )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_ASSIST_AMMO", scriptMenuResponse "admin_ammo";, when(dvarString("admin_page")=="3") )
+        CHOICE_BUTTON_VIS( 7, "@ROTUUI_AM_ASSIST_AURA", scriptMenuResponse "admin_aura";, when(dvarString("admin_page")=="3") )
+
+        // Game.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_GAME_RESTARTWAVE", scriptMenuResponse "admin_restart_wave";, when(dvarString("admin_page")=="4") )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_GAME_RESTARTMAP", scriptMenuResponse "admin_restart_map";, when(dvarString("admin_page")=="4") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_GAME_FINISHWAVE", scriptMenuResponse "admin_finish_wave";, when(dvarString("admin_page")=="4") )
+        CHOICE_BUTTON_VIS( 6, "@ROTUUI_AM_GAME_FINISHMAP", scriptMenuResponse "admin_finish_map";, when(dvarString("admin_page")=="4") )
+        CHOICE_BUTTON_VIS( 7, "@ROTUUI_AM_GAME_CHANGEMAP", open admin_changemap;, when(dvarString("admin_page")=="4") )
+
+        // Categories.
+        CHOICE_BUTTON_VIS( 8,  "@ROTUUI_AM_CATEGORY_PUNISHMENT", exec "admin_page 0";, 1 )
+        CHOICE_BUTTON_VIS( 9,  "@ROTUUI_AM_CATEGORY_REWARD", exec "admin_page 5";, 1 )
+        CHOICE_BUTTON_VIS( 10, "@ROTUUI_AM_CATEGORY_BANNING", exec "admin_page 1";, 1 )
+        CHOICE_BUTTON_VIS( 11, "@ROTUUI_AM_CATEGORY_MISC", exec "admin_page 2";, 1 )
+        CHOICE_BUTTON_VIS( 12, "@ROTUUI_AM_CATEGORY_ASSIST", exec "admin_page 3";, 1 )
+        CHOICE_BUTTON_VIS( 13, "@ROTUUI_AM_CATEGORY_GAME", exec "admin_page 4";, 1 )
+
+        // Teleport mini-menu.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_TELEPORT_SPAWN", scriptMenuResponse "admin_teleport_to_spawn"; exec "admin_page 2";, when(dvarString("admin_page")=="tp") )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_TELEPORT_HERE", scriptMenuResponse "admin_teleport_to_admin"; exec "admin_page 2";, when(dvarString("admin_page")=="tp") )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_TELEPORT_FORWARD", scriptMenuResponse "admin_teleport_forward"; exec "admin_page 2";, when(dvarString("admin_page")=="tp") )
+
+        // Disarm mini-menu.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_DISARM_CURRENT", scriptMenuResponse "admin_take_current_weapon"; exec "admin_page 1";, when(dvarString("admin_page")=="disarm") )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_DISARM_ALL", scriptMenuResponse "admin_disarm"; exec "admin_page 1";, when(dvarString("admin_page")=="disarm") )
+
+        // Remove warnings mini-menu.
+        CHOICE_BUTTON_VIS( 3, "@ROTUUI_AM_REMOVEWARNINGS_ONE", scriptMenuResponse "admin_remove_one_warning"; exec "admin_page 1";, when(dvarString("admin_page")=="rw")  )
+        CHOICE_BUTTON_VIS( 4, "@ROTUUI_AM_REMOVEWARNINGS_ONELANG", scriptMenuResponse "admin_remove_one_language_warning"; exec "admin_page 1";, when(dvarString("admin_page")=="rw")  )
+        CHOICE_BUTTON_VIS( 5, "@ROTUUI_AM_REMOVEWARNINGS_ALL", scriptMenuResponse "admin_remove_all_warnings"; exec "admin_page 1";, when(dvarString("admin_page")=="rw")  )
+
+        /* Notify. */
+        itemDef
+        {
+            exp             text( dvarString("admin_txt") )
+            style           0
+            decoration
+            textscale       .30
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          180 230
+            textalign       ITEM_ALIGN_LEFT
+            textaligny      16
+            visible         1
+        }
+
+        /* Selected player info. */
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_NAME" + dvarString("admin_p_n"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X PLAYER_INFO_Y
+            textalign       ITEM_ALIGN_LEFT
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_HEALTH" + dvarString("admin_p_h"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 15)
+            textalign       ITEM_ALIGN_LEFT
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_RPD" + dvarString("admin_p_rpd"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 30)
+            textalign       ITEM_ALIGN_LEFT
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_TEAM" + dvarString("admin_p_t"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 45)
+            textalign       ITEM_ALIGN_LEFT
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_STATUS" + dvarString("admin_p_s"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 60)
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_WARNS" + dvarString("admin_p_w"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 75)
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_SKD" + dvarString("admin_p_skd"))
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 90)
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+
+        itemDef
+        {
+            exp             text( "@ROTUUI_AM_GUID" + dvarString("admin_p_g") )
+            style           0
+            decoration
+            textscale       .34
+            rect            0 0 0 0 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            origin          PLAYER_INFO_X (PLAYER_INFO_Y + 105)
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+
+        /* Admin info. */
+        itemDef
+        {
+            exp             text("@ROTUUI_AM_LOGGEDAS")
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 355
+            textalign       ITEM_ALIGN_RIGHT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text("^2" + dvarString("admin_name"))
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 355
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text("@ROTUUI_AM_ADMINSESSION")
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 375
+            textalign       ITEM_ALIGN_RIGHT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text(dvarString("admin_visibility"))
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 375
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text("@ROTUUI_AM_PERMISSIONS")
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 395
+            textalign       ITEM_ALIGN_RIGHT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "^2" + dvarString("admin_perm"))
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 395
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+        itemDef
+        {
+            exp             text( "^2" + dvarString("admin_perm1"))
+            style           0
+            decoration
+            textscale       .3
+            //rect          3 134 110 20
+            origin          220 440
+            textalign       ITEM_ALIGN_LEFT
+            //textalignx        117
+            textaligny      16
+            visible         1
+        }
+    }
+}
+

@@ -1,0 +1,867 @@
+// ABILITIES -- LOT OF STRINGS
+
+REFERENCE			ABILITY1
+LANG_ENGLISH        "Primary Abilities"
+
+REFERENCE			ABILITY2
+LANG_ENGLISH        "Secondary Ability"
+
+REFERENCE			ABILITY3
+LANG_ENGLISH        "Passive Abilities"
+
+///////////////
+//	SOLDIER  //
+///////////////
+
+	//PRIMARY
+			// ABILITY 1 //
+REFERENCE			SOLDIER_PR_AB1
+LANG_ENGLISH        "Rampage"
+
+REFERENCE			SOLDIER_PR_AB1D
+LANG_ENGLISH        "Rampage (^3lvl 5^7)"
+
+REFERENCE			DES_SOLDIER_PR_AB1
+LANG_ENGLISH		"The soldier shoots and reloads faster for a certain amount of time, double tap USE to activate."
+
+REFERENCE			DES_SOLDIERD_PR_AB1
+LANG_ENGLISH		"The soldier shoots and reloads faster for a certain amount of time, double tap USE to activate. ^3Unlocked at Soldier rank 5."
+
+		// ABILITY 2 //
+REFERENCE			SOLDIER_PR_AB2
+LANG_ENGLISH        "Focus"
+
+REFERENCE			SOLDIER_PR_AB2D
+LANG_ENGLISH        "Focus (^3lvl 15^7)"
+
+REFERENCE			DES_SOLDIER_PR_AB2
+LANG_ENGLISH		"The longer the soldier shoots at a target the more damage he does."
+
+REFERENCE			DES_SOLDIERD_PR_AB2
+LANG_ENGLISH		"The longer the soldier shoots at a target the more damage he does. ^3Unlocked at Soldier rank 15."
+
+		// ABILITY 3 //
+REFERENCE			SOLDIER_PR_AB3
+LANG_ENGLISH        "Last Man Standing"
+
+REFERENCE			SOLDIER_PR_AB3D
+LANG_ENGLISH        "Last Man Standing (^3lvl 25^7)"
+
+REFERENCE			DES_SOLDIER_PR_AB3
+LANG_ENGLISH		"When the last player alive, the soldier takes 80% less damage while reviving another player."
+
+REFERENCE			DES_SOLDIERD_PR_AB3
+LANG_ENGLISH		"When the last player alive, the soldier takes 80% less damage while reviving another player. ^3Unlocked at Soldier rank 25."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			SOLDIER_PS_AB1
+LANG_ENGLISH        "Rifle Expertise"
+
+REFERENCE			DES_SOLDIER_PS_AB1
+LANG_ENGLISH		"The soldier does ^210%^7 more damage with assault rifles."
+
+		// ABILITY 2 //
+REFERENCE			SOLDIER_PS_AB2
+LANG_ENGLISH        "Gun Master"
+
+REFERENCE			SOLDIER_PS_AB2D
+LANG_ENGLISH        "Gun Master (^3lvl 10^7)"
+
+
+REFERENCE			DES_SOLDIER_PS_AB2
+LANG_ENGLISH		"Because of the soldier's long experience with guns he is able to reload faster."
+
+REFERENCE			DES_SOLDIER_PS_AB2D
+LANG_ENGLISH		"Because of the soldier's long experience with guns he is able to reload faster. ^3Unlocked at Soldier rank 10."
+
+		// ABILITY 3 //
+REFERENCE			SOLDIER_PS_AB3
+LANG_ENGLISH        "Regeneration"
+
+REFERENCE			SOLDIER_PS_AB3D
+LANG_ENGLISH        "Regeneration (^3lvl 20^7)"
+
+
+REFERENCE			DES_SOLDIER_PS_AB3
+LANG_ENGLISH		"The soldier's tough skin and attitude cause him to slowly generates health over time."
+
+REFERENCE			DES_SOLDIER_PS_AB3D
+LANG_ENGLISH		"The soldier's tough skin and attitude cause him to slowly generates health over time. ^3Unlocked at Soldier rank 20."
+
+		// ABILITY 4 //
+REFERENCE			SOLDIER_PS_AB4
+LANG_ENGLISH        "Immunity"
+
+REFERENCE			SOLDIER_PS_AB4D
+LANG_ENGLISH        "Immunity (^3lvl 30^7)"
+
+REFERENCE			DES_SOLDIER_PS_AB4
+LANG_ENGLISH		"The soldier is the only one with enough will power to resist the zombie virus and has become immune to it."
+
+REFERENCE			DES_SOLDIER_PS_AB4D
+LANG_ENGLISH		"The soldier is the only one with enough will power to resist the zombie virus and has become immune to it. ^3Unlocked at Soldier ^3rank 30."
+
+///////////////
+//	STEALTH  //
+///////////////
+
+	//PRIMARY
+		// ABILITY 1 //
+REFERENCE			STEALTH_PR_AB1
+LANG_ENGLISH        "Assasination"
+
+REFERENCE			STEALTH_PR_AB1D
+LANG_ENGLISH        "Assasination (^3lvl 5^7)"
+
+REFERENCE			DES_STEALTH_PR_AB1
+LANG_ENGLISH		"The assasin is able to assasinate his enemies by sneaking up on them from behind and slice their throat with his assasin's blade."
+
+REFERENCE			DES_STEALTH_PR_AB1D
+LANG_ENGLISH		"The assasin is able to assasinate his enemies by sneaking up on them from behind and slicing their throat with his assasin's blade. ^3Unlocked at Assasin rank 5."
+
+		// ABILITY 2 //
+REFERENCE			STEALTH_PR_AB2
+LANG_ENGLISH        "Fake Death"
+
+REFERENCE			STEALTH_PR_AB2D
+LANG_ENGLISH        "Fake Death (^3lvl 15^7)"
+
+
+REFERENCE			DES_STEALTH_PR_AB2
+LANG_ENGLISH		"The assasin is able to fake his death such that the zombies will ignore him, double tap USE to activate."
+
+REFERENCE			DES_STEALTH_PR_AB2D
+LANG_ENGLISH		"The assasin is able to fake his death such that the zombies will ignore him, double tap USE to activate. ^3Unlocked at Assasin rank^3 15."
+
+		// ABILITY 3 //
+REFERENCE			STEALTH_PR_AB3
+LANG_ENGLISH        "Quick Escape"
+
+REFERENCE			STEALTH_PR_AB3D
+LANG_ENGLISH        "Quick Escape (^3lvl 25^7)"
+
+
+REFERENCE			DES_STEALTH_PR_AB3
+LANG_ENGLISH		"When the assasin's health gets below 25% he becomes invisible to the zombies and gets a small speed boost, after a few seconds the effect will wear off."
+
+REFERENCE			DES_STEALTH_PR_AB3D
+LANG_ENGLISH		"When the assasin's health gets below 25% he becomes invisible to the zombies and gets a small speed boost, after a few seconds the effect will wear off.  ^3Unlocked at Assasin rank ^325."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			STEALTH_PS_AB1
+LANG_ENGLISH        "Way of the Assasin"
+
+REFERENCE			DES_STEALTH_PS_AB1
+LANG_ENGLISH		"The assasin gains a ^115%^7 damage penalty on fully automatic weapons and on all non-silenced weapons, on all other weapons a ^210%^7 damage bonus and a ^230%^7 melee/crossbow damage bonus."
+
+		// ABILITY 2 //
+REFERENCE			STEALTH_PS_AB2
+LANG_ENGLISH        "Silent kill"
+
+REFERENCE			STEALTH_PS_AB2D
+LANG_ENGLISH        "Silent kill (^3lvl 10^7)"
+
+
+REFERENCE			DES_STEALTH_PS_AB2
+LANG_ENGLISH		"The assasin's weapons make less noise and he won't alert zombies after a succesful assasination. Also assasinations become sleightly easier."
+
+REFERENCE			DES_STEALTH_PS_AB2D
+LANG_ENGLISH		"The assasin's weapons make less noise and he won't alert zombies after a succesful assasination. Also assasinations become sleightly easier. ^3Unlocked at Assasin rank 10."
+
+		// ABILITY 3 //
+REFERENCE			STEALTH_PS_AB3
+LANG_ENGLISH        "Hitman"
+
+REFERENCE			STEALTH_PS_AB3D
+LANG_ENGLISH        "Hitman (^3lvl 20^7)"
+
+
+REFERENCE			DES_STEALTH_PS_AB3
+LANG_ENGLISH		"The assasin deals ^215%^7 more damage if the zombie can not see him. Also single-shot headshots deal another ^245%^7 more damage."
+
+REFERENCE			DES_STEALTH_PS_AB3D
+LANG_ENGLISH		"The assasin deals ^215%^7 more damage if the zombie can not see him. Also single-shot headshots deal another ^245%^7 more damage. ^3Unlocked ^3at Assasin rank 20."
+
+		// ABILITY 4 //
+REFERENCE			STEALTH_PS_AB4
+LANG_ENGLISH        "Shadow Refuge"
+
+REFERENCE			STEALTH_PS_AB4D
+LANG_ENGLISH        "Shadow Refuge (^3lvl 30^7)"
+
+
+REFERENCE			DES_STEALTH_PS_AB4
+LANG_ENGLISH		"While crouching or proning the assasin becomes invisible, the effect lasts untill the assasin attracts attention."
+
+REFERENCE			DES_STEALTH_PS_AB4D
+LANG_ENGLISH		"While crouching or proning the assasin becomes invisible, the effect lasts untill the assasin attracts attention. ^3Unlocked at Assasin ^3rank 30."
+
+
+///////////////
+//	MEDIC  //
+///////////////
+
+	//PRIMARY
+		// ABILITY 1 //
+REFERENCE			MEDIC_PR_AB1
+LANG_ENGLISH        "Medkit"
+
+REFERENCE			MEDIC_PR_AB1D
+LANG_ENGLISH        "Medkit (^3lvl 5^7)"
+
+REFERENCE			DES_MEDIC_PR_AB1
+LANG_ENGLISH		"The medic equips himself with a medkit."
+
+REFERENCE			DES_MEDIC_PR_AB1D
+LANG_ENGLISH		"The medic equips himself with a medkit. ^3Unlocked at Medic rank 5."
+
+		// ABILITY 2 //
+REFERENCE			MEDIC_PR_AB2
+LANG_ENGLISH        "Healing Aura"
+
+REFERENCE			MEDIC_PR_AB2D
+LANG_ENGLISH        "Healing Aura (^3lvl 15^7)"
+
+
+REFERENCE			DES_MEDIC_PR_AB2
+LANG_ENGLISH		"The medic can summon a powerfull healing aura which will heal everyone around, double tap USE to activate."
+
+REFERENCE			DES_MEDIC_PR_AB2D
+LANG_ENGLISH		"The medic can summon a powerfull healing aura which will heal everyone around, double tap USE to activate. ^3Unlocked at Medic rank^3 15."
+
+		// ABILITY 3 //
+REFERENCE			MEDIC_PR_AB3
+LANG_ENGLISH        "Health Transfusion"
+
+REFERENCE			MEDIC_PR_AB3D
+LANG_ENGLISH        "Health Transfusion (^3lvl 25^7)"
+
+
+REFERENCE			DES_MEDIC_PR_AB3
+LANG_ENGLISH		"The medic is able to steal health from a zombie and get's healed by ^215%^7 the damage he does on close range."
+
+REFERENCE			DES_MEDIC_PR_AB3D
+LANG_ENGLISH		"The medic is able to steal health from a zombie and get's healed by ^215%^7 the damage he does on close range.  ^3Unlocked at Medic rank ^325."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			MEDIC_PS_AB1
+LANG_ENGLISH        "Paramedic"
+
+REFERENCE			DES_MEDIC_PS_AB1
+LANG_ENGLISH		"The medic is able to revive a little faster and can cure infections."
+
+		// ABILITY 2 //
+REFERENCE			MEDIC_PS_AB2
+LANG_ENGLISH        "Field Operative"
+
+REFERENCE			MEDIC_PS_AB2D
+LANG_ENGLISH        "Field Operative (^3lvl 10^7)"
+
+
+REFERENCE			DES_MEDIC_PS_AB2
+LANG_ENGLISH		"The medic moves sleightly faster and does not get interrupted during revives or curing infections."
+
+REFERENCE			DES_MEDIC_PS_AB2D
+LANG_ENGLISH		"The medic moves sleightly faster and does not get interrupted during revives or curing infections. ^3Unlocked at Medic rank 10."
+
+		// ABILITY 3 //
+REFERENCE			MEDIC_PS_AB3
+LANG_ENGLISH        "Medicine"
+
+REFERENCE			MEDIC_PS_AB3D
+LANG_ENGLISH        "Medicine (^3lvl 20^7)"
+
+
+REFERENCE			DES_MEDIC_PS_AB3
+LANG_ENGLISH		"With medicine medkits heal faster and now also cure infections."
+
+REFERENCE			DES_MEDIC_PS_AB3D
+LANG_ENGLISH		"With medicine medkits heal faster and now also cure infections. ^3Unlocked ^3at Medic rank 20."
+
+		// ABILITY 4 //
+REFERENCE			MEDIC_PS_AB4
+LANG_ENGLISH        "Poisonous Bullets"
+
+REFERENCE			MEDIC_PS_AB4D
+LANG_ENGLISH        "Poisonous Bullets (^3lvl 30^7)"
+
+
+REFERENCE			DES_MEDIC_PS_AB4
+LANG_ENGLISH		"The medics bullets have been dipped into a deadly poison, even for zombies."
+
+REFERENCE			DES_MEDIC_PS_AB4D
+LANG_ENGLISH		"The medics bullets have been dipped into a deadly poison, even for zombies. ^3Unlocked at Medic ^3rank 30."
+
+///////////////
+//	ENGINEER  //
+///////////////
+
+	//PRIMARY
+		// ABILITY 1 //
+REFERENCE			ENGINEER_PR_AB1
+LANG_ENGLISH        "Ammo Box"
+
+REFERENCE			ENGINEER_PR_AB1D
+LANG_ENGLISH        "Ammo Box (^3lvl 5^7)"
+
+REFERENCE			DES_ENGINEER_PR_AB1
+LANG_ENGLISH		"The engineer bring along and ammo box to support his allies."
+
+REFERENCE			DES_ENGINEER_PR_AB1D
+LANG_ENGLISH		"The engineer bring along and ammo box to support his allies. ^3Unlocked at Engineer rank ^325."
+
+		// ABILITY 2 //
+REFERENCE			ENGINEER_PR_AB2
+LANG_ENGLISH        "Supplies"
+
+REFERENCE			ENGINEER_PR_AB2D
+LANG_ENGLISH        "Supplies (^3lvl 15^7)"
+
+
+REFERENCE			DES_ENGINEER_PR_AB2
+LANG_ENGLISH		"The engineer's ammo gets restored in an instant, double tap USE to activate."
+
+REFERENCE			DES_ENGINEER_PR_AB2D
+LANG_ENGLISH		"The engineer's ammo gets restored in an instant, double tap USE to activate. ^3Unlocked at Engineer rank^3 15."
+
+		// ABILITY 3 //
+REFERENCE			ENGINEER_PR_AB3
+LANG_ENGLISH        "Last Man Standing"
+
+REFERENCE			ENGINEER_PR_AB3D
+LANG_ENGLISH        "Last Man Standing (^3lvl 25^7)"
+
+REFERENCE			DES_ENGINEER_PR_AB3
+LANG_ENGLISH        "When the last player alive, the engineer takes 80% less damage while reviving another player."
+
+REFERENCE			DES_ENGINEER_PR_AB3D
+LANG_ENGLISH        "When the last player alive, the engineer takes 80% less damage while reviving another player. ^3Unlocked at Engineer rank 25."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			ENGINEER_PS_AB1
+LANG_ENGLISH        "Engineering"
+
+REFERENCE			DES_ENGINEER_PS_AB1
+LANG_ENGLISH		"The engineer gets ^25%^7 damage bonus on all assault rifles and light machine guns and a ^210%^7 damage bonus on shotguns and explosives. He is also able to rebuild barricades faster."
+
+		// ABILITY 2 //
+REFERENCE			ENGINEER_PS_AB2
+LANG_ENGLISH        "Explosive Expertise"
+
+REFERENCE			ENGINEER_PS_AB2D
+LANG_ENGLISH        "Explosive Expertise (^3lvl 10^7)"
+
+
+REFERENCE			DES_ENGINEER_PS_AB2
+LANG_ENGLISH		"The engineer is able to carry more explosives with him, he can also rig explosives to his companions."
+
+REFERENCE			DES_ENGINEER_PS_AB2D
+LANG_ENGLISH		"The engineer is able to carry more explosives with him, he can also rig explosives to his companions. ^3Unlocked at Engineer rank 10."
+
+		// ABILITY 3 //
+REFERENCE			ENGINEER_PS_AB3
+LANG_ENGLISH        "Repair Tools"
+
+REFERENCE			ENGINEER_PS_AB3D
+LANG_ENGLISH        "Repair Tools (^3lvl 20^7)"
+
+
+REFERENCE			DES_ENGINEER_PS_AB3
+LANG_ENGLISH		"The engineer is able to repair turrets and vehicles."
+
+REFERENCE			DES_ENGINEER_PS_AB3D
+LANG_ENGLISH		"The engineer is able to repair turrets and vehicles. ^3Unlocked ^3at Engineer rank 20."
+
+		// ABILITY 4 //
+REFERENCE			ENGINEER_PS_AB4
+LANG_ENGLISH        "Incendary Ammo"
+
+REFERENCE			ENGINEER_PS_AB4D
+LANG_ENGLISH        "Incendary Ammo (^3lvl 30^7)"
+
+
+REFERENCE			DES_ENGINEER_PS_AB4
+LANG_ENGLISH		"The enginneer's bullets deal additional fire damage and have a chance of setting their target on fire."
+
+REFERENCE			DES_ENGINEER_PS_AB4D
+LANG_ENGLISH		"The enginneer's bullets deal additional fire damage and have a chance of setting their target on fire. ^3Unlocked at Engineer ^3rank 30."
+
+///////////////
+//	ARMORED  //
+///////////////
+
+	//PRIMARY
+		// ABILITY 1 //
+REFERENCE			ARMORED_PR_AB1
+LANG_ENGLISH        "Melee Warrior"
+
+REFERENCE			ARMORED_PR_AB1D
+LANG_ENGLISH        "Melee Warrior (^3lvl 5^7)"
+
+REFERENCE			DES_ARMORED_PR_AB1
+LANG_ENGLISH		"The armored brings along a melee weapon to slaughter his enemies."
+
+REFERENCE			DES_ARMORED_PR_AB1D
+LANG_ENGLISH		"The armored brings along a melee weapon to slaughter his enemies. ^3Unlocked at Armored rank^3 5."
+
+		// ABILITY 2 //
+REFERENCE			ARMORED_PR_AB2
+LANG_ENGLISH        "Invincibility"
+
+REFERENCE			ARMORED_PR_AB2D
+LANG_ENGLISH        "Invincibility (^3lvl 15^7)"
+
+
+REFERENCE			DES_ARMORED_PR_AB2
+LANG_ENGLISH		"The armored can become invincible for a few seconds, use special to activate"
+
+REFERENCE			DES_ARMORED_PR_AB2D
+LANG_ENGLISH		"The armored can become invincible for a few seconds, use special to activate ^3Unlocked at Armored rank^3 15."
+
+		// ABILITY 3 //
+REFERENCE			ARMORED_PR_AB3
+LANG_ENGLISH        "Heavily Armored"
+
+REFERENCE			ARMORED_PR_AB3D
+LANG_ENGLISH        "Heavily Armored (^3lvl 5^7)"
+
+
+REFERENCE			DES_ARMORED_PR_AB3
+LANG_ENGLISH		"As long as the armored's health is above 65% the damage he receives is halfed."
+
+REFERENCE			DES_ARMORED_PR_AB3D
+LANG_ENGLISH		"As long as the armored's health is above 65% the damage he receives is halfed ^3Unlocked at Armored rank 25."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			ARMORED_PS_AB1
+LANG_ENGLISH        "Heavy Gunner"
+
+REFERENCE			DES_ARMORED_PS_AB1
+LANG_ENGLISH		"The armored gets a ^215%^7 damage bonus on light machine guns and a ^115%^7 damage penalty on sub-machine guns, snipers and pistols."
+
+		// ABILITY 2 //
+REFERENCE			ARMORED_PS_AB2
+LANG_ENGLISH        "Extreme Strength"
+
+REFERENCE			ARMORED_PS_AB2D
+LANG_ENGLISH        "Extreme Strength (^3lvl 10^7)"
+
+
+REFERENCE			DES_ARMORED_PS_AB2
+LANG_ENGLISH		"Because the armored has no problem with recoil he can shoot from the hip without losing precision, he also does ^235%^7 more melee damage."
+
+REFERENCE			DES_ARMORED_PS_AB2D
+LANG_ENGLISH		"Because the armored has no problem with recoil he can shoot from the hip without losing precision, he also does ^235%^7 more melee damage. ^3Unlocked at Armored rank 10."
+
+		// ABILITY 3 //
+REFERENCE			ARMORED_PS_AB3
+LANG_ENGLISH        "Machine Gunner"
+
+REFERENCE			ARMORED_PS_AB3D
+LANG_ENGLISH        "Machine Gunner (^3lvl 20^7)"
+
+
+REFERENCE			DES_ARMORED_PS_AB3
+LANG_ENGLISH		"The armored reloads light machine guns faster and deals another extra ^25%^7 damage with them."
+
+REFERENCE			DES_ARMORED_PS_AB3D
+LANG_ENGLISH		"The armored reloads light machine guns faster and deals another extra ^25%^7 damage with them. ^3Unlocked ^3at Armored rank 20."
+
+		// ABILITY 4 //
+REFERENCE			ARMORED_PS_AB4
+LANG_ENGLISH        "Resistant Skin"
+
+REFERENCE			ARMORED_PS_AB4D
+LANG_ENGLISH        "Resistant Skin (^3lvl 30^7)"
+
+REFERENCE			DES_ARMORED_PS_AB4
+LANG_ENGLISH		"The armored receives ^210%^7 less damage and has a smaller change of getting infected."
+
+REFERENCE			DES_ARMORED_PS_AB4D
+LANG_ENGLISH		"The armored receives ^210%^7 less damage and has a smaller change of getting infected ^3Unlocked at Armored ^3rank 30."
+
+///////////////
+//	SCOUT  //
+///////////////
+
+	//PRIMARY
+		// ABILITY 1 //
+REFERENCE			SCOUT_PR_AB1
+LANG_ENGLISH        "Quick Escape"
+
+REFERENCE			SCOUT_PR_AB1D
+LANG_ENGLISH        "Quick Escape (^3lvl 5^7)"
+
+REFERENCE			DES_SCOUT_PR_AB1
+LANG_ENGLISH		"The scout gets a temporary speed boost, use special to activate"
+
+REFERENCE			DES_SCOUT_PR_AB1D
+LANG_ENGLISH		"The scout gets a temporary speed boost, use special to activate ^3Unlocked at Scout rank 5."
+
+		// ABILITY 2 //
+REFERENCE			SCOUT_PR_AB2
+LANG_ENGLISH        "Scope Zoom"
+
+REFERENCE			SCOUT_PR_AB2D
+LANG_ENGLISH        "Scope Zoom (^3lvl 15^7)"
+
+
+REFERENCE			DES_SCOUT_PR_AB2
+LANG_ENGLISH		"The scout is able to adjust the zoom of his scope by pressing the USE and MELEE key."
+
+REFERENCE			DES_SCOUT_PR_AB2D
+LANG_ENGLISH		"The scout is able to adjust the zoom of his scope by pressing the USE and MELEE key ^3Unlocked at Scout rank^3 15."
+
+		// ABILITY 3 //
+REFERENCE			SCOUT_PR_AB3
+LANG_ENGLISH        "Last Man Standing"
+
+REFERENCE			SCOUT_PR_AB3D
+LANG_ENGLISH        "Last Man Standing (^3lvl 25^7)"
+
+REFERENCE			DES_SCOUT_PR_AB3
+LANG_ENGLISH        "When the last player alive, the scout takes 80% less damage while reviving another player."
+
+REFERENCE			DES_SCOUT_PR_AB3D
+LANG_ENGLISH        "When the last player alive, the scout takes 80% less damage while reviving another player. ^3Unlocked at Scout rank 25."
+
+	//PASSIVE
+		// ABILITY 1 //
+REFERENCE			SCOUT_PS_AB1
+LANG_ENGLISH        "Scouting"
+
+REFERENCE			DES_SCOUT_PS_AB1
+LANG_ENGLISH		"The scout gets a ^210%^7 damage bonus on snipers, sub-machine guns and pistols, furthermore he gets a ^115%^7 damage penalty on LMG's and assault rifles"
+
+		// ABILITY 2 //
+REFERENCE			SCOUT_PS_AB2
+LANG_ENGLISH        "Head Hunter"
+
+REFERENCE			SCOUT_PS_AB2D
+LANG_ENGLISH        "Head Hunter (^3lvl 10^7)"
+
+
+REFERENCE			DES_SCOUT_PS_AB2
+LANG_ENGLISH		"Headshots deal another ^250%^7 damage."
+
+REFERENCE			DES_SCOUT_PS_AB2D
+LANG_ENGLISH		"Headshots deal another ^250%^7 damage. ^3Unlocked at Scout rank 10."
+
+		// ABILITY 3 //
+REFERENCE			SCOUT_PS_AB3
+LANG_ENGLISH        "Hitman"
+
+REFERENCE			SCOUT_PS_AB3D
+LANG_ENGLISH        "Hitman (^3lvl 20^7)"
+
+
+REFERENCE			DES_SCOUT_PS_AB3
+LANG_ENGLISH		"The assasin deals ^215%^7 more damage if the zombie can not see him. Also headshots deal another ^250%^7 more damage."
+
+REFERENCE			DES_SCOUT_PS_AB3D
+LANG_ENGLISH		"The assasin deals ^215%^7 more damage if the zombie can not see him. Also single-shot headshots deal another ^250%^7 more damage. ^3Unlocked ^3at Assasin rank 20."
+
+		// ABILITY 4 //
+REFERENCE			SCOUT_PS_AB4
+LANG_ENGLISH        "Scouting Drone"
+
+REFERENCE			SCOUT_PS_AB4D
+LANG_ENGLISH        "Scouting Drone (^3lvl 30^7)"
+
+REFERENCE			DES_SCOUT_PS_AB4
+LANG_ENGLISH		"A scouting drone provides the scout permanent vision on the zombies location."
+
+REFERENCE			DES_SCOUT_PS_AB4D
+LANG_ENGLISH		"A scouting drone provides the scout permanent vision on the zombies location ^3Unlocked at Scout ^3rank 30."
+
+
+
+//
+// Secondary Abilities -- None are implemented!
+//
+
+REFERENCE           SCOUT_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           SCOUT_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SCOUT_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SCOUT_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Scout ^3rank 30."
+
+REFERENCE           SCOUT_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           SCOUT_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SCOUT_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SCOUT_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Scout ^3rank 30."
+
+REFERENCE           SCOUT_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           SCOUT_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SCOUT_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SCOUT_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Scout ^3rank 30."
+
+REFERENCE           SCOUT_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           SCOUT_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SCOUT_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SCOUT_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Scout ^3rank 30."
+
+REFERENCE           SCOUT_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           SCOUT_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SCOUT_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SCOUT_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Scout ^3rank 30."
+
+
+REFERENCE           SOLDIER_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           SOLDIER_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SOLDIER_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SOLDIER_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Soldier ^3rank 30."
+
+REFERENCE           SOLDIER_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           SOLDIER_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SOLDIER_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SOLDIER_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Soldier ^3rank 30."
+
+REFERENCE           SOLDIER_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           SOLDIER_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SOLDIER_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SOLDIER_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Soldier ^3rank 30."
+
+REFERENCE           SOLDIER_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           SOLDIER_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SOLDIER_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SOLDIER_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Soldier ^3rank 30."
+
+REFERENCE           SOLDIER_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           SOLDIER_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_SOLDIER_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_SOLDIER_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Soldier ^3rank 30."
+
+
+
+REFERENCE           MEDIC_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           MEDIC_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_MEDIC_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_MEDIC_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Medic ^3rank 30."
+
+REFERENCE           MEDIC_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           MEDIC_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_MEDIC_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_MEDIC_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Medic ^3rank 30."
+
+REFERENCE           MEDIC_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           MEDIC_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_MEDIC_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_MEDIC_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Medic ^3rank 30."
+
+REFERENCE           MEDIC_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           MEDIC_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_MEDIC_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_MEDIC_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Medic ^3rank 30."
+
+REFERENCE           MEDIC_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           MEDIC_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_MEDIC_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_MEDIC_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Medic ^3rank 30."
+
+
+
+REFERENCE           ENGINEER_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           ENGINEER_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ENGINEER_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ENGINEER_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Engineer ^3rank 30."
+
+REFERENCE           ENGINEER_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           ENGINEER_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ENGINEER_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ENGINEER_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Engineer ^3rank 30."
+
+REFERENCE           ENGINEER_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           ENGINEER_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ENGINEER_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ENGINEER_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Engineer ^3rank 30."
+
+REFERENCE           ENGINEER_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           ENGINEER_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ENGINEER_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ENGINEER_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Engineer ^3rank 30."
+
+REFERENCE           ENGINEER_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           ENGINEER_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ENGINEER_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ENGINEER_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Engineer ^3rank 30."
+
+
+
+REFERENCE           ARMORED_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           ARMORED_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ARMORED_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ARMORED_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Armored ^3rank 30."
+
+REFERENCE           ARMORED_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           ARMORED_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ARMORED_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ARMORED_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Armored ^3rank 30."
+
+REFERENCE           ARMORED_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           ARMORED_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ARMORED_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ARMORED_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Armored ^3rank 30."
+
+REFERENCE           ARMORED_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           ARMORED_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ARMORED_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ARMORED_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Armored ^3rank 30."
+
+REFERENCE           ARMORED_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           ARMORED_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_ARMORED_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_ARMORED_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Armored ^3rank 30."
+
+
+
+REFERENCE           STEALTH_SC_AB1
+LANG_ENGLISH        "None"
+REFERENCE           STEALTH_SC_AB1D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_STEALTH_SC_AB1
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_STEALTH_SC_AB1D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Assasin ^3rank 30."
+
+REFERENCE           STEALTH_SC_AB2
+LANG_ENGLISH        "None"
+REFERENCE           STEALTH_SC_AB2D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_STEALTH_SC_AB2
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_STEALTH_SC_AB2D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Assasin ^3rank 30."
+
+REFERENCE           STEALTH_SC_AB3
+LANG_ENGLISH        "None"
+REFERENCE           STEALTH_SC_AB3D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_STEALTH_SC_AB3
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_STEALTH_SC_AB3D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Assasin ^3rank 30."
+
+REFERENCE           STEALTH_SC_AB4
+LANG_ENGLISH        "None"
+REFERENCE           STEALTH_SC_AB4D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_STEALTH_SC_AB4
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_STEALTH_SC_AB4D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Assasin ^3rank 30."
+
+REFERENCE           STEALTH_SC_AB5
+LANG_ENGLISH        "None"
+REFERENCE           STEALTH_SC_AB5D
+LANG_ENGLISH        "None (^3lvl 30^7)"
+REFERENCE           DES_STEALTH_SC_AB5
+LANG_ENGLISH        "Not Implemented."
+REFERENCE           DES_STEALTH_SC_AB5D
+LANG_ENGLISH        "Not Implemented. ^3Unlocked at Assasin ^3rank 30."
+
+ENDMARKER

@@ -1,0 +1,36 @@
+iwmap 4
+"000_Global" flags  active
+"The Map" flags 
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+ ( 24 12 0 ) ( -20 12 0 ) ( -20 -24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 -24 72 ) ( -20 12 72 ) ( 24 12 72 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 -24 72 ) ( 24 -24 72 ) ( 24 -24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 20 -24 72 ) ( 20 12 72 ) ( 20 12 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 24 12 72 ) ( -20 12 72 ) ( -20 12 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 12 72 ) ( -20 -24 72 ) ( -20 -24 0 ) clip_player 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+"targetname" "weaponupgrade"
+"classname" "trigger_use_touch"
+// brush 0
+{
+ ( 123.5 12 32 ) ( 35.5 12 32 ) ( 35.5 -92 32 ) trigger 64 64 -4060 -6542 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 37.5 -92 80 ) ( 37.5 12 80 ) ( 125.5 12 80 ) trigger 64 64 -4060 -6542 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 34.5 -24 38 ) ( 122.5 -24 38 ) ( 122.5 -24 14 ) trigger 64 64 -4060 -760 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 24 -92 38.5 ) ( 24 12 38.5 ) ( 24 12 14.5 ) trigger 64 64 6542 -760 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 123.5 18 47.5 ) ( 35.5 18 47.5 ) ( 35.5 18 23.5 ) trigger 64 64 -4060 -760 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -24 14 38 ) ( -24 -90 38 ) ( -24 -90 14 ) trigger 64 64 6542 -760 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 2
+{
+"origin" "-20.0 14.0 0.0"
+"model" "com_vending_can_new2_lit"
+"classname" "misc_model"
+}

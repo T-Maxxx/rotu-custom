@@ -1,0 +1,9 @@
+name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage,center percentage,platform,envelop_min,envelop_max,envelop percentage
+weap_spas12_fire_plr,,weapons/spas12/weap_spas12_slst_1d4.wav,0.81,0.87,wpnplyr,0.95,1.05,500000,,local,,,,0.85,,,,,weapon2,,,,
+weap_spas12silenced_fire_plr,,weapons/spas12/weap_spas12silenced_slst_17.wav,0.5,0.6,wpnplyr,0.95,1.05,500000,,local,,,,0.85,,,,,weapon2,,,,
+weap_spas12_fire_npc,,weapons/spas12/weap_spas12_slmn_1d4.wav,0.99,0.99,wpnai,0.95,1.05,180,10920,weapon,,,,0.9,all_mp,,,,weapon4
+weap_spas12silenced_fire_npc,,weapons/spas12/weap_spas12silenced_slmn_17.wav,0.45,0.5,wpnai,0.95,1.05,180,8400,weapon,,,,0.9,all_mp,,,,weapon4
+weap_spas12_open_plr,,foley/wpfoly_spas12_reload_open_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_spas12_loop_plr,,foley/wpfoly_spas12_reload_loop_v1.wav,0.55,0.6,wpnplyr,0.95,1.05,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_spas12_close_plr,,foley/wpfoly_spas12_reload_close_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_spas12_lift_plr,,foley/wpfoly_spas12_reload_lift_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,

@@ -1,0 +1,20 @@
+VERSION             "1"
+CONFIG              "C:\trees\cod3\cod3\bin\StringEd.cfg"
+FILENOTES           ""
+
+REFERENCE           WAIT4VOTES
+LANG_ENGLISH        "Waiting for Votes"
+
+REFERENCE           PRESSFIRE
+LANG_ENGLISH        "Press [{+attack}] to Vote"
+
+REFERENCE           TIMEREMAINING
+LANG_ENGLISH        "Time remaining:"
+
+REFERENCE           INSTRUCTIONS22
+LANG_ENGLISH        "[{+attack}] for Next Map, [TODO ADS, not toggle] for Previous Map"
+
+REFERENCE           VOTES
+LANG_ENGLISH        "&&1  &&2"
+
+ENDMARKER

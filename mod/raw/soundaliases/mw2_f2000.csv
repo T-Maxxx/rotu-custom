@@ -1,0 +1,11 @@
+name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage,center percentage,platform,envelop_min,envelop_max,envelop percentage
+weap_f2000_fire_plr,,weapons/f2000/weap_f2000_slst_11.wav,0.95,1,wpnplyr,0.8,0.9,500000,,local,,,,0.85,,,,,weapon2
+weap_f2000silenced_fire_plr,,weapons/f2000/weap_f2000_silencer_slst_2b.wav,0.65,0.7,wpnplyr,0.93,1.03,500000,,local,,,,0.85,,,,,weapon2
+weap_f2000_fire_npc,,weapons/f2000/weap_f2000_slmn_2b2.wav,0.76,0.82,wpnai,0.95,1.05,35,10920,weapon,,,,0.7,all_mp,,,,weapon4
+weap_f2000silenced_fire_npc,,weapons/f2000/weap_f2000_silencer_slmn_2b.wav,0.56,0.62,wpnai,0.8,0.9,35,2000,weapon,,,,0.7,all_mp,,,,weapon4
+weap_f2000_lift_plr,,foley/wpfoly_f2000_reload_lift_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_f2000_first_lift_plr,,foley/wpfoly_f2000_reload_first_lift_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,100
+weap_f2000_clipout_plr,,foley/wpfoly_f2000_reload_clipout_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_f2000_clipin_plr,,foley/wpfoly_f2000_reload_clipin_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_f2000_chamber_plr,,foley/wpfoly_f2000_reload_chamber_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,
+weap_f2000_first_lift_chamber_plr,,foley/wpfoly_f2000_reload_first_chamber_v1.wav,0.55,0.6,wpnplyr,1,1,7,500,reload2d,,,,0.85,,,,,weapon2,

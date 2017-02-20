@@ -1,0 +1,17 @@
+AUTHORS.txt
+
+The following individuals authored and hold copyright to portions of Reign of
+the Undead.
+
+Developer
+    T-Max <https://github.com/T-Maxxx>
+
+Based on RotU 2.2.2 by
+    Mark A. Taff <mark@marktaff.com>
+
+Original Developer
+    Bipo (xfire: bipoalarmonk)
+
+Scripters
+    BraX <paulina1295@o2.pl> www.brax-site.pl
+    Etheross (xfire: etheross)

@@ -1,0 +1,230 @@
+/* Localized, partly. */
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_X_START          0
+#define CHOICE_Y_START          120
+
+#define CHOICE_GROUP            "main"
+#define CHOICE_SEP_1            3
+#define CHOICE_SEP_2            6
+#define CHOICE_SEP_3            9
+
+#define STYLE_PC    1
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+#include "ui_mp/stats_info.inc"
+
+{
+    assetGlobalDef
+    {
+        fadeClamp       1.0                     // sets the fadeup alpha
+        fadeCycle       1                       // how often fade happens in milliseconds
+        fadeAmount      0.1                     // amount to adjust alpha per cycle
+    }
+    menuDef
+    {
+        name            "main"
+        fullScreen      1
+        rect            0 0 640 480
+        focusColor      COLOR_FOCUSED
+        soundloop       "music_mainmenu_mp"
+        onOpen
+        {
+            open main_text;
+            uiScript addPlayerProfiles;
+            uiScript openMenuOnDvar com_playerProfile "" player_profile;
+            uiScript openMenuOnDvarNot ui_playerProfileCount 1 player_profile;
+            execOnDvarStringValue hastoreconnect 1 "set hastoreconnect 0;reconnect";
+            uiScript stopRefresh;
+            setdvar ui_showEndOfGame "0";
+        }
+        onClose
+        {
+        }
+        onESC
+        {
+        }
+    }
+
+    menuDef
+    {
+        name            "main_text"
+        fullScreen      1
+        rect            0 0 640 480
+        focusColor      COLOR_FOCUSED
+        soundloop       "music_mainmenu_mp"
+        onOpen
+        {
+            exec "selectStringTableEntryInDvar mp/didyouknow.csv 0 didyouknow";
+        }
+        onClose
+        {
+        }
+        onESC
+        {
+        }
+
+        // Menu items -------------------------------------------
+        #include "ui/bg.inc"
+
+        // RotU title
+        #define ORIGIN_BANNER       108 48
+        #define OBJECTIVE_COLOR_MARINES         0.4 0.6 1 0.75
+
+        itemDef {
+            style           WINDOW_STYLE_SHADER
+            rect            ORIGIN_BANNER 400 0.5
+            background      "line_horizontal"
+            forecolor       1 1 1 0.85
+            visible         1   decoration  }
+        itemDef {
+            style           WINDOW_STYLE_SHADER
+            rect            ORIGIN_BANNER 340 10
+            origin          30 1
+            background      "line_horizontal"
+            forecolor       OBJECTIVE_COLOR_MARINES
+            visible         1
+            decoration  }
+        itemDef {
+            style           WINDOW_STYLE_SHADER
+            rect            ORIGIN_BANNER 400 0.5
+            origin          0 12
+            background      "line_horizontal"
+            forecolor       1 1 1 0.85
+            visible         1   decoration  }
+
+        itemDef {
+            rect            -400 64 800 0 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_TOP
+            textstyle       ITEM_TEXTSTYLE_SHADOWED
+            textscale       TEXTSIZE_TITLE
+            textalign       ITEM_ALIGN_CENTER
+            forecolor       1 1 1 0.85
+            exp             text ( "@ROTUUI_MOD" );
+            visible         1   decoration  }
+
+        //#include "ui/background_bars.menu"
+
+        // cod:mw logo
+        itemDef
+        {
+            visible         1
+            rect            324 56 278 68
+            forecolor       1 1 1 1
+            style           WINDOW_STYLE_SHADER
+            background      "logo_cod2"
+            visible         when( !localvarBool( ui_hideBack ) && dvarString( ui_mod_logo ) == "" );
+            decoration
+        }
+
+        // mod logo
+        itemDef
+        {
+            visible         1
+            rect            324 56 278 68
+            forecolor       1 1 1 1
+            style           WINDOW_STYLE_SHADER
+            exp material    ( dvarString( ui_mod_logo ) )
+            visible         when( !localvarBool( ui_hideBack ) && dvarString( ui_mod_logo ) != "" );
+            decoration
+        }
+
+        // Clan/Server owner message
+        itemDef
+        {
+            // rect [left edge] [top edge] [width] [height]
+            rect            420 400 400 80 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+            textstyle       ITEM_TEXTSTYLE_SHADOWED
+            textscale       TEXTSIZE_SMALL
+            textalign       ITEM_ALIGN_CENTER
+            forecolor       1 1 1 0.75
+            exp             text(dvarString("ui_main_menu_clan_text"))
+            autowrapped
+            visible         1
+            decoration
+        }
+
+        #define SETUP_ACTION_CREATEACLASS \
+                execnow "statset 260 1"; \
+                play "mouse_click"; \
+                open pc_cac_popup;
+
+        #define CLEARUIHINT exec "set ui_hint_text @MP_NULL"
+
+        CHOICE_BUTTON_VIS( 2, "@MENU_JOIN_GAME", open pc_join_unranked;, when( !localvarBool( ui_hideBack ) ) )
+        CHOICE_BUTTON_VIS( 3, "@MENU_START_NEW_SERVER", close self; open createserver;, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_1, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_BUTTON_VIS( 4, "@MENU_SELECT_PROFILE", setdvar ui_playerProfileAlreadyChosen 0; open player_profile;, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_BUTTON_VIS( 5, "@MENU_RANK_AND_CHALLENGES", open menu_challenges;, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_2, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_BUTTON_VIS( 6, "@MENU_CONTROLS", open main_controls;, when( !localvarBool( ui_hideBack ) ) )
+        CHOICE_BUTTON_VIS( 7, "@MENU_OPTIONS", open main_options;, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_3, when( !localvarBool( ui_hideBack ) ) )
+
+        CHOICE_BUTTON_VIS( 8, "@MENU_MODS", close self; open mods_menu;, when( !localvarBool( ui_hideBack ) ) )
+        CHOICE_BUTTON_VIS( 9, "@ROTUUI_ABOUT", open about_rotu;, when( !localvarBool( ui_hideBack ) ) )
+        CHOICE_BUTTON_VIS( 10, "@MENU_QUIT", open quit_popmenu;, when( !localvarBool( ui_hideBack ) ) )
+
+        // Official RotU website box
+        CHOICE_FOOTNOTE_VIS( "@ROTUUI_WEBSITE", 40, 420, when( !localvarBool( ui_hideBack ) ) )
+    }
+
+    #include "ui_mp/popupstyle.inc"
+    #include "ui/choices_setup_popmenu.menu"
+
+    // ====================== create a class (custom class selection) =========================
+    #undef CHOICE_SIZE_X
+    #define CHOICE_SIZE_X           212
+
+    #define CAC_POPUP_X     (0)
+    #define CAC_POPUP_Y     (212)
+
+    #undef NEW_X_OFFSET
+    #define NEW_X_OFFSET    (0-CHOICE_SIZE_X)
+    #undef NEW_Y_OFFSET
+    #define NEW_Y_OFFSET    (0-2)
+
+    #include "ui_mp/cacpopup.inc"
+    CAC_POPUP( "pc_cac_popup", CAC_POPUP_X, CAC_POPUP_Y )
+
+
+    // ====================== single player confirmation =========================
+
+    #undef CHOICE_SIZE_X
+    #define CHOICE_SIZE_X   320
+
+
+    #undef CHOICE_HORIZONTAL_ALIGN
+    #define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+    #undef CHOICE_VERTICAL_ALIGN
+    #define CHOICE_VERTICAL_ALIGN   VERTICAL_ALIGN_CENTER
+
+    #define textcolor       1 1 1 1
+
+
+    menuDef
+    {
+        CENTER_POPUP_SETUP( about_rotu, 11, ;, 1 )
+
+        CHOICE_POPMENU_TITLE( "@ROTUUI_ABOUT_TITLE" )
+        CHOICE_SECTION_TITLE( 2, "@ROTUUI_ABOUT_DEVELOPER_TITLE" )
+        CHOICE_SUBTEXT_COLOR_VIS( 3, "@ROTUUI_ABOUT_DEVELOPER", textcolor, 1 )
+        CHOICE_SECTION_TITLE( 4, "@ROTUUI_ABOUT_BASED_TITLE" )
+        CHOICE_SUBTEXT_COLOR_VIS( 5, "@ROTUUI_ABOUT_BASED", textcolor, 1 )
+        CHOICE_SECTION_TITLE( 6, "@ROTUUI_ABOUT_ORIGINAL_TITLE" )
+        CHOICE_SUBTEXT_COLOR_VIS( 7, "@ROTUUI_ABOUT_ORIGINAL", textcolor, 1 )
+        CHOICE_SECTION_TITLE( 8, "@ROTUUI_ABOUT_CONTRIB_TITLE" )
+        CHOICE_SUBTEXT_COLOR_VIS( 9, "@ROTUUI_ABOUT_CONTRIB1", textcolor, 1 )
+        CHOICE_SUBTEXT_COLOR_VIS( 10, "@ROTUUI_ABOUT_CONTRIB2", textcolor, 1 )
+        CHOICE_SUBTEXT_COLOR_VIS( 11, locString("@ROTUUI_ABOUT_WEBSITE", "@ROTUUI_WEBSITE"), textcolor, 1 )
+    }
+
+
+
+}

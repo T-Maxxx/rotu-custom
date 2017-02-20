@@ -1,0 +1,337 @@
+ROTU Change Log
+
+//
+// 2.2.2 by T-Max.
+//
+
+* Minor bug fixing. Server looks stable and no errors thrown during gameplay.
+  Now mod can be compiled from any directory. It still depends on some original 
+  game files.
+* Mod directory was cleaned up.
+* AA-12 model/anims/textures/sounds replaced with MW3 one made by mitsurugi 
+  (http://www.cfgfactory.com/downloads/show/572b6d0459b49). Notetracks on reload
+  animations was a bit moved to fit soundtracks. Weapon name changed to "AA-12".
+* Removed "Secondary ability" menu choice as not implemented.
+* You can now buy ammo\health\cure using buttons 1\2\3. The reason is bugs 
+  in iw3 engine UI code where you can not activate button where X coordinate is
+  negative. This bug mostly known as "widescreen" bug.
+* Fixed health bar so it will no more goes off its borders.
+* Special points now slowly drains while special activated.
+* Replaced F2000 textures\animations with MW2 one, added attachments support.
+* Almost all localization now based on .str files.
+* LEGEND IS BACK! SPAS-12 from MW2 now in RotU. New models\anims\textures\configs.
+
+//
+// 2.2
+//
+* Secondary abilities in UI cleaned up to prevent the UI from tricking players into
+  thinking there are actually secondary abilities
+* The abilities shown on the class menu are actually implemented now
+* New 'Last Man Standing' ability for soldiers, scouts, and engineers: 80% less
+  damage while reviving if they are the last player alive
+* Player Alive/Down counts are now correct, so the game will never think there
+  are still players alive when everyone is actually down
+* The bug that lead to the assassin's invincibility glitch and spectator glitching
+  is fixed
+* The HUD now displays current wave / total waves
+* You can now have an arbitrary number of waves
+* You can now have an arbitrary number of special waves up to one wave less than
+  the total waves
+* The order of the regular and special waves is now pseudo-random
+* New zombie type: burning (exploding) dogs.  Running dogs with flames, they
+  explode when killed.
+* New zombie type: burning (exploding) tank zombies.  Tank (hell) zombies with flames,
+  they explode when killed.
+* New zombie type: cyclops. Like a boss zombie, but much easier to kill, and can
+  be damaged with gun fire as well as explosives and knifing.
+* New special wave type: cyclops.  1-2 fewer cyclops than the number of players,
+  with at least one cyclops.
+* New special wave type: runners.  Nothing but sprinting zombies.
+* New special wave type: burning dog.  Burning (exploding) dogs.
+* New special wave type: burning tank (hell).  Burning (exploding) tank zombies.
+* New special wave type: inferno.  Inferno is a pseudo-random mix of burning
+  zombies, burning dogs, and burning tank.
+* New special wave type: random.  A pseudo-random mix of all the special zombies
+* Only admin can leave and rejoin the game during a wave.  Regular players must
+  wait until the current wave is finished to rejoin.
+* Admin can join a game, even if there are not enough survivors alive.
+* In regular waves, every nth zombie is a pseudo-random special zombie.  Default
+  is every 10th, configurable.
+* The number of zombies in a special wave is now 33% of what the regular wave
+  would be instead of 25%, and this setting is now configurable.
+* In the second half of the game, zombies' health, damage, and speed increases
+  between 20% and 60% for various zombies. You can now scale these overall increases
+  from 0% to 100%.
+* Up to 60 in-game 'Did You Know' messages, configurable.  Four are scrolled though
+  between each wave.
+* Claymores are now implemented
+* C4 now works, even if the player had once become a zombie.
+* Per-player maximum emplaced and on-hand claymores and C4 is settable in weapons.cfg.
+  Max on-hand ammo for these weapons is still governed by their respective weapon_mp files.
+* New welcome messages welcome a player by name, and tell them their prestige level
+* Players get an upgrade point bonus for each prestige level when they first join
+  the game.
+* Special weapons are implemented and available during the last half of the game to
+  players that have prestiged and continue to prestige as possible.
+* New map voting UI.  Allows for 13 pseudo-random maps to be displayed.  Option to replay the
+  current map if the players lost.  New 'None of The Above' option gives players a second
+  chance at voting with a new map selection.  The UI tells you which map you have
+  voted for, and lists the players that voted for each map, in real-time.
+* Map voting no longer depends on the map rotation dvar, but instead uses up to
+  seven of its own dvars, allowing for well over 175 maps to be available for voting.
+* It is now possible to specify a list of maps that should appear in map voting
+  at a reduced frequency, and also at a greatly reduced frequency.
+* Map voting uses an English name (configurable) for the maps rather than the code
+  name for the map
+* The source code and the configuration files are now documented with doxygen-style
+  documentation.
+* New admin system with fine-grain powers allows the server owner great flexibility
+  in granting admin powers.
+* New in-game admin menu for punishing, warning, banning, and rewarding players.
+  The menu also permits finishing or restarting waves and maps, as well as changing
+  the map.  Admin can operate in a stealth session where their actions are not
+  broadcast to other players (default setting) or they can make their session visible
+  so players are informed of their actions.  Admin can cure, revive, down, teleport,
+  healing aura, ammo can, promote, demote, give upgrade points, and much more.
+* New warning system warns, then temp bans and perm bans for language and regular
+  warnings (distinct counts). Warnings are persistent just like rank.  How many
+  warnings of each type will result in a temp ban or a permanent ban is configurable.
+* New debugging system that can print function entrance messages, value messages,
+  and emitted signals.  Debugging system has seven verbosity levels.
+* New headicons for admin, engineers, medics, and moderately-low health.
+* The number of assassins, engineers, and medics in the game is now limited.  These
+  limits do not apply to admin.
+* New demerits system that issues persistent demerits for being a poor team player.
+  After 20 demerits (configurable), the player loses 500 rank points.
+* Over 175 maps have been tested with 2.2.  Those that cause griveous errors are
+  black-listed so they cannot be voted on or loaded.  Our test server currently
+  has 150 maps that are known to work and may be voted on.
+* Thousands of run-time errors and race conditions have been fixed.
+* The 2.2 server starts/restarts very quickly compared to 2.1.
+* Several maps have been fixed to resolve precache and bg_fallDamage[Min|Max]Height issues
+* dustrailsIR effect is now precached in the mod to fix maps that call for the effect
+  but don't precache it themselves.  Ditto for com_bottle[1|2|3|4].
+* Minimap shows a 'kill' objective on each player-zombie to help others find and
+  kill them
+* Minimap show a flashing red exclamation mark on down players to help others find them
+* 'Autotext' feature tells players when a player is down, and asks them to revive
+  if possible
+* Players now get rank and upgrade points for covering the revival of another player
+  during a wave
+* The number of rank points for large killing sprees has been greatly reduced to limit
+  the benefit of spree glitching
+* Ammo boxes are now biased towards other players and non-engineers.  The primary way for an engineer
+  to get ammo is to use their special.  The better an engineer is at giving other
+  players ammo, the more frequently they can throw an ammo box.  Special weapons
+  are now (slowly) reloadable from ammo boxes.
+* MG + barrel now works without force-disconnecting players
+* Player spawn protection makes players invincible for 2 seconds after they spawn
+* PERL script to merge ban.txt files from multiple mods on multiple servers (manual
+  downloading and uploading still required).
+* ***DEPRECATED*** Multiple compile scripts so you can re-compile just the portions that you have
+  changed rather than the entire mod.  Also scripts to facilitate using subversion
+  and uploading files to the game server.
+* New build system, makeMod.pl, builds the mod without leaving detritus laying about.
+  It will only rebuild the parts that need to be rebuilt, based on changes it detects
+  to the source code.  It can be forced to do a full rebuild.  It can perform a multitude
+  of code-quality checks.  It can produce a listing of every function definition and
+  where it is defined, and each place it is used in the code.  It creates debug and
+  non-debug versions of the server scripts.  It can clean the mod, removing almost
+  all traces that it had ever been there.
+* About two-dozen deprecated files have been removed.
+* Players get no points for killing a burning zombie if they damage a teammate in
+  the process
+* New end-game credits display, with multiple server providers permitted in the config file
+* Server.cfg file has been split into several smaller config files, including an
+  easy.cfg to facilitate running an 'easy' version of the game
+* Grenade and minigun defense turrets now work, and are configurable in weapons.cfg. Each
+  player may own only one turret at a time.  Turrets disappear when they run out
+  of ammo, not after a preset time. Grenade and minigun turrets are unlocked at
+  different prestige levels (configurable).  Turrets do not lag the game.
+* Players now get upgrade points for damaging a player-zombie, to help defray the
+  cost of expended ammunition and such.
+* New string library
+* New array library
+* New matrix library
+* Can turn on/off each type of debug statement from server.cfg, and also set the
+  debug verbosity.
+* Auto-spawning when the next wave begins or when there are enough player's alive
+  now works.
+* Can change class anytime and respawn immediately, if you have enough upgrade points.
+  The cost of changing your class is the sum of health + ammo + cure from the shop
+* Admin menu works while spectating, hit the 'use' key to open
+* Development console "admin:" messages configurable in server.cfg
+* Removed source of burning human and ambient sound errors when building the mod.
+  Only the non-consequential rumble errors remain.
+* Axis and Allies team names can now be set in server.cfg
+* Final Zombie now has up to four kill methods: explosives, primary weapon, sidearm,
+  and knifing.  Each type can be turned on/off from server.cfg.  Each type also has
+  a difficulty factor, configurable in server.cfg, to make each type easier or
+  harder.  There is also a new factor set in server.cfg to make the kill balls
+  appear more or less frequently.
+* The number of zombies in the next wave is now calculated just before the wave
+  starts instead of immediately after the previous wave ended.
+* Timeout that ends god-mode when the admin menu is closed is settable in admin.cfg
+* Teleporters now work properly on legacy maps (maps that don't use waypoints)
+* Future home of the source code: http://code.google.com/p/reign-of-the-undead/
+
+//
+// 2.2 Release Show-stoppers
+//
+* The usables system needs some TLC after extensive efforts to kill the unrevivable bug
+* Finish initial documentation in the wiki on the new source code website
+* Numerous code cleanups and function documentation required.
+
+//
+// 2.2 Known Issues
+//
+* Need more work to kill the insidious 'unrevivable' bug
+* Demerits for not reviving enough players between waves (faked until
+  unrevivable bug is fixed).
+* 'No Die Handlier for entity type 12' bug is still unresolved (related to
+  helicopter, i.e. medkits)
+* staticbarricade errors from a handful of maps, such as parkorman and mrx_castle.
+  These maps are blacklisted.
+* Rare overflow crash bug in the new mapvoting system: likely fixed for 20-human-slot
+  servers, may reappear on servers with more slots.
+* Defense turrets sometimes stop firing.  In-game workaround: The owning player must
+  pick up and re-emplace the turret.
+* The source of the rumble errors when building the mod.ff is individual [weapon]_mp
+  files calling for the files raw/rumble/silencer_fire, raw/rumble/defaultweapon_melee,
+  and raw/rumble/defaultweapon_fire.  Those files call the _h and _l versions of
+  the rumble files.
+* Demerits issued when a sentry turrets kills burning zombies and damages another player,
+  but you shouldn't get demerits for that (grrr, and the code agrees, strange bug).
+
+
+//
+// 2.2+ Feature ideas
+//
+* New final zombie wave type: Multiple time-staggered final zombies depending on
+  how many players are in the game
+* Adaptive zombie slot system.  Will assign some open player slots to zombies to make
+  maximum use of slots the server provider is paying for.
+* End-game stats.  Will appear before the end credits, and will not duplicate information
+  shown in the scoreboard.  Likely be 'most revives', 'most revive covering',
+  'best kill/death ratio', and 'most valuable player', 'best medic', 'best engineer'.
+* Replacing the scoreboard team icons with something more zombie-appropriate
+* 'Broken Arrow' feature that uses off-map support to kill most zombies when a team
+  is about to be overrun.
+* Blue ball ban feature
+* Improved music system
+* Player pause feature, for 60 seconds
+
+
+//
+// 2.2.1 Changes (>= r40)
+//
+* Enable night vision by default, and at no cost.
+* Note in admin_default.cfg that at least one admin must be defined for the mod to run
+* Fix teleporters and MG+Barrels so they cannot be emplaced too close to a shop or
+  weapons crate.
+* Fix bug where 'Restore Ammo' at shop restored c4, claymores, and tnt, which permitted
+  players to exceed the per-player limits.  'Restore Ammo' now only restores bullets
+  and grenades, as intended.
+* Implement TNT.
+* Make frag grenades hurt final zombie on 'explosives' kill method
+* Added a clan-specific message to the main menu.  Configurable in server.cfg.
+* Fix for rare bug where barrels appeared to be 'stuck' to a player after they
+  tried to emplace the barrel. See Issue 6.
+* Issue where rcon password sometimes changed has been fixed.
+* Add ability to sometimes, always, or never show zombies on the minimap.  Configurable
+  in server.cfg
+* Force players to automatically drop a MG+Barrel turret when it runs out of ammo, so their
+  body doesn't become hidden if they don't drop the turret immediately.
+* Fix for an admin sometimes not being recognized as an admin such that they can't open the
+  admin menu.  The issue presented itself when multiple admins connected to the game within
+  one second of each other.
+* Reduce start and max ammo for the gold desert eagle from 500 to 250 rounds.
+* Deprecate and remove the 2.1 map voting system
+* Deprecate and remove _zombiescipt2.gsc and _zombiescript - kopie.gsc
+* Increased sv_maptoing dvars to 10, which will allow for about 250 maps
+* Support 12 of the CoD4 built-in maps via UMI--the rest have too many xmodels and will
+  never work with RotU
+* Enable 'Start New Server' command from RotU menu.  You will need a full install
+  of RotU--the files downloaded while playing on somone's server are insufficient.
+* New Unified Mapping Interface (UMI) replaces _zombiescript. Maps written to the _zombiescript
+  interface will continue to work.  We can now load maps that require external BTD
+  waypoints and tradespawns.  New file rotu_srv_mapdata.iwd holds tradespawn, waypoint,
+  and main script files for non-native RotU maps. I will be writing a wiki tutorial with
+  example files for mappers.  New UMI dev functions to convert RotU waypoints to BTD
+  waypoints and vice-versa. New admin development functions that allow an admin to
+  be given, emplace, delete, and pick up weapon and equipment shops.  When they are
+  satisfied with the shop locations, 'Save Tradespawns' will write a new tradespawns
+  file to the server log.
+* Support three non-RotU maps via UMI: mp_prunis, mp_burgundy_bulls, and mp_arkona_osg.
+  We are not distributing these maps--just the files we wrote and the data required
+  to make them run in RotU 2.2.1.  You can get the maps from the usual places.
+
+//
+// 2.2.2 Changes (>= r105)
+//
+* New UMI Map Editor.  Allows creating, editing, linking, and moving waypoints in-game
+  when the map is launched in UMI Editor mode.  The editing menu is available from b then 5
+  in-game.
+* Improved bot elevation following logic helps prevent bots from getting stuck in stairs.
+* Improved waypoints and tradespawns for map mp_pipeline.
+* Removed the gameboy-like normal map from claymores.
+* Removed many unused images from yz_custom.iwd.
+* TNT now works after having been a zombie.
+* Limit TNT to one per on-screen ammo box to prevent engineers from killing all the
+  zombies themselves.
+* AI tweak to make zombies target other players faster when their original target
+  goes down.
+* New 'New Player Assistance' feature to make the game easier for new players while
+  they learn how to play.  When they go down, they are auto-revived, cured,
+  given some upgrade points, and told to 'run to survive'.  This assistance ends
+  at prestige level 0, rank 30.  New players are limited to 3 assists per wave,
+  then they go down as normal.
+* Native GIMP *.xcf masks to facilitate skinning player uniforms.  This required
+  some changes to the models used for players, so if you were using custom uniforms
+  already, you will need to customize images for the new models.
+* Explicitly include the dvars needed for special weapons in weapons.cfg
+* Various improvements to the special weapons.
+* Fix bug where prestige 38 used the prestige 3 icon.
+* Add 20 additional prestige levels; max prestige is now 65.
+* Engineer's ammo special now recharges both primary and seconday weapon ammo supply.
+* Improved waypoints for mp_creek and mp_farm.
+* Initial waypoints and tradspawns for map mp_brecourt_v2.
+* Improved waypoints for map mpsurv_new_moon_lg.
+* New 'many_bosses' option for final wave.
+* Deprecated and removed the RotU 2.1 wave count system
+* Reduced rank points for killing sprees and increased the rank points required for
+  each promotion. Between this and the extra prestige levels, it should now take
+  about 3 times as much game-play to max out your prestige.
+* Split server.cfg into server.cfg and game.cfg to facilitate getting local servers
+  working properly.
+* Starting Listen, LAN, and Internet servers now works as expected via playMod.bat,
+  host.bat, and join.bat.
+* Removed recoil from raygun so players can't use it to help get outside of maps.
+* Added a dvar to allow raygun to be purchased anytime, though I think this hurts
+  gameplay.  The prestige limits still apply.
+* Improved waypoints and anti-glitching fixes in map mp_surv_zombiedesert.
+* Initial waypoints for map mp_surv_boss_road.
+* Add two unrestricted machine guns to map mp_surv_tunnel so that it is actually
+  possible to beat the map.
+* In the UMI Map Editor, if there are more waypoint links than the line() function
+  will draw, only draw the links within 2500 units of the dev player.
+* Fix the bug where players got demerits when their grenade or minigun turret killed
+  burning zombies.
+* Dermits for not reviving players between waves are now real, not simulated.
+* Improved waypoints for map mp_nwa_forest_v2 so zombies are less likely to get
+  stuck on the roof.
+* Make 'Start New Server' menu item work as expected.  Uses the new config file
+  startnewserver.cfg.
+* New 'Server Customization' credit and dvar for people making code changes, skins,
+  etc., on their server.
+* New release() function in makeMod.pl to build and package releases.
+* Admin promote/demote commands now do one rank or 750 rank points instead on 500
+  points, due to the larger points needed for each rank now.
+* UMI Map Editor shortcuts are disabled on real server to prevent an admin from
+  inadvertently borking a running map.
+* Implement the 'Scouting Drone' passive ability for scouts.
+* New UMI functions to remove built-in turrets from maps, and also for disambiguating
+  built-in barrels from the barrels available for purchase.
+* Initial waypoints and tradespawns for the map mp_caen.
+* Implement the admin command 'Spawn Spectator', which spawns a spectating player
+  as one of the randomly chosen unrestricted classes: soldier, scout, or armored.

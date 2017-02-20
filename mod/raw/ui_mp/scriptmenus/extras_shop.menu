@@ -1,0 +1,247 @@
+/* Localized. */
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_SIZE_X           112
+#define CHOICE_SIZE_Y           22
+
+#define CHOICE_X_START          0
+#define CHOICE_Y_START          34
+
+#define CHOICE_Y_COUNT          10
+
+#define CHOICE_SEP_OFFSET_Y     -2
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#define MENU_LOCKED_COLOR       0.25 0.25 0.25 1
+
+#define ORIGIN_BUTTON_BACK          52 438
+#define ORIGIN_MENU_TREE            54 64
+#define ORIGIN_MENU_TITLE_MARINES   178 64
+#define ORIGIN_MENU_TITLE_OPFOR     170 64
+
+#define TREE_COLOR                  1 1 1 0.5
+#define LABEL_TEXT_COLOR        0.7 0.75 0.75 1
+
+{
+    menuDef
+    {
+        name            "extras_shop"
+        rect            0 0 640 480
+        focuscolor      COLOR_FOCUSED
+        style           WINDOW_STYLE_EMPTY
+        blurWorld       7.0
+        onOpen
+        {
+            setLocalVarString ui_team "marines"
+        }
+        onEsc
+        {
+            scriptMenuResponse "back";
+        }
+
+        execKey "1" { scriptMenuResponse "item0"; }
+        execKey "2" { scriptMenuResponse "item1"; }
+        execKey "3" { scriptMenuResponse "item2"; }
+
+        // background overlay
+        itemDef {
+            style           WINDOW_STYLE_FILLED
+            rect            0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+            backcolor       0 0 0 .75 //0 0.05 0.15 0.5
+            visible         1
+            decoration
+        }
+        // gradient_top
+        itemDef {
+            style           WINDOW_STYLE_SHADER
+            rect            0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+            background      "gradient_top"
+            visible         1
+            decoration
+        }
+        // gradient_bottom
+        itemDef {
+            style           WINDOW_STYLE_SHADER
+            rect            0 405 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+            background      "gradient_bottom"
+            visible         1
+            decoration
+        }
+
+        // ------------------ TREE TITLE ------------------
+
+        CHOICE_MENU_TITLE( "@ROTUUI_EXTRASSHOP_TITLE" )
+
+        // ------------------ buttons ---------------------
+        #define BACK_OPEN   ;
+        #include "ui_mp/navcontrols.inc"
+
+        //=========================================================================
+        //================ MENU SELECTION FOR ONLINE/OFFLINE GAME =================
+        //=========================================================================
+        #include "ui_mp/teamicon.inc"
+
+        #undef  NEW_X_OFFSET
+        #define NEW_X_OFFSET -196
+        #undef  NEW_Y_OFFSET
+        #define NEW_Y_OFFSET -2
+        #undef CHOICE_X_SPACING
+        #define CHOICE_X_SPACING        206
+
+        /* =================================== default classes ================================= */
+        CHOICE_SECTION_TITLE( 1, "@ROTUUI_EXTRASSHOP_ITEMS" )
+
+        #define ITEM_BUTTON_HOLDBACK_VIS(num, text, cost_dvar, response, holdback_val, vis) \
+            CHOICE_BUTTON_BG( num, when(vis) ) \
+            CHOICE_HIGHLIGHT( num, when(vis) ) \
+            CHOICE_BUTTON_VIS_NOHI( num, locString("@ROTUUI_EXTRASSHOP_FMT_AVAIL", text, dvarInt(cost_dvar)), scriptMenuResponse response;, when((dvarint("ui_points") >= dvarint(cost_dvar) + holdback_val) && vis)) \
+            CHOICE_DBUTTON_VIS_NOHI( num, locString("@ROTUUI_EXTRASSHOP_FMT", text, dvarInt(cost_dvar)), when((dvarint("ui_points") < dvarint(cost_dvar) + holdback_val) && vis))
+
+        #define ITEM_BUTTON_HOLDBACK(num, text, cost_dvar, response, holdback_val) \
+             ITEM_BUTTON_HOLDBACK_VIS(num, text, cost_dvar, response, holdback_val, 1)
+
+        #define ITEM_BUTTON(num, text, cost_dvar, response) \
+            ITEM_BUTTON_HOLDBACK(num, text, cost_dvar, response, 0)
+
+        #define BUTTONS_DEFINES_END /* VSCode C highlight fix. */
+
+        /*
+        CHOICE_BUTTON_BG( 2, 1 )
+        CHOICE_HIGHLIGHT( 2, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 2, "^2"+"@ROTUUI_EXTRASSHOP_RESTOREHEALTH"+dvarstring("ui_costs0"), scriptMenuResponse "item0";, when( dvarint("ui_points") >= dvarint("ui_costs0") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 2, "^1" + "@ROTUUI_EXTRASSHOP_RESTOREHEALTH" + dvarstring("ui_costs0"), when( dvarint("ui_points") < dvarint("ui_costs0") ) )
+        */
+        ITEM_BUTTON(2, "@ROTUUI_EXTRASSHOP_RESTOREHEALTH", "ui_costs0", "item0")
+        ITEM_BUTTON_HOLDBACK(3, "@ROTUUI_EXTRASSHOP_RESTOREAMMO", "ui_costs1", "item1", dvarint("ui_costs2"))
+        ITEM_BUTTON(4, "@ROTUUI_EXTRASSHOP_CURE", "ui_costs2", "item2")
+        ITEM_BUTTON_HOLDBACK(5, "@ROTUUI_EXTRASSHOP_FRAG", "ui_costs3", "item3", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(6, "@ROTUUI_EXTRASSHOP_C4", "ui_costs4", "item4", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK_VIS(7, "@ROTUUI_EXTRASSHOP_RAYGUN", "ui_costs5", "item5", dvarint("ui_costs2"), dvarbool("ui_raygun") == 1)
+        /*
+        CHOICE_BUTTON_BG( 3, 1 )
+        CHOICE_HIGHLIGHT( 3, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 3, "^2" + "@ROTUUI_EXTRASSHOP_RESTOREAMMO" + dvarstring("ui_costs1"), scriptMenuResponse "item1";, when( dvarint("ui_points") >= dvarint("ui_costs1") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 3, "^1" + "@ROTUUI_EXTRASSHOP_RESTOREAMMO" + dvarstring("ui_costs1"), when( dvarint("ui_points") < dvarint("ui_costs1") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 4, 1 )
+        CHOICE_HIGHLIGHT( 4, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 4, "^2" + "@ROTUUI_EXTRASSHOP_CURE" + dvarstring("ui_costs2"), scriptMenuResponse "item2";, when( dvarint("ui_points") >= dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 4, "^1" + "@ROTUUI_EXTRASSHOP_CURE" + dvarstring("ui_costs2"), when( dvarint("ui_points") < dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 5, 1 )
+        CHOICE_HIGHLIGHT( 5, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 5, "^2" + "@ROTUUI_EXTRASSHOP_FRAG" + dvarstring("ui_costs3"), scriptMenuResponse "item3";, when( dvarint("ui_points") >= dvarint("ui_costs3") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 5, "^1" + "@ROTUUI_EXTRASSHOP_FRAG" + dvarstring("ui_costs3"), when( dvarint("ui_points") < dvarint("ui_costs3") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 6, 1 )
+        CHOICE_HIGHLIGHT( 6, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 6, "^2" + "@ROTUUI_EXTRASSHOP_C4" + dvarstring("ui_costs4"), scriptMenuResponse "item4";, when( dvarint("ui_points") >= dvarint("ui_costs4") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 6, "^1" + "@ROTUUI_EXTRASSHOP_C4" + dvarstring("ui_costs4"), when( dvarint("ui_points") < dvarint("ui_costs4") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 7, when( dvarbool("ui_raygun") == 1) )
+        CHOICE_HIGHLIGHT( 7, when( dvarbool("ui_raygun") == 1) )
+        CHOICE_BUTTON_VIS_NOHI( 7, "^2" + "@ROTUUI_EXTRASSHOP_RAYGUN" + dvarstring("ui_costs5"), scriptMenuResponse "item5";, when( dvarint("ui_points") >= dvarint("ui_costs5") + dvarint("ui_costs2") && dvarbool("ui_raygun") == 1 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 7, "^1" + "@ROTUUI_EXTRASSHOP_RAYGUN" + dvarstring("ui_costs5"), when( dvarint("ui_points") < dvarint("ui_costs5") + dvarint("ui_costs2") && dvarbool("ui_raygun") == 1 ) )
+        */
+
+        CHOICE_SECTION_TITLE( 11, "@ROTUUI_EXTRASSHOP_DEFENCES" )
+
+        ITEM_BUTTON_HOLDBACK(12, "@ROTUUI_EXTRASSHOP_BARREL", "ui_itemcosts0", "item10", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(13, "@ROTUUI_EXTRASSHOP_CLAYMORE", "ui_itemcosts1", "item11", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(14, "@ROTUUI_EXTRASSHOP_BARREL_EXP", "ui_itemcosts2", "item12", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(15, "@ROTUUI_EXTRASSHOP_TURRET_GRENADE", "ui_itemcosts3", "item13", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(16, "@ROTUUI_EXTRASSHOP_TURRET_BARREL", "ui_itemcosts4", "item14", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(17, "@ROTUUI_EXTRASSHOP_TURRET_MINIGUN", "ui_itemcosts5", "item15", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(18, "@ROTUUI_EXTRASSHOP_PORTAL", "ui_itemcosts6", "item16", dvarint("ui_costs2"))
+        ITEM_BUTTON_HOLDBACK(19, "@ROTUUI_EXTRASSHOP_TNT", "ui_itemcosts7", "item17", dvarint("ui_costs2"))
+        /*
+        CHOICE_BUTTON_BG( 12, 1 )
+        CHOICE_HIGHLIGHT( 12, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 12, "^2"+ "@ROTUUI_EXTRASSHOP_BARREL" +dvarstring("ui_itemcosts0"), scriptMenuResponse "item10";, when( dvarint("ui_points") >= dvarint("ui_itemcosts0") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 12, "^1"+ "@ROTUUI_EXTRASSHOP_BARREL" +dvarstring("ui_itemcosts0"), when( dvarint("ui_points") < dvarint("ui_itemcosts0") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 13, 1 )
+        CHOICE_HIGHLIGHT( 13, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 13, "^2"+ "@ROTUUI_EXTRASSHOP_CLAYMORE" + dvarstring("ui_itemcosts1"), scriptMenuResponse "item11";, when( dvarint("ui_points") >= dvarint("ui_itemcosts1") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 13, "^1"+ "@ROTUUI_EXTRASSHOP_CLAYMORE" + dvarstring("ui_itemcosts1"), when( dvarint("ui_points") < dvarint("ui_itemcosts1") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 14, 1 )
+        CHOICE_HIGHLIGHT( 14, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 14, "^2" + "@ROTUUI_EXTRASSHOP_BARREL_EXP" + dvarstring("ui_itemcosts2"), scriptMenuResponse "item12";, when( dvarint("ui_points") >= dvarint("ui_itemcosts2") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 14, "^1" + "@ROTUUI_EXTRASSHOP_BARREL_EXP" + dvarstring("ui_itemcosts2"), when( dvarint("ui_points") < dvarint("ui_itemcosts2") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 15, 1 )
+        CHOICE_HIGHLIGHT( 15, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 15, "^2" + "@ROTUUI_EXTRASSHOP_TURRET_GRENADE" + dvarstring("ui_itemcosts3"), scriptMenuResponse "item13";, when( dvarint("ui_points") >= dvarint("ui_itemcosts3") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 15, "^1" + "@ROTUUI_EXTRASSHOP_TURRET_GRENADE" + dvarstring("ui_itemcosts3"), when( dvarint("ui_points") < dvarint("ui_itemcosts3") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 16, 1 )
+        CHOICE_HIGHLIGHT( 16, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 16, "^2" + "@ROTUUI_EXTRASSHOP_TURRET_BARREL" + dvarstring("ui_itemcosts4"), scriptMenuResponse "item14";, when( dvarint("ui_points") >= dvarint("ui_itemcosts4") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 16, "^1" + "@ROTUUI_EXTRASSHOP_TURRET_BARREL" + dvarstring("ui_itemcosts4"), when( dvarint("ui_points") < dvarint("ui_itemcosts4") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 17, 1 )
+        CHOICE_HIGHLIGHT( 17, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 17, "^2" + "@ROTUUI_EXTRASSHOP_TURRET_MINIGUN" + dvarstring("ui_itemcosts5"), scriptMenuResponse "item15";, when( dvarint("ui_points") >= dvarint("ui_itemcosts5") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 17, "^1" + "@ROTUUI_EXTRASSHOP_TURRET_MINIGUN" + dvarstring("ui_itemcosts5"), when( dvarint("ui_points") < dvarint("ui_itemcosts5") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 18, 1 )
+        CHOICE_HIGHLIGHT( 18, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 18, "^2" + "@ROTUUI_EXTRASSHOP_PORTAL" +dvarstring("ui_itemcosts6"), scriptMenuResponse "item16";, when( dvarint("ui_points") >= dvarint("ui_itemcosts6") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 18, "^1" + "@ROTUUI_EXTRASSHOP_PORTAL" +dvarstring("ui_itemcosts6"), when( dvarint("ui_points") < dvarint("ui_itemcosts6") + dvarint("ui_costs2") ) )
+        */
+        /*
+        CHOICE_BUTTON_BG( 19, 1 )
+        CHOICE_HIGHLIGHT( 19, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 19, "^2" + "@ROTUUI_EXTRASSHOP_TNT" + dvarstring("ui_itemcosts7"), scriptMenuResponse "item17";, when( dvarint("ui_points") >= dvarint("ui_itemcosts7") + dvarint("ui_costs2") ) )
+        CHOICE_DBUTTON_VIS_NOHI( 19, "^1" + "@ROTUUI_EXTRASSHOP_TNT" + dvarstring("ui_itemcosts7"), when( dvarint("ui_points") < dvarint("ui_itemcosts7") + dvarint("ui_costs2") ) )
+        */
+/*
+        CHOICE_SECTION_TITLE( 21, "Support:" )
+
+        CHOICE_BUTTON_BG( 22, 1 )
+        CHOICE_HIGHLIGHT( 22, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 22, "^2Night Vision ("+dvarstring("ui_supportcosts0")+")", scriptMenuResponse "item20";, when( dvarint("ui_points") >= dvarint("ui_supportcosts0") && dvarint("ui_supupgrade") == 0 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 22, "^1Night Vision ("+dvarstring("ui_supportcosts0")+")", when( dvarint("ui_points") < dvarint("ui_supportcosts0") && dvarint("ui_supupgrade") == 0  ) )
+        CHOICE_DBUTTON_VIS_NOHI( 23, "Night Vision ("+dvarstring("ui_supportcosts0")+")", when( dvarint("ui_supupgrade") > 0 ) )
+
+        CHOICE_BUTTON_BG( 23, 1 )
+        CHOICE_HIGHLIGHT( 23, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 23, "^2Mortar ("+dvarstring("ui_supportcosts1")+")", scriptMenuResponse "item21";, when( dvarint("ui_points") >= dvarint("ui_supportcosts1") && dvarint("ui_supupgrade") == 0 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 23, "^1Mortar ("+dvarstring("ui_supportcosts1")+")", when( dvarint("ui_points") < dvarint("ui_supportcosts1") && dvarint("ui_supupgrade") == 0  ) )
+        CHOICE_DBUTTON_VIS_NOHI( 23, "Mortar ("+dvarstring("ui_supportcosts1")+")", when( dvarint("ui_supupgrade") <= 0 ) )
+
+        CHOICE_BUTTON_BG( 24, 1 )
+        CHOICE_HIGHLIGHT( 24, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 24, "^2Minigun ("+dvarstring("ui_supportcosts2")+")", scriptMenuResponse "item22";, when( dvarint("ui_points") >= dvarint("ui_supportcosts2") && dvarint("ui_supupgrade") > 1 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 24, "^1Minigun ("+dvarstring("ui_supportcosts2")+")", when( dvarint("ui_points") < dvarint("ui_supportcosts2") && dvarint("ui_supupgrade") > 1  ) )
+        CHOICE_DBUTTON_VIS_NOHI( 24, "Minigun ("+dvarstring("ui_supportcosts2")+")", when( dvarint("ui_supupgrade") <= 1 ) )
+
+        CHOICE_BUTTON_BG( 25, 1 )
+        CHOICE_HIGHLIGHT( 25, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 25, "^2Portal ("+dvarstring("ui_supportcosts3")+")", scriptMenuResponse "item23";, when( dvarint("ui_points") >= dvarint("ui_supportcosts3") && dvarint("ui_supupgrade") > 2 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 25, "^1Portal ("+dvarstring("ui_supportcosts3")+")", when( dvarint("ui_points") < dvarint("ui_supportcosts3") && dvarint("ui_supupgrade") > 2  ) )
+        CHOICE_DBUTTON_VIS_NOHI( 25, "Portal ("+dvarstring("ui_supportcosts3")+")", when( dvarint("ui_supupgrade") <= 2 ) )
+
+        CHOICE_BUTTON_BG( 26, 1 )
+        CHOICE_HIGHLIGHT( 26, 1 )
+        CHOICE_BUTTON_VIS_NOHI( 26, "^2Nuke ("+dvarstring("ui_supportcosts4")+")", scriptMenuResponse "item24";, when( dvarint("ui_points") >= dvarint("ui_supportcosts4") && dvarint("ui_supupgrade") > 3 ) )
+        CHOICE_DBUTTON_VIS_NOHI( 26, "^1Nuke ("+dvarstring("ui_supportcosts4")+")", when( dvarint("ui_points") < dvarint("ui_supportcosts3") && dvarint("ui_supupgrade") > 3  ) )
+        CHOICE_DBUTTON_VIS_NOHI( 26, "Nuke ("+dvarstring("ui_supportcosts4")+")", when( dvarint("ui_supupgrade") <= 3 ) )
+*/
+        #include "ui/safearea.menu"
+    }
+}

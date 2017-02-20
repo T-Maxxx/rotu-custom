@@ -1,0 +1,8 @@
+LICENSE.txt
+
+Reign of the Undead is licensed under the MIT License as noted at the beginning
+of each source file.
+
+Additionally, some assets in this mod are owned by Activision/Infinity Ward, so
+any use of Reign of the Undead must also comply with Activision/Infinity Ward's
+modtools EULA.

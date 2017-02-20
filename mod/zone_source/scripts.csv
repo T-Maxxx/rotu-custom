@@ -1,0 +1,84 @@
+//Core mod scripts. Must be included into mod.
+//Directory: maps
+rawfile,maps/mp/_debug.gsc
+rawfile,maps/mp/_load.gsc
+rawfile,maps/mp/_umi.gsc
+rawfile,maps/mp/_umiEditor.gsc
+rawfile,maps/mp/_umi_shortcuts.cfg
+rawfile,maps/mp/_unified_mapping_interface.gsc
+rawfile,maps/mp/_zombiescript.gsc
+rawfile,maps/mp/gametypes/dm.gsc
+rawfile,maps/mp/gametypes/surv.gsc
+rawfile,maps/mp/gametypes/surv.txt
+rawfile,maps/mp/gametypes/war.gsc
+rawfile,maps/mp/gametypes/war.txt
+rawfile,maps/mp/gametypes/_gametypes.txt
+rawfile,maps/mp/gametypes/_spawnlogic.gsc
+rawfile,maps/mp/gametypes/_spawnlogic_cod_original.gsc
+//Directory: scripts
+rawfile,scripts/bots/_bots.gsc
+rawfile,scripts/bots/_types.gsc
+rawfile,scripts/clients/_clients.gsc
+rawfile,scripts/gamemodes/_gamemodes.gsc
+rawfile,scripts/gamemodes/_hud.gsc
+rawfile,scripts/gamemodes/_mysterybox.gsc
+rawfile,scripts/gamemodes/_survival.gsc
+rawfile,scripts/gamemodes/_upgradables.gsc
+rawfile,scripts/include/adminCommon.gsc
+rawfile,scripts/include/array.gsc
+rawfile,scripts/include/data.gsc
+rawfile,scripts/include/entities.gsc
+rawfile,scripts/include/hud.gsc
+rawfile,scripts/include/matrix.gsc
+rawfile,scripts/include/physics.gsc
+rawfile,scripts/include/strings.gsc
+rawfile,scripts/include/utility.gsc
+rawfile,scripts/include/waypoints.gsc
+rawfile,scripts/include/_map_util.gsc
+rawfile,scripts/level/signals.gsc
+rawfile,scripts/level/_levelsetup.gsc
+rawfile,scripts/level/_waypoints.gsc
+rawfile,scripts/players/_abilities.gsc
+rawfile,scripts/players/_barricades.gsc
+rawfile,scripts/players/_classes.gsc
+rawfile,scripts/players/_damagefeedback.gsc
+rawfile,scripts/players/_infection.gsc
+rawfile,scripts/players/_menus.gsc
+rawfile,scripts/players/_persistence.gsc
+rawfile,scripts/players/_playermodels.gsc
+rawfile,scripts/players/_players.gsc
+rawfile,scripts/players/_rank.gsc
+rawfile,scripts/players/_shop.gsc
+rawfile,scripts/players/_spree.gsc
+rawfile,scripts/players/_teleporter.gsc
+rawfile,scripts/players/_turrets.gsc
+rawfile,scripts/players/_usables.gsc
+rawfile,scripts/players/_weapons.gsc
+rawfile,scripts/server/_adminCommands.gsc
+rawfile,scripts/server/_adminInterface.gsc
+rawfile,scripts/server/_environment.gsc
+rawfile,scripts/server/_main_popup.gsc
+rawfile,scripts/server/_maprotation.gsc
+rawfile,scripts/server/_maps.gsc
+rawfile,scripts/server/_mapvoting22.gsc
+rawfile,scripts/server/_ranks.gsc
+rawfile,scripts/server/_rconInterface.gsc
+rawfile,scripts/server/_scoreboard.gsc
+rawfile,scripts/server/_server.gsc
+rawfile,scripts/server/_settings.gsc
+rawfile,scripts/server/_welcome.gsc
+// Default configs. (used to deploy configs for new servers.)
+// rawfile,admin_default.cfg
+// rawfile,damage_default.cfg
+// rawfile,didyouknow_default.cfg
+// rawfile,easy_default.cfg
+// rawfile,game_default.cfg
+// rawfile,mapvote_default.cfg
+// rawfile,server_default.cfg
+// rawfile,startnewserver_default.cfg
+// rawfile,weapons_default.cfg
+// Other stuff.
+rawfile,AUTHORS.txt
+rawfile,CHANGELOG.txt
+rawfile,LICENSE.txt
+rawfile,README.txt

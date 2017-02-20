@@ -1,0 +1,27 @@
+statname,statint
+,This stattable are not in use and fill in progress
+
+,max level = 0-29 == 30.
+class_level_max,29
+level_soldier,430
+level_stealth,431
+level_armored,432
+level_engineer,433
+level_scout,434
+level_medic,435
+generalWarnings,2354
+badLanguageWarnings,2355
+demerits,2356
+weapon_assault,290
+weapon_lmg,291
+weapon_smg,292
+weapon_shotgun,293
+weapon_sniper,294
+weapon_pistol,295
+perk1,296
+perk2,297
+perk3,298
+prestige1,2326
+prestige2,210
+rank1,252
+rank2,253

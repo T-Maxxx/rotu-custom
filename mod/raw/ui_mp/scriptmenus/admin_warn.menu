@@ -1,0 +1,51 @@
+// Localized.
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_X_START          170
+#define CHOICE_Y_START          -115 // controls where choice start from top left corner
+
+#define PLAYER_INFO_X           5
+#define PLAYER_INFO_Y           64 //145
+
+/*#undef CHOICE_SIZE_X
+#define CHOICE_SIZE_X           50
+
+
+#undef CHOICE_X_SPACING
+#define CHOICE_X_SPACING        250*/
+
+#define CHOICE_GROUP            "cmds"
+
+#define CHOICE_SEP_1            16       // seperator appears after item 2
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+{
+    menuDef
+    {
+        name            "admin_warn"
+        fullscreen      0
+        rect            0 0 640 480
+        focuscolor      COLOR_FOCUSED
+        style           WINDOW_STYLE_EMPTY
+        blurWorld       0.1
+        border          0
+        legacySplitScreenScale
+
+        onOpen          { exec "set admin_submenu warn"; }
+        onEsc           { scriptMenuResponse "admin_warn_close"; close self; }
+
+        /* warn reasons sub-menu */
+        CHOICE_BUTTON_VIS( 14, "@ROTUUI_REASON_DECISION", scriptMenuResponse "admin_warn_general"; close self;, when(dvarString("admin_submenu")=="warn")  )
+        CHOICE_BUTTON_VIS( 15, "@ROTUUI_REASON_BADLANGUAGE", scriptMenuResponse "admin_warn_language"; close self;, when(dvarString("admin_submenu")=="warn")  )
+        CHOICE_BUTTON_VIS( 16, "@ROTUUI_REASON_SILENT", scriptMenuResponse "admin_warn_silent"; close self;, when(dvarString("admin_submenu")=="warn")  )
+
+        CHOICE_SEPARATOR_VIS( CHOICE_SEP_1, 1 )
+
+        CHOICE_BUTTON_VIS( 17, "@ROTUUI_CANCEL", scriptMenuResponse "admin_warn_cancel"; close admin_warn;, when(dvarString("admin_submenu")=="warn") )
+
+    }
+}
+

@@ -1,0 +1,9 @@
+// Not in use.
+xmodel,weapon_saw_new_rescue
+xmodel,viewmodel_saw_new_rescue
+fx,misc/rescuesaw_sparks
+xanim,viewmodel_chainsaw_idle
+xanim,viewmodel_chainsaw_fire
+xanim,viewmodel_chainsaw_pullout
+xanim,viewmodel_chainsaw_putaway
+material,mtl_weapon_saw_rescue

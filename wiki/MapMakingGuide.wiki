@@ -1,0 +1,8 @@
+#summary A brief guide for Map-makers
+#labels Phase-Implementation
+= Introduction =
+
+This document contains information helpful for map-makers.
+
+=== Sample `*`.gsc File ===
+New maps, and existing maps that are updated, should follow this [http://code.google.com/p/reign-of-the-undead/source/browse/trunk/map_src/contrib/test_map/raw/maps/mp/mp_surv_testmap.gsc example] file for their script files.  Doing so will prevent the *very* common precache errors and help with debugging.

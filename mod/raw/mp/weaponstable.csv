@@ -1,0 +1,47 @@
+rotu_alias,original,acog,gl,grip,reflex,silencer,special
+
+# rotu_alias - alias of name to be used in "giveWeapon", "takeWeapon" wrappers,,,,,,,
+# original - actual weapon file name.,,,,,,,
+# acog - actual weapon with ACOG sight file name, can be empty.,,,,,,,
+# gl - actual weapon with grenade launcher file name, can be empty.,,,,,,,
+# grip - actual weapon with grip handle file name, can be empty.,,,,,,,
+# reflex - actual weapon with reflex sight file name, can be empty.,,,,,,,
+# silencer - actual weapon with silencer file name, can be empty.,,,,,,,
+# special - reserved but can be used to store other weapon file name, can be empty.,,,,,,,
+
+# Shotguns:,,,,,,,
+aa-12,m60e4_acog_mp,,,,,,
+spas-12,m1014_reflex_mp,,,,,,
+
+# Assault rifles:,,,,,,,
+f2000,m14_acog_mp,,,,,,
+aug,rpd_acog_mp,,,,,,
+
+# Submachine guns:,,,,,,,
+mp5k,mp5_acog_mp,,,,,,
+
+# Machine guns:,,,,,,,
+minigun,saw_acog_mp,,,,,,
+
+# Sniper rifles:,,,,,,,
+m200,deserteagle_mp,,,,,,
+
+# Miscellanous:,,,,,,,
+tomahawk,m60e4_acog_mp,,,,,,
+ammobox,m14_reflex_mp,,,,,,
+
+# Special:,,,,,,,
+thundergun,g3_acog_mp,,,,,,
+raygun,barret_acog_mp,,,,,,
+wunderwaffedg2,ak74u_acog_mp,,,,,,
+flamethrower,skorpion_acog_mp,,,,,,
+
+# Zombie weapons:,,,,,,,
+quad_idle,flash_grenade_mp,,,,,,
+quad_sprint,smoke_grenade_mp,,,,,,
+quad_crawl,concussion_grenade_mp,,,,,,
+quad_attack,g3_gl_mp,,,,,,
+
+# WIP:,,,,,,,
+ump,scorpion_mp,,,,scorpion_reflex_mp,scorpion_silencer_mp,
+
