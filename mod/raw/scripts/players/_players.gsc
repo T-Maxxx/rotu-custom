@@ -59,7 +59,7 @@ init()
     thread scripts\players\_menus::init();
     thread scripts\players\_classes::init();
     thread scripts\players\_abilities::init();
-    thread scripts\players\_weapons::init();
+    scripts\players\_weapons::init();
     thread scripts\players\_playermodels::init();
     thread scripts\players\_usables::init();
     thread scripts\players\_infection::init();

@@ -190,6 +190,7 @@ xmodel,ch_tombstone3
 stringtable,mp/ranktable.csv
 stringtable,mp/challengetable.csv
 stringtable,mp/rankicontable.csv
+stringtable,mp/weaponstable.csv
 xanim,ai_zombie_quad_idle
 xanim,ai_zombie_quad_crawl_sprint
 xanim,ai_zombie_quad_crawl

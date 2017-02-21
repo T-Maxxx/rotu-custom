@@ -34,6 +34,138 @@
 
 #include scripts\include\utility;
 
+/**
+ * @brief Precache all weapons used in this mod.
+ */
+rotuPrecacheWeapons()
+{
+    debugPrint("in _weapons::rotuPrecacheWeapons()", "fn", level.nonVerbose);
+
+    rotuPrecacheItemInit();
+
+    // Shotguns.
+    rotuPrecacheItem("m1014");
+    rotuPrecacheItem("w1200");
+    rotuPrecacheItem("aa12");
+    rotuPrecacheItem("spas12");
+    // Assault rifles.
+    rotuPrecacheItem("m4");
+    rotuPrecacheItem("ak47");
+    rotuPrecacheItem("m16");
+    rotuPrecacheItem("g3");
+    rotuPrecacheItem("g36c");
+    rotuPrecacheItem("m14");
+    rotuPrecacheItem("mp44");
+    rotuPrecacheItem("f2000");
+    rotuPrecacheItem("aug");
+    // Submachine guns.
+    rotuPrecacheItem("ak74u");
+    rotuPrecacheItem("mp5");
+    rotuPrecacheItem("p90");
+    rotuPrecacheItem("skorpion");
+    rotuPrecacheItem("uzi");
+    rotuPrecacheItem("mp5k");
+    // Machine guns.
+    rotuPrecacheItem("m60e4");
+    rotuPrecacheItem("rpd");
+    rotuPrecacheItem("saw");
+    rotuPrecacheItem("minigun");
+    // Sniper rifles.
+    rotuPrecacheItem("barrett");
+    rotuPrecacheItem("dragunov");
+    rotuPrecacheItem("m21");
+    rotuPrecacheItem("m40a3");
+    rotuPrecacheItem("r700");
+    rotuPrecacheItem("m200");
+    // Pistols.
+    rotuPrecacheItem("beretta");
+    rotuPrecacheItem("colt45");
+    rotuPrecacheItem("deserteaglegold");
+    rotuPrecacheItem("usp");
+    // Miscellanous.
+    rotuPrecacheItem("c4");
+    rotuPrecacheItem("claymore");
+    rotuPrecacheItem("frag");
+    rotuPrecacheItem("rpg");
+    rotuPrecacheItem("ammobox");
+    rotuPrecacheItem("defaultweapon");
+    rotuPrecacheItem("medkit");
+    rotuPrecacheItem("tnt");
+    // Special.
+    rotuPrecacheItem("thundergun");
+    rotuPrecacheItem("raygun");
+    rotuPrecacheItem("wunderwaffedg2");
+    rotuPrecacheItem("flamethrower");
+    rotuPrecacheItem("crossbow");
+    // Zombie weapons.
+    rotuPrecacheItem("quad_idle");
+    rotuPrecacheItem("quad_sprint");
+    rotuPrecacheItem("quad_crawl");
+    rotuPrecacheItem("quad_attack");
+    rotuPrecacheItem("bot_zombie_walk");
+    rotuPrecacheItem("bot_zombie_stand");
+    rotuPrecacheItem("bot_zombie_run_mp");
+    rotuPrecacheItem("bot_zombie_melee");
+    rotuPrecacheItem("bot_dog_idle");
+    rotuPrecacheItem("bot_dog_run");
+}
+
+/**
+ * @brief Seek for weapon in weaponstable.csv and precache real weapon and all attachments.
+ *
+ * @param alias A RotU alias for weapon.
+ */
+rotuPrecacheItem(alias)
+{
+    debugPrint("in _weapons::rotuPrecacheItem()", "fn", level.nonVerbose);
+
+    i = level.weapons.size;
+
+    level.weapons[i] = [];
+    level.weapons[i][level.weaponsCategories[0]] = alias;
+    for (j = 1; j < level.weaponsCategories.size; j++)
+    {
+        
+        level.weapons[i][level.weaponsCategories[j]] = tableLookUp("mp/weaponstable.csv", 0, alias, j);
+        if (level.weapons[i][level.weaponsCategories[j]] != "")
+            precacheItem(level.weapons[i][level.weaponsCategories[j]]);
+    }
+}
+
+/**
+ * @brief Initialize weapon\category arrays so ::rotuPrecacheItem will works as expected.
+ */
+rotuPrecacheItemInit()
+{
+    debugPrint("in _weapons::rotuPrecacheItemInit()", "fn", level.nonVerbose);
+
+    level.weapons = [];
+    level.weaponsCategories = [];
+    level.weaponsCategories[0] = "rotu_alias"; 
+
+    while (1)
+    {
+        str = tableLookup("mp/weaponstable.csv", 0, level.weaponsCategories[0], level.weaponsCategories.size);
+        if (str == "")
+            break;
+
+        level.weaponsCategories[level.weaponsCategories.size] = str;
+    }
+}
+
+/**
+ * @brief Give player weapon using RotU weapon array.
+ */
+rotuGiveWeapon(alias, category)
+{
+    debugPrint("in _weapons::rotuGiveWeapon()", "fn", level.nonVerbose);
+    // If not defined - set to default.
+    if (!isDefined(category))
+        category = level.weaponsCategories[1];
+    
+    self giveWeapon(level.weapons[alias][category]);
+}
+
 init()
 {
     debugPrint("in _weapons::init()", "fn", level.nonVerbose);
@@ -44,89 +176,12 @@ init()
 
     level.specialWeps = [];
 
-    // assigns weapons with stat numbers from 0-149
-    // attachments are now shown here, they are per weapon settings instead
+    rotuPrecacheWeapons();
 
-    // generating weaponIDs array
-    level.weaponIDs = [];
-    max_weapon_num = 149;
-    attachment_num = 150;
-    for( i = 0; i <= max_weapon_num; i++ )
-    {
-        weapon_name = tablelookup( "mp/statstable.csv", 0, i, 4 );
-        if( !isdefined( weapon_name ) || weapon_name == "" )
-        {
-            level.weaponIDs[i] = "";
-            continue;
-        }
-        level.weaponIDs[i] = weapon_name + "_mp";
+    precacheShellShock("default");
+    precacheShellShock("concussion_grenade_mp");
 
-        // generating attachment combinations
-        attachment = tablelookup( "mp/statstable.csv", 0, i, 8 );
-        if( !isdefined( attachment ) || attachment == "" )
-            continue;
-
-        attachment_tokens = strtok( attachment, " " );
-        if( !isdefined( attachment_tokens ) )
-            continue;
-
-        if( attachment_tokens.size == 0 )
-        {
-            level.weaponIDs[attachment_num] = weapon_name + "_" + attachment + "_mp";
-            attachment_num++;
-        }
-        else
-        {
-            for( k = 0; k < attachment_tokens.size; k++ )
-            {
-                level.weaponIDs[attachment_num] = weapon_name + "_" + attachment_tokens[k] + "_mp";
-                attachment_num++;
-            }
-        }
-//         debugPrint("level.weaponIDs[i] : " + i + ":" + level.weaponIDs[i], "val");
-    }
-    /// @hack: since tnt_mp isn't one of the common_weapons in statstable.csv,
-    /// append tnt_mp to weaponIDs[] array manually
-    level.weaponIDs[level.weaponIDs.size] = "tnt_mp";
-
-
-    // generating weaponNames array
-    level.weaponNames = [];
-    for ( index = 0; index < max_weapon_num; index++ )
-    {
-        if ( !isdefined( level.weaponIDs[index] ) || level.weaponIDs[index] == "" )
-            continue;
-
-        level.weaponNames[level.weaponIDs[index]] = index;
-//         debugPrint("level.weaponNames[level.weaponIDs[index]] : " + index + ":" + level.weaponIDs[index] + ":" + level.weaponNames[level.weaponIDs[index]], "val");
-    }
-
-    // generating weaponlist array
-    level.weaponList = [];
-    assertex( isdefined( level.weaponIDs.size ), "level.weaponIDs is corrupted" );
-    for( i = 0; i < level.weaponIDs.size; i++ )
-    {
-        if( !isdefined( level.weaponIDs[i] ) || level.weaponIDs[i] == "" )
-            continue;
-        // appending to array
-//         debugPrint("level.weaponList[level.weaponList.size] : " + level.weaponList.size + ":" + level.weaponIDs[i], "val");
-        level.weaponList[level.weaponList.size] = level.weaponIDs[i];
-    }
-
-    // based on weaponList array, precache weapons in list
-    for ( index = 0; index < level.weaponList.size; index++ )
-    {
-        precacheItem(level.weaponList[index]);
-        debugPrint("Precached weapon: " + level.weaponList[index], "val");
-    }
-
-    precacheItem("crossbow_mp");
-
-    precacheShellShock( "default" );
-    precacheShellShock( "concussion_grenade_mp" );
-
-    claymoreDetectionConeAngle = 70;
-    level.claymoreDetectionDot = cos(claymoreDetectionConeAngle);
+    level.claymoreDetectionDot = cos(70);
     level.claymoreDetectionMinDist = 20;
     level.claymoreDetectionGracePeriod = 0.5; // 0.75
     level.claymoreDetonateRadius = 192;
@@ -137,8 +192,6 @@ init()
     level.c4explodethisframe = false;
     level.C4FXid = loadfx("misc/light_c4_blink");
     level.claymoreFXid = loadfx("misc/claymore_laser");
-
-
 }
 
 /**
@@ -152,12 +205,15 @@ isSpecialWeap(weapon)
 {
     debugPrint("in _weapons::isSpecialWeap()", "fn", level.medVerbosity);
 
-    for (i=0; i<level.specialWeps.size; i++) {
-        if (level.specialWeps[i] == weapon) {return true;}
+    for (i = 0; i < level.specialWeps.size; i++)
+    {
+        if (level.specialWeps[i] == weapon)
+        {
+            return true;
+        }
     }
     return false;
 }
-
 
 initPlayerWeapons()
 {
@@ -201,22 +257,25 @@ givePlayerWeapons()
     self.secondary = self.persData.secondary;
     self.extra = self.persData.extra;
 
-    if (self.secondary != "none") {
+    if (self.secondary != "none")
+    {
         self giveWeapon(self.secondary);
         self setSpawnWeapon(self.secondary);
         self SwitchToWeapon(self.secondary);
         //self giveMaxAmmo(self.secondary);
-        self setWeaponAmmoStock(self.secondary , self.persData.secondaryAmmoStock);
-        self setWeaponAmmoClip(self.secondary , self.persData.secondaryAmmoClip);
+        self setWeaponAmmoStock(self.secondary, self.persData.secondaryAmmoStock);
+        self setWeaponAmmoClip(self.secondary, self.persData.secondaryAmmoClip);
     }
-    if (self.primary != "none") {
+    if (self.primary != "none")
+    {
         self giveWeapon(self.primary);
         self setSpawnWeapon(self.primary);
         self SwitchToWeapon(self.primary);
         self setWeaponAmmoStock(self.primary, self.persData.primaryAmmoStock);
         self setWeaponAmmoClip(self.primary, self.persData.primaryAmmoClip);
     }
-    if (self.extra != "none") {
+    if (self.extra != "none")
+    {
         self giveWeapon(self.extra);
         self giveMaxAmmo(self.extra);
     }
@@ -233,10 +292,10 @@ canRestoreAmmo(weapon)
 {
     debugPrint("in _weapons::canRestoreAmmo()", "fn", level.nonVerbose);
 
-    if ((weapon == "helicopter_mp") ||  // helicopter_mp is the medkit
-        (weapon == "m14_reflex_mp") ||  // m14_reflex_mp is the ammo box
-        (weapon == "c4_mp") ||          // 'Restore Ammo' shouldn't restore ammo
-        (weapon == "tnt_mp") ||         // for tnt, c4, claymores--just for bullets and grenades
+    if ((weapon == "helicopter_mp") || // helicopter_mp is the medkit
+        (weapon == "m14_reflex_mp") || // m14_reflex_mp is the ammo box
+        (weapon == "c4_mp") ||         // 'Restore Ammo' shouldn't restore ammo
+        (weapon == "tnt_mp") ||        // for tnt, c4, claymores--just for bullets and grenades
         (weapon == "claymore_mp") ||
         (weapon == "none") ||
         scripts\players\_weapons::isSpecialWeap(weapon))
@@ -245,7 +304,6 @@ canRestoreAmmo(weapon)
     }
     return true;
 }
-
 
 /**
  * @brief Can the weapon have its ammo restored by ammo cans?
@@ -258,8 +316,8 @@ canRestoreAmmoByAmmoBoxes(weapon)
 {
     debugPrint("in _weapons::canRestoreAmmoByAmmoBoxes()", "fn", level.lowVerbosity);
 
-    if ((weapon == "helicopter_mp") ||  // helicopter_mp is the medkit
-        (weapon == "m14_reflex_mp") ||  // m14_reflex_mp is the ammo box
+    if ((weapon == "helicopter_mp") || // helicopter_mp is the medkit
+        (weapon == "m14_reflex_mp") || // m14_reflex_mp is the ammo box
         (weapon == "none"))
     {
         return false;
@@ -280,13 +338,14 @@ watchWeaponUsage()
     self endon("death");
     self endon("disconnect");
     self endon("downed");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
     //level endon ( "game_ended" );
 
     self.firingWeapon = false;
 
-    for ( ;; ) {
-        self waittill ( "begin_firing" );
+    for (;;)
+    {
+        self waittill("begin_firing");
 
         weap = self getcurrentweapon();
 
@@ -295,10 +354,13 @@ watchWeaponUsage()
         self.hasDoneCombat = true;
         self.firingWeapon = true;
 
-        if (weap=="saw_acog_mp") { // minigun
+        if (weap == "saw_acog_mp")
+        { // minigun
             self stoplocalsound("weap_minigun_spin_over_plr");
             self thread minigunQuake();
-        } else if (weap=="skorpion_acog_mp") { // flamethrower
+        }
+        else if (weap == "skorpion_acog_mp")
+        { // flamethrower
             self stoplocalsound("flamethrower_cooldown_plr");
             ent = spawn("script_model", self.origin);
             ent linkto(self);
@@ -309,20 +371,35 @@ watchWeaponUsage()
 
             self playsound("flamethrower_fire_npc");
             self playlocalsound("flamethrower_ignite_plr");
-        } else if (weap=="g3_acog_mp") { // thundergun
-            for (i=0; i<level.bots.size; i++) {
+        }
+        else if (weap == "g3_acog_mp")
+        { // thundergun
+            for (i = 0; i < level.bots.size; i++)
+            {
                 bot = level.bots[i];
-                if (!isdefined(bot)) {continue;}
+                if (!isdefined(bot))
+                {
+                    continue;
+                }
 
-                if (isalive(bot)) {
+                if (isalive(bot))
+                {
                     dis = distance(bot.origin, self.origin);
-                    if (dis < 768) {
-                        dam = int((600-600*dis/768));
-                        realdam = int(200 * (1 - (dis/521)));
-                        if (realdam < 0) {realdam = 0;}
-                        else if (realdam < 40) {realdam = 40;}
+                    if (dis < 768)
+                    {
+                        dam = int((600 - 600 * dis / 768));
+                        realdam = int(200 * (1 - (dis / 521)));
+                        if (realdam < 0)
+                        {
+                            realdam = 0;
+                        }
+                        else if (realdam < 40)
+                        {
+                            realdam = 40;
+                        }
 
-                        if (DistanceSquared(anglestoforward(self getplayerangles()), vectornormalize(bot.origin-self.origin)) < .7) {
+                        if (DistanceSquared(anglestoforward(self getplayerangles()), vectornormalize(bot.origin - self.origin)) < .7)
+                        {
                             self thread thunderBlast(dam, realdam, bot);
                         }
                     }
@@ -330,26 +407,32 @@ watchWeaponUsage()
             }
         }
 
-        self waittill ( "end_firing" );
+        self waittill("end_firing");
 
-        if (weap=="saw_acog_mp") { // minigun
+        if (weap == "saw_acog_mp")
+        { // minigun
             self playlocalsound("weap_minigun_spin_over_plr");
-        } else if (weap=="skorpion_acog_mp") { // flamethrower
+        }
+        else if (weap == "skorpion_acog_mp")
+        { // flamethrower
             self stoplocalsound("flamethrower_ignite_plr");
             self playlocalsound("flamethrower_cooldown_plr");
             ent stopLoopSound("flamethrower_fire_npc");
-            ent delete();
+            ent delete ();
         }
 
-        if (weap == self.primary){
+        if (weap == self.primary)
+        {
             self.persData.primaryAmmoClip = self getweaponammoclip(self.primary);
             self.persData.primaryAmmoStock = self getweaponammostock(self.primary);
         }
-        else if (weap == self.secondary){
+        else if (weap == self.secondary)
+        {
             self.persData.secondaryAmmoClip = self getweaponammoclip(self.secondary);
             self.persData.secondaryAmmoStock = self getweaponammostock(self.secondary);
         }
-        else if (weap == self.extra){
+        else if (weap == self.extra)
+        {
             self.persData.extraAmmoClip = self getweaponammoclip(self.extra);
             self.persData.extraAmmoStock = self getweaponammostock(self.extra);
         }
@@ -362,25 +445,28 @@ thunderBlast(dam, realdam, bot)
 {
     debugPrint("in _weapons::thunderBlast()", "fn", level.lowVerbosity);
 
-    direction = (0,0,0);
-    if (realdam >= bot.health) {
+    direction = (0, 0, 0);
+    if (realdam >= bot.health)
+    {
         // bot dies
         bot finishPlayerDamage(self, self, dam, 0, "MOD_PROJECTILE", "thundergun_mp", direction, direction, "none", 0);
-    } else {
+    }
+    else
+    {
         // bot gets stunned, and damage is done
         bot thread scripts\bots\_bots::zomGoStunned();
-        bot thread [[level.callbackPlayerDamage]](
-            self, // eInflictor The entity that causes the damage.(e.g. a turret)
-            self, // eAttacker The entity that is attacking.
-            realdam, // iDamage Integer specifying the amount of damage done
-            0, // iDFlags Integer specifying flags that are to be applied to the damage
+        bot thread[[level.callbackPlayerDamage]](
+            self,            // eInflictor The entity that causes the damage.(e.g. a turret)
+            self,            // eAttacker The entity that is attacking.
+            realdam,         // iDamage Integer specifying the amount of damage done
+            0,               // iDFlags Integer specifying flags that are to be applied to the damage
             "MOD_EXPLOSIVE", // sMeansOfDeath Integer specifying the method of death
-            "g3_acog_mp", // sWeapon The weapon number of the weapon used to inflict the damage
-            self.origin, // vPoint The point the damage is from?
-            direction, // vDir The direction of the damage
-            "none", // sHitLoc The location of the hit
-            0 // psOffsetTime The time offset for the damage
-        );
+            "g3_acog_mp",    // sWeapon The weapon number of the weapon used to inflict the damage
+            self.origin,     // vPoint The point the damage is from?
+            direction,       // vDir The direction of the damage
+            "none",          // sHitLoc The location of the hit
+            0                // psOffsetTime The time offset for the damage
+            );
     }
 }
 
@@ -388,43 +474,43 @@ removeEntOnDowned(ent)
 {
     debugPrint("in _weapons::removeEntOnDowned()", "fn", level.lowVerbosity);
 
-    self endon( "end_firing" );
+    self endon("end_firing");
     self waittill("downed");
     ent stopLoopSound("flamethrower_fire_npc");
-    ent delete();
+    ent delete ();
 }
-
 
 removeEntOnDeath(ent)
 {
     debugPrint("in _weapons::removeEntOnDeath()", "fn", level.lowVerbosity);
 
-    self endon( "end_firing" );
+    self endon("end_firing");
     self waittill("death");
     ent stopLoopSound("flamethrower_fire_npc");
-    ent delete();
+    ent delete ();
 }
 
 removeEntOnDisconnect(ent)
 {
     debugPrint("in _weapons::removeEntOnDisconnect()", "fn", level.lowVerbosity);
 
-    self endon( "end_firing" );
+    self endon("end_firing");
     self waittill("death");
-    ent delete();
+    ent delete ();
 }
 
 minigunQuake()
 {
     debugPrint("in _weapons::minigunQuake()", "fn", level.lowVerbosity);
 
-    self endon( "death" );
-    self endon( "downed" );
-    self endon( "disconnect" );
-    self endon( "end_firing" );
+    self endon("death");
+    self endon("downed");
+    self endon("disconnect");
+    self endon("end_firing");
 
-    while (1) {
-        Earthquake( 0.2, .2, self.origin, 240);
+    while (1)
+    {
+        Earthquake(0.2, .2, self.origin, 240);
         wait .1;
     }
 }
@@ -437,15 +523,24 @@ alertTillEndFiring()
     self endon("disconnect");
     self endon("end_firing");
 
-    while (1) {
+    while (1)
+    {
         curWeapon = self getCurrentWeapon();
-        if (curWeapon == "none") {return;}
+        if (curWeapon == "none")
+        {
+            return;
+        }
 
-        if (weaponIsBoltAction(curWeapon)) {
+        if (weaponIsBoltAction(curWeapon))
+        {
             scripts\bots\_bots::alertZombies(self.origin, 1024, 200, undefined);
-        } else if (WeaponIsSemiAuto(curWeapon)) {
+        }
+        else if (WeaponIsSemiAuto(curWeapon))
+        {
             scripts\bots\_bots::alertZombies(self.origin, 1024, 100, undefined);
-        } else {
+        }
+        else
+        {
             scripts\bots\_bots::alertZombies(self.origin, 1024, 100, undefined);
         }
         wait .5;
@@ -459,8 +554,7 @@ watchWeaponSwitching()
 
     self endon("death");
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
-
+    self endon("spawned"); // end this instance before a respawn
 }
 
 /**
@@ -479,44 +573,45 @@ swapWeapons(type, weapon)
 {
     debugPrint("in _weapons::swapWeapons()", "fn", level.nonVerbose);
 
-    switch (type) {
+    switch (type)
+    {
     case "primary":
         if (self.primary != "none")
             self takeweapon(self.primary);
-            self giveWeapon( weapon );
-            self giveMaxAmmo( weapon );
-            self SwitchToWeapon( weapon );
-            self.primary = weapon;
-            self.persData.primary = self.primary;
-            self.persData.primaryAmmoClip = WeaponClipSize(self.primary);
-            self.persData.primaryAmmoStock = WeaponMaxAmmo(self.primary);
+        self giveWeapon(weapon);
+        self giveMaxAmmo(weapon);
+        self SwitchToWeapon(weapon);
+        self.primary = weapon;
+        self.persData.primary = self.primary;
+        self.persData.primaryAmmoClip = WeaponClipSize(self.primary);
+        self.persData.primaryAmmoStock = WeaponMaxAmmo(self.primary);
 
-    break;
-        case "secondary":
-            if (self.secondary != "none")
+        break;
+    case "secondary":
+        if (self.secondary != "none")
             self takeweapon(self.secondary);
-            self giveWeapon( weapon );
-            self giveMaxAmmo( weapon );
-            self SwitchToWeapon( weapon );
-            self.secondary = weapon;
-            self.persData.secondary = self.secondary;
-            self.persData.secondaryAmmoClip = WeaponClipSize(self.secondary);
-            self.persData.secondaryAmmoStock = WeaponMaxAmmo(self.secondary);
+        self giveWeapon(weapon);
+        self giveMaxAmmo(weapon);
+        self SwitchToWeapon(weapon);
+        self.secondary = weapon;
+        self.persData.secondary = self.secondary;
+        self.persData.secondaryAmmoClip = WeaponClipSize(self.secondary);
+        self.persData.secondaryAmmoStock = WeaponMaxAmmo(self.secondary);
         break;
-        case "extra":
-            if (self.extra != "none")
+    case "extra":
+        if (self.extra != "none")
             self takeweapon(self.extra);
-            self giveWeapon( weapon );
-            self giveMaxAmmo( weapon );
-            self SwitchToWeapon( weapon );
-            self.extra = weapon;
-            self.persData.extra = self.extra;
-            self.persData.extraAmmoClip = WeaponClipSize(self.extra);
-            self.persData.extraAmmoStock = WeaponMaxAmmo(self.extra);
+        self giveWeapon(weapon);
+        self giveMaxAmmo(weapon);
+        self SwitchToWeapon(weapon);
+        self.extra = weapon;
+        self.persData.extra = self.extra;
+        self.persData.extraAmmoClip = WeaponClipSize(self.extra);
+        self.persData.extraAmmoStock = WeaponMaxAmmo(self.extra);
         break;
-        case "grenade":
-            self giveWeapon( weapon );
-            self giveMaxAmmo( weapon );
+    case "grenade":
+        self giveWeapon(weapon);
+        self giveMaxAmmo(weapon);
         break;
     }
 }
@@ -532,13 +627,34 @@ isSniper(weapon)
 {
     debugPrint("in _weapons::isSniper()", "fn", level.veryHighVerbosity);
 
-    if (weapon == "m21_mp") {return true;}
-    if (weapon == "aw50_mp") {return true;}
-    if (weapon == "barrett_mp") {return true;}
-    if (weapon == "dragunov_mp") {return true;}
-    if (weapon == "m40a3_mp") {return true;}
-    if (weapon == "remington700_mp") {return true;}
-    if (weapon == "deserteagle_mp") {return true;}
+    if (weapon == "m21_mp")
+    {
+        return true;
+    }
+    if (weapon == "aw50_mp")
+    {
+        return true;
+    }
+    if (weapon == "barrett_mp")
+    {
+        return true;
+    }
+    if (weapon == "dragunov_mp")
+    {
+        return true;
+    }
+    if (weapon == "m40a3_mp")
+    {
+        return true;
+    }
+    if (weapon == "remington700_mp")
+    {
+        return true;
+    }
+    if (weapon == "deserteagle_mp")
+    {
+        return true;
+    }
 
     return false;
 }
@@ -554,12 +670,30 @@ isRifle(weapon)
 {
     debugPrint("in _weapons::isRifle()", "fn", level.absurdVerbosity);
 
-    if (isSubStr(weapon, "ak47")) {return true;}
-    if (isSubStr(weapon, "m4")) {return true;}
-    if (isSubStr(weapon, "m16")) {return true;}
-    if (isSubStr(weapon, "g3")) {return true;}
-    if (isSubStr(weapon, "g36c")) {return true;}
-    if (isSubStr(weapon, "mp44")) {return true;}
+    if (isSubStr(weapon, "ak47"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "m4"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "m16"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "g3"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "g36c"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "mp44"))
+    {
+        return true;
+    }
 
     return false;
 }
@@ -575,9 +709,18 @@ isShotgun(weapon)
 {
     debugPrint("in _weapons::isShotgun()", "fn", level.medVerbosity);
 
-    if (isSubStr(weapon, "m1014")) {return true;}
-    if (isSubStr(weapon, "winchester1200")) {return true;}
-    if (weapon == "m60e4_acog_mp") {return true;}
+    if (isSubStr(weapon, "m1014"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "winchester1200"))
+    {
+        return true;
+    }
+    if (weapon == "m60e4_acog_mp")
+    {
+        return true;
+    }
     return true;
 
     return false;
@@ -594,9 +737,18 @@ isLMG(weapon)
 {
     debugPrint("in _weapons::isLMG()", "fn", level.absurdVerbosity);
 
-    if (isSubStr(weapon, "m60e4")) {return true;}
-    if (isSubStr(weapon, "saw")) {return true;}
-    if (isSubStr(weapon, "rpd")) {return true;}
+    if (isSubStr(weapon, "m60e4"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "saw"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "rpd"))
+    {
+        return true;
+    }
 
     return false;
 }
@@ -612,11 +764,26 @@ isSMG(weapon)
 {
     debugPrint("in _weapons::isSMG()", "fn", level.veryHighVerbosity);
 
-    if (isSubStr(weapon, "mp5")) {return true;}
-    if (isSubStr(weapon, "ak74u")) {return true;}
-    if (isSubStr(weapon, "p90")) {return true;}
-    if (isSubStr(weapon, "uzi")) {return true;}
-    if (isSubStr(weapon, "skorpion")) {return true;}
+    if (isSubStr(weapon, "mp5"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "ak74u"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "p90"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "uzi"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "skorpion"))
+    {
+        return true;
+    }
 
     return false;
 }
@@ -632,16 +799,33 @@ isExplosive(weapon)
 {
     debugPrint("in _weapons::isExplosive()", "fn", level.lowVerbosity);
 
-    if (weapon=="c4_mp") {return true;}
-    if (weapon=="claymore_mp") {return true;}
-    if (weapon=="tnt_mp") {return true;}
-    if (weapon=="rpg_mp") {return true;}
-    if (weapon=="at4_mp") {return true;}
-    if (weapon=="frag_grenade_mp") {return true;}
+    if (weapon == "c4_mp")
+    {
+        return true;
+    }
+    if (weapon == "claymore_mp")
+    {
+        return true;
+    }
+    if (weapon == "tnt_mp")
+    {
+        return true;
+    }
+    if (weapon == "rpg_mp")
+    {
+        return true;
+    }
+    if (weapon == "at4_mp")
+    {
+        return true;
+    }
+    if (weapon == "frag_grenade_mp")
+    {
+        return true;
+    }
 
     return false;
 }
-
 
 /**
  * @brief Determines if the weapon is a pistol
@@ -654,10 +838,22 @@ isPistol(weapon)
 {
     debugPrint("in _weapons::isPistol()", "fn", level.veryHighVerbosity);
 
-    if (isSubStr(weapon, "beretta")) {return true;}
-    if (isSubStr(weapon, "usp")) {return true;}
-    if (isSubStr(weapon, "colt45")) {return true;}
-    if (isSubStr(weapon, "deserteaglegold")) {return true;}
+    if (isSubStr(weapon, "beretta"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "usp"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "colt45"))
+    {
+        return true;
+    }
+    if (isSubStr(weapon, "deserteaglegold"))
+    {
+        return true;
+    }
 
     return false;
 }
@@ -673,7 +869,10 @@ isSilenced(weapon)
 {
     debugPrint("in _weapons::isSilenced()", "fn", level.highVerbosity);
 
-    if (isSubStr(weapon, "_silencer_")) {return true;}
+    if (isSubStr(weapon, "_silencer_"))
+    {
+        return true;
+    }
 
     return false;
 }
@@ -683,18 +882,21 @@ watchClaymores()
     debugPrint("in _weapons::watchClaymores()", "fn", level.nonVerbose);
 
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
     self.emplacedClaymores = [];
-    while(1) {
+    while (1)
+    {
         self waittill("grenade_fire", claymore, weapname);
-        if ((weapname == "claymore") || (weapname == "claymore_mp")) {
+        if ((weapname == "claymore") || (weapname == "claymore_mp"))
+        {
             // player is starting to emplace the claymore
             self.emplacedClaymores[self.emplacedClaymores.size] = claymore;
             claymore.owner = self;
             claymore waitUntilExplosivesEmplaced();
             /// runtime error if claymore becomes undefined while waiting to be emplaced
-            if (!isDefined(claymore)) {
+            if (!isDefined(claymore))
+            {
                 errorPrint(self.name + " claymore became undefined while waiting to be emplaced");
                 continue;
             }
@@ -716,7 +918,8 @@ playClaymoreEffects()
 
     self endon("death");
 
-    while(1) {
+    while (1)
+    {
         origin = self getTagOrigin("tag_fx");
         angles = self getTagAngles("tag_fx");
         fx = spawnFx(level.claymoreFXid, origin, anglesToForward(angles), anglesToUp(angles));
@@ -726,11 +929,15 @@ playClaymoreEffects()
 
         originalOrigin = self.origin;
 
-        while(1) {
+        while (1)
+        {
             wait .25;
-            if (self.origin != originalOrigin) {break;}
+            if (self.origin != originalOrigin)
+            {
+                break;
+            }
         }
-        fx delete();
+        fx delete ();
     }
 }
 
@@ -741,30 +948,32 @@ claymoreDetonation()
     // self is claymore
     self endon("death");
 
-    damageArea = spawn("trigger_radius", self.origin + (0,0,0-level.claymoreDetonateRadius), 0, level.claymoreDetonateRadius, level.claymoreDetonateRadius*2);
+    damageArea = spawn("trigger_radius", self.origin + (0, 0, 0 - level.claymoreDetonateRadius), 0, level.claymoreDetonateRadius, level.claymoreDetonateRadius * 2);
     self thread deleteEntityOnPlayerDeath(damageArea);
 
-    while(1)
+    while (1)
     {
         damageArea waittill("trigger", ent);
 
-        if ((isDefined(ent.isBot)) && (ent.isBot) ||        // entity is a bot
-            (isDefined(ent.isZombie)) && (ent.isZombie))    // entity is a player-zombie
+        if ((isDefined(ent.isBot)) && (ent.isBot) ||     // entity is a bot
+            (isDefined(ent.isZombie)) && (ent.isZombie)) // entity is a player-zombie
         {
             // Don't detonate if player isn't in detection cone
-            if (!ent shouldAffectClaymore(self)) {continue;}
+            if (!ent shouldAffectClaymore(self))
+            {
+                continue;
+            }
             // Detonate if the player is in the damage cone
             if (ent damageConeTrace(self.origin, self) > 0)
-            break;
+                break;
         }
 
-            /// don't blow if the player is moving too slow?????
-//         if ( lengthsquared( player getVelocity() ) < 10 )
-//         continue;
-
+        /// don't blow if the player is moving too slow?????
+        //         if ( lengthsquared( player getVelocity() ) < 10 )
+        //         continue;
     }
 
-    self playsound ("claymore_activated");
+    self playsound("claymore_activated");
 
     wait level.claymoreDetectionGracePeriod;
 
@@ -783,9 +992,13 @@ waitUntilExplosivesEmplaced()
     debugPrint("in _weapons::waitUntilExplosivesEmplaced()", "fn", level.veryLowVerbosity);
 
     // self is claymore
-    previousLocation = (0,0,0); // Init
-    while(isDefined(self)) {
-        if (self.origin == previousLocation) {break;}
+    previousLocation = (0, 0, 0); // Init
+    while (isDefined(self))
+    {
+        if (self.origin == previousLocation)
+        {
+            break;
+        }
 
         previousLocation = self.origin;
         wait .15;
@@ -806,7 +1019,10 @@ deleteEntityOnPlayerDeath(entity)
     self waittill("death");
     wait .05;
 
-    if (isdefined(entity)) {entity delete();}
+    if (isdefined(entity))
+    {
+        entity delete ();
+    }
 }
 
 /**
@@ -825,61 +1041,72 @@ rebuildPlayersEmplacedExplosives()
 
     // C4
     temp = [];
-    if (isDefined(self.emplacedC4)) {
-        for (i=0; i<self.emplacedC4.size; i++) {
-            if (isDefined(self.emplacedC4[i])) {
+    if (isDefined(self.emplacedC4))
+    {
+        for (i = 0; i < self.emplacedC4.size; i++)
+        {
+            if (isDefined(self.emplacedC4[i]))
+            {
                 temp[temp.size] = self.emplacedC4[i];
             }
         }
     }
-    if (isDefined(self)) {self.emplacedC4 = temp;}
+    if (isDefined(self))
+    {
+        self.emplacedC4 = temp;
+    }
 
     // Claymores
     temp = [];
-    if (isDefined(self.emplacedClaymores)) {
-        for (i=0; i<self.emplacedClaymores.size; i++) {
-            if (isDefined(self.emplacedClaymores[i])) {
+    if (isDefined(self.emplacedClaymores))
+    {
+        for (i = 0; i < self.emplacedClaymores.size; i++)
+        {
+            if (isDefined(self.emplacedClaymores[i]))
+            {
                 temp[temp.size] = self.emplacedClaymores[i];
             }
         }
     }
-    if (isDefined(self)) {
+    if (isDefined(self))
+    {
         self.emplacedClaymores = temp;
     }
 
     // TNT
     temp = [];
-    if (isDefined(self.emplacedTnt)) {
-        for (i=0; i<self.emplacedTnt.size; i++) {
+    if (isDefined(self.emplacedTnt))
+    {
+        for (i = 0; i < self.emplacedTnt.size; i++)
+        {
             if (isDefined(self.emplacedTnt[i]))
                 temp[temp.size] = self.emplacedTnt[i];
         }
     }
-    if (isDefined(self)) {
+    if (isDefined(self))
+    {
         self.emplacedTnt = temp;
     }
 }
-
-
 
 shouldAffectClaymore(claymore)
 {
     debugPrint("in _weapons::shouldAffectClaymore()", "fn", level.fullVerbosity);
 
     // fn from modwarfare
-    pos = self.origin + (0,0,32);
+    pos = self.origin + (0, 0, 32);
 
     dirToPos = pos - claymore.origin;
-    claymoreForward = anglesToForward( claymore.angles );
+    claymoreForward = anglesToForward(claymore.angles);
 
-    dist = vectorDot( dirToPos, claymoreForward );
-    if ( dist < level.claymoreDetectionMinDist )
-    return false;
+    dist = vectorDot(dirToPos, claymoreForward);
+    if (dist < level.claymoreDetectionMinDist)
+        return false;
 
-    dirToPos = vectornormalize( dirToPos );
+    dirToPos = vectornormalize(dirToPos);
 
-    dot = vectorDot( dirToPos, claymoreForward );
-    return ( dot > level.claymoreDetectionDot );
+    dot = vectorDot(dirToPos, claymoreForward);
+    return (dot > level.claymoreDetectionDot);
 }
 
 /**
@@ -892,30 +1119,43 @@ deleteExplosivesOnDisconnect()
     debugPrint("in _weapons::deleteExplosivesOnDisconnect()", "fn", level.nonVerbose);
 
     self endon("death");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
     self waittill("disconnect");
 
     wait .05;
 
-    if (isDefined(self.emplacedC4)) {
-        for (i=0; i<self.emplacedC4.size; i++) {        // C4
-            if (isdefined(self.emplacedC4[i])) {self.emplacedC4[i] delete();}
+    if (isDefined(self.emplacedC4))
+    {
+        for (i = 0; i < self.emplacedC4.size; i++)
+        { // C4
+            if (isdefined(self.emplacedC4[i]))
+            {
+                self.emplacedC4[i] delete ();
+            }
         }
     }
-    if (isDefined(self.emplacedClaymores)) {
-        for (i=0; i<self.emplacedClaymores.size; i++) {  // Claymores
-            if (isdefined(self.emplacedClaymores[i])) {self.emplacedClaymores[i] delete();}
+    if (isDefined(self.emplacedClaymores))
+    {
+        for (i = 0; i < self.emplacedClaymores.size; i++)
+        { // Claymores
+            if (isdefined(self.emplacedClaymores[i]))
+            {
+                self.emplacedClaymores[i] delete ();
+            }
         }
     }
-    if (isDefined(self.emplacedTnt)) {
-        for (i=0; i<self.emplacedTnt.size; i++) {  // TNT
-            if (isdefined(self.emplacedTnt[i])) {self.emplacedTnt[i] delete();}
+    if (isDefined(self.emplacedTnt))
+    {
+        for (i = 0; i < self.emplacedTnt.size; i++)
+        { // TNT
+            if (isdefined(self.emplacedTnt[i]))
+            {
+                self.emplacedTnt[i] delete ();
+            }
         }
     }
 }
-
-
 
 watchC4()
 {
@@ -923,13 +1163,15 @@ watchC4()
 
     self endon("death");
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
     self thread triggerThrowable();
 
-    while(1) {
-        self waittill( "grenade_fire", throwable, weapname );
-        if ( weapname == "c4" || weapname == "c4_mp" ) {
+    while (1)
+    {
+        self waittill("grenade_fire", throwable, weapname);
+        if (weapname == "c4" || weapname == "c4_mp")
+        {
             //if ( !self.emplacedC4.size )
             //  self thread watchC4AltDetonate();
 
@@ -951,14 +1193,16 @@ watchTnt()
 
     /// We can't endon "death" because it gets emmitted whan a player-zombie is killed
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
     /// We only need to call this once, so we just do it in watchC4
     // self thread triggerThrowable();
 
-    while(1) {
-        self waittill( "grenade_fire", throwable, weapname );
-        if ( weapname == "tnt" || weapname == "tnt_mp" ) {
+    while (1)
+    {
+        self waittill("grenade_fire", throwable, weapname);
+        if (weapname == "tnt" || weapname == "tnt_mp")
+        {
             //if ( !self.emplacedTnt.size )
             //  self thread watchC4AltDetonate();
 
@@ -980,29 +1224,37 @@ triggerThrowable()
 
     self endon("death");
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
-    while (1) {
+    while (1)
+    {
         self waittill("detonate");
         weap = self getCurrentWeapon();
-        if ( weap == "c4_mp" ) {
-            for ( i = 0; i < self.emplacedC4.size; i++ ) {
+        if (weap == "c4_mp")
+        {
+            for (i = 0; i < self.emplacedC4.size; i++)
+            {
                 c4 = self.emplacedC4[i];
-                if ( isdefined(self.emplacedC4[i]) ) {
-                        c4 thread waitAndDetonate(0.1);
+                if (isdefined(self.emplacedC4[i]))
+                {
+                    c4 thread waitAndDetonate(0.1);
                 }
             }
             self.emplacedC4 = [];
-            self notify ("detonated");
-        } else if (weap == "tnt_mp") {
-            for ( i = 0; i < self.emplacedTnt.size; i++ ) {
+            self notify("detonated");
+        }
+        else if (weap == "tnt_mp")
+        {
+            for (i = 0; i < self.emplacedTnt.size; i++)
+            {
                 tnt = self.emplacedTnt[i];
-                if (isdefined(self.emplacedTnt[i])) {
+                if (isdefined(self.emplacedTnt[i]))
+                {
                     tnt thread waitAndDetonate(0.1);
                 }
             }
             self.emplacedTnt = [];
-            self notify ("detonated");
+            self notify("detonated");
         }
     }
 }
@@ -1024,26 +1276,26 @@ playC4Effects()
     self endon("death");
     self waittill("activated");
 
-    while(1)
+    while (1)
     {
-        org = self getTagOrigin( "tag_fx" );
-        ang = self getTagAngles( "tag_fx" );
+        org = self getTagOrigin("tag_fx");
+        ang = self getTagAngles("tag_fx");
 
-        fx = spawnFx( level.C4FXid, org, anglesToForward( ang ), anglesToUp( ang ) );
-        triggerfx( fx );
+        fx = spawnFx(level.C4FXid, org, anglesToForward(ang), anglesToUp(ang));
+        triggerfx(fx);
 
-        self thread clearFXOnDeath( fx );
+        self thread clearFXOnDeath(fx);
 
         originalOrigin = self.origin;
 
-        while(1)
+        while (1)
         {
             wait .25;
-            if ( self.origin != originalOrigin )
+            if (self.origin != originalOrigin)
                 break;
         }
 
-        fx delete();
+        fx delete ();
         //self waittillNotMoving();
     }
 }
@@ -1052,7 +1304,7 @@ c4Damage()
 {
     debugPrint("in _weapons::c4Damage()", "fn", level.lowVerbosity);
 
-    self endon( "death" );
+    self endon("death");
 
     self setcandamage(true);
     self.maxhealth = 100000;
@@ -1060,23 +1312,23 @@ c4Damage()
 
     attacker = undefined;
 
-    while(1)
+    while (1)
     {
-        self waittill ( "damage", damage, attacker, direction_vec, point, type, modelName, tagName, partName, iDFlags );
-        if ( !isplayer(attacker) )
+        self waittill("damage", damage, attacker, direction_vec, point, type, modelName, tagName, partName, iDFlags);
+        if (!isplayer(attacker))
             continue;
 
         // don't allow people to destroy C4 on their team if FF is off
         if (self.owner != attacker && !getDvarInt("game_allowfriendlyfire"))
             continue;
 
-        if ( damage < 5 ) // ignore concussion grenades
+        if (damage < 5) // ignore concussion grenades
             continue;
 
         break;
     }
 
-    if ( level.c4explodethisframe )
+    if (level.c4explodethisframe)
         wait .1 + randomfloat(.4);
     else
         wait .05;
@@ -1088,22 +1340,22 @@ c4Damage()
 
     thread resetC4ExplodeThisFrame();
 
-    if ( isDefined( type ) && (isSubStr( type, "MOD_GRENADE" ) || isSubStr( type, "MOD_EXPLOSIVE" )) )
+    if (isDefined(type) && (isSubStr(type, "MOD_GRENADE") || isSubStr(type, "MOD_EXPLOSIVE")))
         self.wasChained = true;
 
-    if ( isDefined( iDFlags ) && (iDFlags & level.iDFLAGS_PENETRATION) )
+    if (isDefined(iDFlags) && (iDFlags & level.iDFLAGS_PENETRATION))
         self.wasDamagedFromBulletPenetration = true;
 
     self.wasDamaged = true;
 
     // "destroyed_explosive" notify, for challenges
-    if ( isdefined( attacker ) && isdefined( attacker.pers["team"] ) && isdefined( self.owner ) && isdefined( self.owner.pers["team"] ) )
+    if (isdefined(attacker) && isdefined(attacker.pers["team"]) && isdefined(self.owner) && isdefined(self.owner.pers["team"]))
     {
-        if ( attacker.pers["team"] != self.owner.pers["team"] )
+        if (attacker.pers["team"] != self.owner.pers["team"])
             attacker notify("destroyed_explosive");
     }
 
-    self detonate( attacker );
+    self detonate(attacker);
     // won't get here; got death notify.
 }
 
@@ -1121,5 +1373,5 @@ clearFXOnDeath(fx)
 
     fx endon("death");
     self waittill("death");
-    fx delete();
+    fx delete ();
 }

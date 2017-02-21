@@ -78,13 +78,13 @@ precache()
     debugPrint("in _bots::precache()", "fn", level.nonVerbose);
 
     // weapons used for animations
-    precacheitem("bot_zombie_walk_mp");
-    precacheitem("bot_zombie_stand_mp");
-    precacheitem("bot_zombie_run_mp");
-    precacheitem("bot_zombie_melee_mp");
-    precacheitem("bot_dog_idle_mp");
-    precacheitem("bot_dog_run_mp");
-    precacheitem("defaultweapon_mp");
+    //precacheitem("bot_zombie_walk_mp");
+    //precacheitem("bot_zombie_stand_mp");
+    //precacheitem("bot_zombie_run_mp");
+    //precacheitem("bot_zombie_melee_mp");
+    //precacheitem("bot_dog_idle_mp");
+    //precacheitem("bot_dog_run_mp");
+    //precacheitem("defaultweapon_mp");
 
     /*precachemodel("body_sp_russian_loyalist_a_dead");
     precachemodel("body_sp_russian_loyalist_b_dead");

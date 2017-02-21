@@ -51,7 +51,7 @@ precache()
     level.heal_glow_effect  = loadfx( "misc/heal_glow");
     level.healingEffect     = loadfx( "misc/healing" );
 
-    precacheItem("helicopter_mp"); // This is the medkit
+    //precacheItem("helicopter_mp"); // This is the medkit
 
     precacheString(&"ROTUSCRIPT_CURED_BY");
     precacheString(&"ROTUSCRIPT_INVALID_WEAPON");

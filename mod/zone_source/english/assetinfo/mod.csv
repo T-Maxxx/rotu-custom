@@ -30,7 +30,7 @@ index,type,type,name,usage(KB),total(KB)
 27,  menufile,menufile,ui_mp/scriptmenus/admin_temp_ban.menu,€_@,€_@
 28,    menu,menu,admin_warn,,
 29,  menufile,menufile,ui_mp/scriptmenus/admin_warn.menu,€_@,€_@
-30,    menu,menu,admin_changemap,‹— ,‹— 
+30,    menu,menu,admin_changemap,‹— ,‹— 
 31,  menufile,menufile,ui_mp/scriptmenus/admin_changemap.menu,,
 32,    menu,menu,development,,
 33,  menufile,menufile,ui_mp/scriptmenus/development.menu,,
@@ -198,16 +198,16 @@ index,type,type,name,usage(KB),total(KB)
 195,  rawfile,rawfile,shock/infection.shock,,
 196,  rawfile,rawfile,shock/boss.shock,,
 197,  rawfile,rawfile,shock/default_mp.shock,,
-198,  techset,techset,sm2/l_sm_scroll_r0c0,®ò; ,®ò; 
-199,  techset,techset,sm2/l_hsm_scroll_r0c0,®ò; ,®ò; 
-200,  techset,techset,l_sm_scroll_r0c0,®ò; ,®ò; 
-201,  techset,techset,l_hsm_scroll_r0c0,®ò; ,®ò; 
-202,  techset,techset,sm2/mc_l_sm_scroll_r0c0,®ò; ,®ò; 
-203,  techset,techset,sm2/mc_l_hsm_scroll_r0c0,®ò; ,®ò; 
-204,  techset,techset,mc_l_sm_scroll_r0c0,®ò; ,®ò; 
-205,  techset,techset,mc_l_hsm_scroll_r0c0,®ò; ,®ò; 
-206,  techset,techset,sm2/mc_l_sm_scroll_b0c0,®ò; ,®ò; 
-207,  techset,techset,mc_l_sm_scroll_b0c0,®ò; ,®ò; 
+198,  techset,techset,sm2/l_sm_scroll_r0c0,»,»
+199,  techset,techset,sm2/l_hsm_scroll_r0c0,»,»
+200,  techset,techset,l_sm_scroll_r0c0,»,»
+201,  techset,techset,l_hsm_scroll_r0c0,»,»
+202,  techset,techset,sm2/mc_l_sm_scroll_r0c0,»,»
+203,  techset,techset,sm2/mc_l_hsm_scroll_r0c0,»,»
+204,  techset,techset,mc_l_sm_scroll_r0c0,»,»
+205,  techset,techset,mc_l_hsm_scroll_r0c0,»,»
+206,  techset,techset,sm2/mc_l_sm_scroll_b0c0,»,»
+207,  techset,techset,mc_l_sm_scroll_b0c0,»,»
 208,  xmodel,xmodel,bx_teleporter,(,(
 209,  rawfile,rawfile,shock/zombiedamage.shock,(,(
 210,  techset,techset,sm2/distortion_scale_zfeather,(,(
@@ -245,8 +245,8 @@ index,type,type,name,usage(KB),total(KB)
 242,  xanim,xanim,viewmodel_aug_fire,–,–
 243,  xanim,xanim,viewmodel_aug_idle,–,–
 244,  xanim,xanim,viewmodel_aug_pullout,–,–
-245,  xanim,xanim,viewmodel_aug_putaway,–,–
-246,  xanim,xanim,viewmodel_aug_reload,–,–
+245,  xanim,xanim,viewmodel_aug_putaway,,
+246,  xanim,xanim,viewmodel_aug_reload,,
 247,  xanim,xanim,viewmodel_aug_sprint_in,,
 248,  xanim,xanim,viewmodel_aug_sprint_loop,,
 249,  xanim,xanim,viewmodel_aug_sprint_out,,
@@ -402,116 +402,116 @@ index,type,type,name,usage(KB),total(KB)
 399,  xmodel,xmodel,weapon_mw2_f2000_mp,(,(
 400,  xmodel,xmodel,weapon_mw2_f2000_scope_mp,(,(
 401,  xmodel,xmodel,weapon_mw2_f2000_silencer_mp,(,(
-402,  xanim,xanim,viewmodel_mw2_f2000_ads_fire,‹≈ ,‹≈ 
-403,  xanim,xanim,viewmodel_mw2_f2000_fire,‹≈ ,‹≈ 
-404,  xanim,xanim,viewmodel_mw2_f2000_idle,‹≈ ,‹≈ 
-405,  xanim,xanim,viewmodel_mw2_f2000_pullout,‹≈ ,‹≈ 
-406,  xanim,xanim,viewmodel_mw2_f2000_pullout_first,‹≈ ,‹≈ 
-407,  xanim,xanim,viewmodel_mw2_f2000_putaway,‹≈ ,‹≈ 
-408,  xanim,xanim,viewmodel_mw2_f2000_reload,‹≈ ,‹≈ 
-409,  xanim,xanim,viewmodel_mw2_f2000_reload_empty,‹≈ ,‹≈ 
-410,  xanim,xanim,viewmodel_mw2_f2000_sprint_in,‹≈ ,‹≈ 
-411,  xanim,xanim,viewmodel_mw2_f2000_sprint_loop,‹≈ ,‹≈ 
-412,  xanim,xanim,viewmodel_mw2_f2000_sprint_out,‹≈ ,‹≈ 
-413,  xanim,xanim,viewmodel_mw2_spas12_ads_fire,º–æ ,º–æ 
-414,  xanim,xanim,viewmodel_mw2_spas12_ads_rechamber,º–æ ,º–æ 
-415,  xanim,xanim,viewmodel_mw2_spas12_fire,º–æ ,º–æ 
-416,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_fire,º–æ ,º–æ 
-417,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_rechamber,º–æ ,º–æ 
-418,  xanim,xanim,viewmodel_mw2_spas12_grip_fire,º–æ ,º–æ 
-419,  xanim,xanim,viewmodel_mw2_spas12_grip_idle,º–æ ,º–æ 
-420,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout,º–æ ,º–æ 
-421,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout_quick,º–æ ,º–æ 
-422,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway,º–æ ,º–æ 
-423,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway_quick,º–æ ,º–æ 
-424,  xanim,xanim,viewmodel_mw2_spas12_grip_rechamber,º–æ ,º–æ 
-425,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_in,º–æ ,º–æ 
-426,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_loop,º–æ ,º–æ 
-427,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_out,º–æ ,º–æ 
-428,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_in,º–æ ,º–æ 
-429,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_loop,º–æ ,º–æ 
-430,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_out,º–æ ,º–æ 
-431,  xanim,xanim,viewmodel_mw2_spas12_idle,º–æ ,º–æ 
-432,  xanim,xanim,viewmodel_mw2_spas12_pullout,º–æ ,º–æ 
-433,  xanim,xanim,viewmodel_mw2_spas12_pullout_quick,º–æ ,º–æ 
-434,  xanim,xanim,viewmodel_mw2_spas12_putaway,º–æ ,º–æ 
-435,  xanim,xanim,viewmodel_mw2_spas12_putaway_quick,º–æ ,º–æ 
-436,  xanim,xanim,viewmodel_mw2_spas12_rechamber,º–æ ,º–æ 
-437,  xanim,xanim,viewmodel_mw2_spas12_reload_in,º–æ ,º–æ 
-438,  xanim,xanim,viewmodel_mw2_spas12_reload_loop,º–æ ,º–æ 
-439,  xanim,xanim,viewmodel_mw2_spas12_reload_out,º–æ ,º–æ 
-440,  xanim,xanim,viewmodel_mw2_spas12_sprint_in,º–æ ,º–æ 
-441,  xanim,xanim,viewmodel_mw2_spas12_sprint_loop,º–æ ,º–æ 
-442,  xanim,xanim,viewmodel_mw2_spas12_sprint_out,º–æ ,º–æ 
+402,  xanim,xanim,viewmodel_mw2_f2000_ads_fire,Ñœi ,Ñœi 
+403,  xanim,xanim,viewmodel_mw2_f2000_fire,Ñœi ,Ñœi 
+404,  xanim,xanim,viewmodel_mw2_f2000_idle,Ñœi ,Ñœi 
+405,  xanim,xanim,viewmodel_mw2_f2000_pullout,Ñœi ,Ñœi 
+406,  xanim,xanim,viewmodel_mw2_f2000_pullout_first,Ñœi ,Ñœi 
+407,  xanim,xanim,viewmodel_mw2_f2000_putaway,Ñœi ,Ñœi 
+408,  xanim,xanim,viewmodel_mw2_f2000_reload,Ñœi ,Ñœi 
+409,  xanim,xanim,viewmodel_mw2_f2000_reload_empty,Ñœi ,Ñœi 
+410,  xanim,xanim,viewmodel_mw2_f2000_sprint_in,Ñœi ,Ñœi 
+411,  xanim,xanim,viewmodel_mw2_f2000_sprint_loop,Ñœi ,Ñœi 
+412,  xanim,xanim,viewmodel_mw2_f2000_sprint_out,Ñœi ,Ñœi 
+413,  xanim,xanim,viewmodel_mw2_spas12_ads_fire,Ö ,Ö 
+414,  xanim,xanim,viewmodel_mw2_spas12_ads_rechamber,Ö ,Ö 
+415,  xanim,xanim,viewmodel_mw2_spas12_fire,Ö ,Ö 
+416,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_fire,Ö ,Ö 
+417,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_rechamber,Ö ,Ö 
+418,  xanim,xanim,viewmodel_mw2_spas12_grip_fire,Ö ,Ö 
+419,  xanim,xanim,viewmodel_mw2_spas12_grip_idle,Ö ,Ö 
+420,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout,Ö ,Ö 
+421,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout_quick,Ö ,Ö 
+422,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway,Ö ,Ö 
+423,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway_quick,Ö ,Ö 
+424,  xanim,xanim,viewmodel_mw2_spas12_grip_rechamber,Ö ,Ö 
+425,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_in,Ö ,Ö 
+426,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_loop,Ö ,Ö 
+427,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_out,Ö ,Ö 
+428,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_in,Ö ,Ö 
+429,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_loop,Ö ,Ö 
+430,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_out,Ö ,Ö 
+431,  xanim,xanim,viewmodel_mw2_spas12_idle,Ö ,Ö 
+432,  xanim,xanim,viewmodel_mw2_spas12_pullout,Ö ,Ö 
+433,  xanim,xanim,viewmodel_mw2_spas12_pullout_quick,Ö ,Ö 
+434,  xanim,xanim,viewmodel_mw2_spas12_putaway,Ö ,Ö 
+435,  xanim,xanim,viewmodel_mw2_spas12_putaway_quick,Ö ,Ö 
+436,  xanim,xanim,viewmodel_mw2_spas12_rechamber,Ö ,Ö 
+437,  xanim,xanim,viewmodel_mw2_spas12_reload_in,Ö ,Ö 
+438,  xanim,xanim,viewmodel_mw2_spas12_reload_loop,Ö ,Ö 
+439,  xanim,xanim,viewmodel_mw2_spas12_reload_out,Ö ,Ö 
+440,  xanim,xanim,viewmodel_mw2_spas12_sprint_in,Ö ,Ö 
+441,  xanim,xanim,viewmodel_mw2_spas12_sprint_loop,Ö ,Ö 
+442,  xanim,xanim,viewmodel_mw2_spas12_sprint_out,Ö ,Ö 
 443,  xmodel,xmodel,viewmodel_mw2_spas12_mp,8,8
 444,  xmodel,xmodel,weapon_mw2_spas12_grip_mp,8,8
 445,  xmodel,xmodel,weapon_mw2_spas12_mp,8,8
 446,  xmodel,xmodel,weapon_mw2_spas12_reflex_mp,8,8
 447,  xmodel,xmodel,weapon_mw2_spas12_silencer_mp,8,8
-448,  rawfile,rawfile,maps/mp/_debug.gsc,º–æ ,º–æ 
-449,  rawfile,rawfile,maps/mp/_load.gsc,º–æ ,º–æ 
-450,  rawfile,rawfile,maps/mp/_umi.gsc,º–æ ,º–æ 
-451,  rawfile,rawfile,maps/mp/_umieditor.gsc,º–æ ,º–æ 
-452,  rawfile,rawfile,maps/mp/_unified_mapping_interface.gsc,º–æ ,º–æ 
-453,  rawfile,rawfile,maps/mp/_zombiescript.gsc,º–æ ,º–æ 
-454,  rawfile,rawfile,maps/mp/gametypes/dm.gsc,º–æ ,º–æ 
-455,  rawfile,rawfile,maps/mp/gametypes/surv.gsc,º–æ ,º–æ 
-456,  rawfile,rawfile,maps/mp/gametypes/war.gsc,º–æ ,º–æ 
-457,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic.gsc,º–æ ,º–æ 
-458,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic_cod_original.gsc,º–æ ,º–æ 
-459,  rawfile,rawfile,scripts/bots/_bots.gsc,º–æ ,º–æ 
-460,  rawfile,rawfile,scripts/bots/_types.gsc,º–æ ,º–æ 
-461,  rawfile,rawfile,scripts/clients/_clients.gsc,º–æ ,º–æ 
-462,  rawfile,rawfile,scripts/gamemodes/_gamemodes.gsc,º–æ ,º–æ 
-463,  rawfile,rawfile,scripts/gamemodes/_hud.gsc,º–æ ,º–æ 
-464,  rawfile,rawfile,scripts/gamemodes/_mysterybox.gsc,º–æ ,º–æ 
-465,  rawfile,rawfile,scripts/gamemodes/_survival.gsc,º–æ ,º–æ 
-466,  rawfile,rawfile,scripts/gamemodes/_upgradables.gsc,º–æ ,º–æ 
-467,  rawfile,rawfile,scripts/include/admincommon.gsc,º–æ ,º–æ 
-468,  rawfile,rawfile,scripts/include/array.gsc,º–æ ,º–æ 
-469,  rawfile,rawfile,scripts/include/data.gsc,º–æ ,º–æ 
-470,  rawfile,rawfile,scripts/include/entities.gsc,º–æ ,º–æ 
-471,  rawfile,rawfile,scripts/include/hud.gsc,º–æ ,º–æ 
-472,  rawfile,rawfile,scripts/include/matrix.gsc,º–æ ,º–æ 
-473,  rawfile,rawfile,scripts/include/physics.gsc,º–æ ,º–æ 
-474,  rawfile,rawfile,scripts/include/strings.gsc,º–æ ,º–æ 
-475,  rawfile,rawfile,scripts/include/utility.gsc,º–æ ,º–æ 
-476,  rawfile,rawfile,scripts/include/waypoints.gsc,º–æ ,º–æ 
-477,  rawfile,rawfile,scripts/include/_map_util.gsc,º–æ ,º–æ 
-478,  rawfile,rawfile,scripts/level/signals.gsc,º–æ ,º–æ 
-479,  rawfile,rawfile,scripts/level/_levelsetup.gsc,º–æ ,º–æ 
-480,  rawfile,rawfile,scripts/level/_waypoints.gsc,º–æ ,º–æ 
-481,  rawfile,rawfile,scripts/players/_abilities.gsc,º–æ ,º–æ 
-482,  rawfile,rawfile,scripts/players/_barricades.gsc,º–æ ,º–æ 
-483,  rawfile,rawfile,scripts/players/_classes.gsc,º–æ ,º–æ 
-484,  rawfile,rawfile,scripts/players/_damagefeedback.gsc,º–æ ,º–æ 
-485,  rawfile,rawfile,scripts/players/_infection.gsc,º–æ ,º–æ 
-486,  rawfile,rawfile,scripts/players/_menus.gsc,º–æ ,º–æ 
-487,  rawfile,rawfile,scripts/players/_persistence.gsc,º–æ ,º–æ 
-488,  rawfile,rawfile,scripts/players/_playermodels.gsc,º–æ ,º–æ 
-489,  rawfile,rawfile,scripts/players/_players.gsc,º–æ ,º–æ 
-490,  rawfile,rawfile,scripts/players/_rank.gsc,º–æ ,º–æ 
-491,  rawfile,rawfile,scripts/players/_shop.gsc,º–æ ,º–æ 
-492,  rawfile,rawfile,scripts/players/_spree.gsc,º–æ ,º–æ 
-493,  rawfile,rawfile,scripts/players/_teleporter.gsc,º–æ ,º–æ 
-494,  rawfile,rawfile,scripts/players/_turrets.gsc,º–æ ,º–æ 
-495,  rawfile,rawfile,scripts/players/_usables.gsc,º–æ ,º–æ 
-496,  rawfile,rawfile,scripts/players/_weapons.gsc,º–æ ,º–æ 
-497,  rawfile,rawfile,scripts/server/_admincommands.gsc,º–æ ,º–æ 
-498,  rawfile,rawfile,scripts/server/_admininterface.gsc,º–æ ,º–æ 
-499,  rawfile,rawfile,scripts/server/_environment.gsc,º–æ ,º–æ 
-500,  rawfile,rawfile,scripts/server/_main_popup.gsc,º–æ ,º–æ 
-501,  rawfile,rawfile,scripts/server/_maprotation.gsc,º–æ ,º–æ 
-502,  rawfile,rawfile,scripts/server/_maps.gsc,º–æ ,º–æ 
-503,  rawfile,rawfile,scripts/server/_mapvoting22.gsc,º–æ ,º–æ 
-504,  rawfile,rawfile,scripts/server/_ranks.gsc,º–æ ,º–æ 
-505,  rawfile,rawfile,scripts/server/_rconinterface.gsc,º–æ ,º–æ 
-506,  rawfile,rawfile,scripts/server/_scoreboard.gsc,º–æ ,º–æ 
-507,  rawfile,rawfile,scripts/server/_server.gsc,º–æ ,º–æ 
-508,  rawfile,rawfile,scripts/server/_settings.gsc,º–æ ,º–æ 
-509,  rawfile,rawfile,scripts/server/_welcome.gsc,º–æ ,º–æ 
-510,  rawfile,rawfile,changelog.txt,º–æ ,º–æ 
-511,  xanim,xanim,death_stand_dropinplace,º–æ ,º–æ 
+448,  rawfile,rawfile,maps/mp/_debug.gsc,Ö ,Ö 
+449,  rawfile,rawfile,maps/mp/_load.gsc,Ö ,Ö 
+450,  rawfile,rawfile,maps/mp/_umi.gsc,Ö ,Ö 
+451,  rawfile,rawfile,maps/mp/_umieditor.gsc,Ö ,Ö 
+452,  rawfile,rawfile,maps/mp/_unified_mapping_interface.gsc,Ö ,Ö 
+453,  rawfile,rawfile,maps/mp/_zombiescript.gsc,Ö ,Ö 
+454,  rawfile,rawfile,maps/mp/gametypes/dm.gsc,Ö ,Ö 
+455,  rawfile,rawfile,maps/mp/gametypes/surv.gsc,Ö ,Ö 
+456,  rawfile,rawfile,maps/mp/gametypes/war.gsc,Ö ,Ö 
+457,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic.gsc,Ö ,Ö 
+458,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic_cod_original.gsc,Ö ,Ö 
+459,  rawfile,rawfile,scripts/bots/_bots.gsc,Ö ,Ö 
+460,  rawfile,rawfile,scripts/bots/_types.gsc,Ö ,Ö 
+461,  rawfile,rawfile,scripts/clients/_clients.gsc,Ö ,Ö 
+462,  rawfile,rawfile,scripts/gamemodes/_gamemodes.gsc,Ö ,Ö 
+463,  rawfile,rawfile,scripts/gamemodes/_hud.gsc,Ö ,Ö 
+464,  rawfile,rawfile,scripts/gamemodes/_mysterybox.gsc,Ö ,Ö 
+465,  rawfile,rawfile,scripts/gamemodes/_survival.gsc,Ö ,Ö 
+466,  rawfile,rawfile,scripts/gamemodes/_upgradables.gsc,Ö ,Ö 
+467,  rawfile,rawfile,scripts/include/admincommon.gsc,Ö ,Ö 
+468,  rawfile,rawfile,scripts/include/array.gsc,Ö ,Ö 
+469,  rawfile,rawfile,scripts/include/data.gsc,Ö ,Ö 
+470,  rawfile,rawfile,scripts/include/entities.gsc,Ö ,Ö 
+471,  rawfile,rawfile,scripts/include/hud.gsc,Ö ,Ö 
+472,  rawfile,rawfile,scripts/include/matrix.gsc,Ö ,Ö 
+473,  rawfile,rawfile,scripts/include/physics.gsc,Ö ,Ö 
+474,  rawfile,rawfile,scripts/include/strings.gsc,Ö ,Ö 
+475,  rawfile,rawfile,scripts/include/utility.gsc,Ö ,Ö 
+476,  rawfile,rawfile,scripts/include/waypoints.gsc,Ö ,Ö 
+477,  rawfile,rawfile,scripts/include/_map_util.gsc,Ö ,Ö 
+478,  rawfile,rawfile,scripts/level/signals.gsc,Ö ,Ö 
+479,  rawfile,rawfile,scripts/level/_levelsetup.gsc,Ö ,Ö 
+480,  rawfile,rawfile,scripts/level/_waypoints.gsc,Ö ,Ö 
+481,  rawfile,rawfile,scripts/players/_abilities.gsc,Ö ,Ö 
+482,  rawfile,rawfile,scripts/players/_barricades.gsc,Ö ,Ö 
+483,  rawfile,rawfile,scripts/players/_classes.gsc,Ö ,Ö 
+484,  rawfile,rawfile,scripts/players/_damagefeedback.gsc,Ö ,Ö 
+485,  rawfile,rawfile,scripts/players/_infection.gsc,Ö ,Ö 
+486,  rawfile,rawfile,scripts/players/_menus.gsc,Ö ,Ö 
+487,  rawfile,rawfile,scripts/players/_persistence.gsc,Ö ,Ö 
+488,  rawfile,rawfile,scripts/players/_playermodels.gsc,Ö ,Ö 
+489,  rawfile,rawfile,scripts/players/_players.gsc,Ö ,Ö 
+490,  rawfile,rawfile,scripts/players/_rank.gsc,Ö ,Ö 
+491,  rawfile,rawfile,scripts/players/_shop.gsc,Ö ,Ö 
+492,  rawfile,rawfile,scripts/players/_spree.gsc,Ö ,Ö 
+493,  rawfile,rawfile,scripts/players/_teleporter.gsc,Ö ,Ö 
+494,  rawfile,rawfile,scripts/players/_turrets.gsc,Ö ,Ö 
+495,  rawfile,rawfile,scripts/players/_usables.gsc,Ö ,Ö 
+496,  rawfile,rawfile,scripts/players/_weapons.gsc,Ö ,Ö 
+497,  rawfile,rawfile,scripts/server/_admincommands.gsc,Ö ,Ö 
+498,  rawfile,rawfile,scripts/server/_admininterface.gsc,Ö ,Ö 
+499,  rawfile,rawfile,scripts/server/_environment.gsc,Ö ,Ö 
+500,  rawfile,rawfile,scripts/server/_main_popup.gsc,Ö ,Ö 
+501,  rawfile,rawfile,scripts/server/_maprotation.gsc,Ö ,Ö 
+502,  rawfile,rawfile,scripts/server/_maps.gsc,Ö ,Ö 
+503,  rawfile,rawfile,scripts/server/_mapvoting22.gsc,Ö ,Ö 
+504,  rawfile,rawfile,scripts/server/_ranks.gsc,Ö ,Ö 
+505,  rawfile,rawfile,scripts/server/_rconinterface.gsc,Ö ,Ö 
+506,  rawfile,rawfile,scripts/server/_scoreboard.gsc,Ö ,Ö 
+507,  rawfile,rawfile,scripts/server/_server.gsc,Ö ,Ö 
+508,  rawfile,rawfile,scripts/server/_settings.gsc,Ö ,Ö 
+509,  rawfile,rawfile,scripts/server/_welcome.gsc,Ö ,Ö 
+510,  rawfile,rawfile,changelog.txt,Ö ,Ö 
+511,  xanim,xanim,death_stand_dropinplace,Ö ,Ö 
 512,  xmodel,xmodel,com_bottle4,,
 513,  xmodel,xmodel,com_barrel_blue_rust,,
 514,  xmodel,xmodel,ad_sodamachine,,
@@ -527,7 +527,7 @@ index,type,type,name,usage(KB),total(KB)
 524,  xmodel,xmodel,german_sheperd_dog,,
 525,  fx,fx,fire/emb_burst_a,,
 526,  fx,fx,fire/firelp_med_pm,,
-527,assetlist,assetlist,,p–æ è,p–æ è
+527,assetlist,assetlist,,ËÑ è,ËÑ è
 528,xanim,xanim,(misc),4,4
 529,material,material,(misc),4,4
 530,techset,techset,(misc),4,4
