@@ -1,7 +1,7 @@
 statname,statint
-,This stattable are not in use and fill in progress
+# This stattable are not in use and fill in progress
 
-,max level = 0-29 == 30.
+# Max level = 0-29 == 30.
 class_level_max,29
 level_soldier,430
 level_stealth,431
@@ -21,7 +21,19 @@ weapon_pistol,295
 perk1,296
 perk2,297
 perk3,298
-prestige1,2326
-prestige2,210
-rank1,252
-rank2,253
+prestige_check_2,2326
+prestige_check_1,210
+
+# TODO: check
+rank,251
+
+rank_check_1,252
+rank_check_2,253
+plevel,TODO
+rankxp,TODO
+time_played_total,TODO
+minxp,TODO
+maxxp,TODO
+lastxp,TODO
+prestigemode,267
+isbot,512

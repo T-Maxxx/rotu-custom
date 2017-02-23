@@ -20,6 +20,9 @@ ROTU Change Log
 * Replaced F2000 textures\animations with MW2 one, added attachments support.
 * Almost all localization now based on .str files.
 * LEGEND IS BACK! SPAS-12 from MW2 now in RotU. New models\anims\textures\configs.
+* Increasing upgrade score at HUD has been changed to localized string.
+  It's cheaper (actually in cost of 2 localized strings) now to use any number.
+* WIP - stattable.csv
 
 //
 // 2.2

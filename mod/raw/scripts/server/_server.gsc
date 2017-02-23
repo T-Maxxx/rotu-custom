@@ -38,14 +38,15 @@ init()
 {
     debugPrint("in _server::init()", "fn", level.nonVerbose);
 
-    precacheString(&"ROTUSCRIPT_DIDYOUKNOW");
-    precacheString(&"ROTUSCRIPT_ADMIN_PREFIX");
-    precacheString(&"ROTUSCRIPT_MOD");
+    scripts\include\hud::precacheUIStrings();
 
     debugPrint("Running debug version of rotu_svr_scripts.iwd.", "val");
-    if (level.printFunctionEntryMessages) {
+    if (level.printFunctionEntryMessages)
+    {
         debugPrint("Printing function entrance messages", "val");
-    } else {
+    }
+    else
+    {
         debugPrint("Not printing function entrance messages", "val");
     }
     if (level.printValueMessages) {

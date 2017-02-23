@@ -61,54 +61,56 @@ init()
     precacheString(&"ROTUSCRIPT_RANK_DEMOTED");
     precacheString(&"ROTUSCRIPT_RANK_PLAYER_WAS_DEMOTED");
 
-    registerScoreInfo( "kill", 10 );
-    registerScoreInfo( "assist0", 1 );
-    registerScoreInfo( "assist1", 2 );
-    registerScoreInfo( "assist2", 3 );
-    registerScoreInfo( "assist3", 5 );
-    registerScoreInfo( "assist4", 7 );
-    registerScoreInfo( "assist5", 10 );
-    registerScoreInfo( "revive", 50 );
-    registerScoreInfo( "revive_cover", 40 ); // providing covering fire for a revive
-    registerScoreInfo( "headshot", 10 );
-    registerScoreInfo( "suicide", 0 );
-    registerScoreInfo( "teamkill", 0 );
+    registerScoreInfo("kill", 10);
+    registerScoreInfo("assist0", 1);
+    registerScoreInfo("assist1", 2);
+    registerScoreInfo("assist2", 3);
+    registerScoreInfo("assist3", 5);
+    registerScoreInfo("assist4", 7);
+    registerScoreInfo("assist5", 10);
+    registerScoreInfo("revive", 50);
+    registerScoreInfo("revive_cover", 40); // providing covering fire for a revive
+    registerScoreInfo("headshot", 10);
+    registerScoreInfo("suicide", 0);
+    registerScoreInfo("teamkill", 0);
 
-
-    registerScoreInfo( "challenge", 250 );
+    registerScoreInfo("challenge", 250);
 
     /// tableLookup(fileName, keyColumn, keyValue, dataColumn)
     /// tableLookupIString(fileName, keyColumn, keyValue, dataColumn)
     // zero-indexed max number of ranks, i.e. 54
-    level.maxRank = int(tableLookup( "mp/rankTable.csv", 0, "maxrank", 1 ));
+    level.maxRank = int(tableLookup("mp/rankTable.csv", 0, "maxrank", 1));
     // number of prestige levels, i.e. 45
-    level.maxPrestige = int(tableLookup( "mp/rankIconTable.csv", 0, "maxprestige", 1 ));
+    level.maxPrestige = int(tableLookup("mp/rankIconTable.csv", 0, "maxprestige", 1));
 
     // For every row/column location in rankIconTable.csv, precache the rank icon
-    for (column = 0; column <= level.maxPrestige; column++) {
-        for (row = 0; row <= level.maxRank; row++) {
-            precacheShader(tableLookup( "mp/rankIconTable.csv", 0, row, column+1 ));
+    for (column = 0; column <= level.maxPrestige; column++)
+    {
+        for (row = 0; row <= level.maxRank; row++)
+        {
+            precacheShader(tableLookup("mp/rankIconTable.csv", 0, row, column + 1));
         }
     }
 
     // Load all the basic info about the ranks from rankTable.csv
     rankId = 0;
     rankName = tableLookup("mp/ranktable.csv", 0, rankId, 1);
-    assert(isDefined( rankName ) && rankName != "");
-    while (isDefined(rankName) && rankName != "" ) {
+    assert(isDefined(rankName) && rankName != "");
+    while (isDefined(rankName) && rankName != "")
+    {
         // rankID, i.e. "pfc1"
-        level.rankTable[rankId][1] = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );
+        level.rankTable[rankId][1] = tableLookup("mp/ranktable.csv", 0, rankId, 1);
         // rank starts at this rankXP level, i.e. 0
-        level.rankTable[rankId][2] = tableLookup( "mp/ranktable.csv", 0, rankId, 2 );
+        level.rankTable[rankId][2] = tableLookup("mp/ranktable.csv", 0, rankId, 2);
         // need to earn this many rankXP points while this rank to get next rank, i.e. 10
-        level.rankTable[rankId][3] = tableLookup( "mp/ranktable.csv", 0, rankId, 3 );
+        level.rankTable[rankId][3] = tableLookup("mp/ranktable.csv", 0, rankId, 3);
         // next rank starts at this rankXP, i.e. 10
-        level.rankTable[rankId][7] = tableLookup( "mp/ranktable.csv", 0, rankId, 7 );
+        level.rankTable[rankId][7] = tableLookup("mp/ranktable.csv", 0, rankId, 7);
         // localized string name for the rank
-        precacheString( tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 ) );
+        precacheString(tableLookupIString("mp/ranktable.csv", 0, rankId, 16));
 
         rankId++;
-        rankName = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );
+        rankName = tableLookup("mp/ranktable.csv", 0, rankId, 1);
     }
 
     level.statOffsets = [];
@@ -127,13 +129,18 @@ init()
     //buildChallegeInfo();
 }
 
-
 isRegisteredEvent(type)
 {
     debugPrint("in _rank::isRegisteredEvent()", "fn", level.lowVerbosity);
 
-    if (isDefined(level.scoreInfo[type])) {return true;}
-    else {return false;}
+    if (isDefined(level.scoreInfo[type]))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 registerScoreInfo(type, value)
@@ -182,65 +189,64 @@ getRankInfoFull(rankId)
 {
     debugPrint("in _rank::getRankInfoFull()", "fn", level.nonVerbose);
 
-    return tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 );
+    return tableLookupIString("mp/ranktable.csv", 0, rankId, 16);
 }
 
 getRankInfoIcon(rankId, prestigeId)
 {
     debugPrint("in _rank::getRankInfoIcon()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/rankIconTable.csv", 0, rankId, prestigeId+1 );
+    return tableLookup("mp/rankIconTable.csv", 0, rankId, prestigeId + 1);
 }
 
 getRankInfoUnlockWeapon(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockWeapon()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 8 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 8);
 }
 
 getRankInfoUnlockPerk(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockPerk()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 9 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 9);
 }
 
 getRankInfoUnlockChallenge(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockChallenge()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 10 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 10);
 }
 
 getRankInfoUnlockFeature(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockFeature()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 15 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 15);
 }
 
 getRankInfoUnlockCamo(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockCamo()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 11 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 11);
 }
 
 getRankInfoUnlockAttachment(rankId)
 {
     debugPrint("in _rank::getRankInfoUnlockAttachment()", "fn", level.lowVerbosity);
 
-    return tableLookup( "mp/ranktable.csv", 0, rankId, 12 );
+    return tableLookup("mp/ranktable.csv", 0, rankId, 12);
 }
 
 getRankInfoLevel(rankId)
 {
     debugPrint("in _rank::getRankInfoLevel()", "fn", level.lowVerbosity);
 
-    return int( tableLookup( "mp/ranktable.csv", 0, rankId, 13 ) );
+    return int(tableLookup("mp/ranktable.csv", 0, rankId, 13));
 }
-
 
 onPlayerConnect()
 {
@@ -250,82 +256,88 @@ onPlayerConnect()
     //{
     //  level waittill( "connected", player );
 
-        self.pers["rankxp"] = self scripts\players\_persistence::statGet( "rankxp" );
-        rankId = self getRankForXp( self getRankXP() );
-        self.pers["rank"] = rankId;
-        self.pers["participation"] = 0;
+    self.pers["rankxp"] = self scripts\players\_persistence::statGet("rankxp");
+    rankId = self getRankForXp(self getRankXP());
+    self.pers["rank"] = rankId;
+    self.pers["participation"] = 0;
 
-        self scripts\players\_persistence::statSet( "rank", rankId );
-        self scripts\players\_persistence::statSet( "minxp", getRankInfoMinXp( rankId ) );
-        self scripts\players\_persistence::statSet( "maxxp", getRankInfoMaxXp( rankId ) );
-        self scripts\players\_persistence::statSet( "lastxp", self.pers["rankxp"] );
+    self scripts\players\_persistence::statSet("rank", rankId);
+    self scripts\players\_persistence::statSet("minxp", getRankInfoMinXp(rankId));
+    self scripts\players\_persistence::statSet("maxxp", getRankInfoMaxXp(rankId));
+    self scripts\players\_persistence::statSet("lastxp", self.pers["rankxp"]);
 
-        prestige = self getPrestigeLevel();
+    prestige = self getPrestigeLevel();
 
-        self.rankHacker = false;
-        if (prestige>1) {
-            stat = self getstat(253);
-            if (rankId>stat ) {
-                if (rankId<20) {
-                    self setstat(253, rankId);
-                } else {
-                    self.rankHacker = true;
-                    iprintln(&"ROTUSCRIPT_KICKED_FOR_RANKHACKING", self.name);
-                    Kick( self getEntityNumber());
-                }
-            } else { if (stat != rankId) self setstat(253, rankId); }
+    self.rankHacker = false;
+    if (prestige > 1)
+    {
+        stat = self getstat(253);
+        if (rankId > stat)
+        {
+            if (rankId < 20)
+            {
+                self setstat(253, rankId);
+            }
+            else
+            {
+                self.rankHacker = true;
+                iprintln(&"ROTUSCRIPT_KICKED_FOR_RANKHACKING", self.name);
+                Kick(self getEntityNumber());
+            }
         }
-        self.rankUpdateTotal = 0;
-
-        // for keeping track of rank through stat#251 used by menu script
-        // attempt to move logic out of menus as much as possible
-        self.cur_rankNum = rankId;
-        assertex( isdefined(self.cur_rankNum), "rank: "+ rankId + " does not have an index, check mp/ranktable.csv" );
-        self setStat( 251, self.cur_rankNum );
-
-
-
-        if (prestige!=self getstat(210)) {
-            self.rankHacker = true;
-            iprintln(&"ROTUSCRIPT_KICKED_FOR_PRESTIGEHACKING", self.name);
-            Kick( self getEntityNumber());
+        else
+        {
+            if (stat != rankId)
+                self setstat(253, rankId);
         }
+    }
+    self.rankUpdateTotal = 0;
 
-        self setRank( rankId, prestige );
-        self.pers["prestige"] = prestige;
+    // for keeping track of rank through stat#251 used by menu script
+    // attempt to move logic out of menus as much as possible
+    self.cur_rankNum = rankId;
+    assertex(isdefined(self.cur_rankNum), "rank: " + rankId + " does not have an index, check mp/ranktable.csv");
+    self setStat(251, self.cur_rankNum);
 
-        self setclientdvar( "ui_lobbypopup", "" );
+    if (prestige != self getstat(210))
+    {
+        self.rankHacker = true;
+        iprintln(&"ROTUSCRIPT_KICKED_FOR_PRESTIGEHACKING", self.name);
+        Kick(self getEntityNumber());
+    }
 
+    self setRank(rankId, prestige);
+    self.pers["prestige"] = prestige;
 
-        //player updateChallenges();
-        //player.explosiveKills[0] = 0;
-        self.xpGains = [];
+    self setclientdvar("ui_lobbypopup", "");
 
-        self thread scripts\players\_classes::getSkillpoints(rankId);
+    //player updateChallenges();
+    //player.explosiveKills[0] = 0;
+    self.xpGains = [];
 
-        // Initial upgrade point bonus for prestige level
-        if (!self.hasPreviouslyJoined) {
-            scripts\players\_players::incUpgradePoints(int(75 * prestige));
-        }
+    self thread scripts\players\_classes::getSkillpoints(rankId);
+
+    // Initial upgrade point bonus for prestige level
+    if (!self.hasPreviouslyJoined && prestige)
+    {
+        scripts\players\_players::incUpgradePoints(int(75 * prestige));
+    }
     //}
-//         self thread doDemote();
-}
-
-onPlayerSpawned()
-{
-    debugPrint("in _rank::onPlayerSpawned()", "fn", level.nonVerbose);
-
-    self endon("disconnect");
-    /// @deprecated
-    self.spree = 0;
+    //         self thread doDemote();
 }
 
 roundUp(floatVal)
 {
     debugPrint("in _rank::roundUp()", "fn", level.lowVerbosity);
 
-    if (int( floatVal ) != floatVal) {return int(floatVal+1);}
-    else {return int(floatVal);}
+    if (int(floatVal) != floatVal)
+    {
+        return int(floatVal + 1);
+    }
+    else
+    {
+        return int(floatVal);
+    }
 }
 
 giveRankXP(type, value)
@@ -335,17 +347,17 @@ giveRankXP(type, value)
     self endon("disconnect");
 
     if (self.rankHacker)
-    return;
+        return;
 
     /*if ( level.teamBased && (!level.playerCount["allies"] || !level.playerCount["axis"]) )
         return;
     else if ( !level.teamBased && (level.playerCount["allies"] + level.playerCount["axis"] < 2) )
         return;*/
 
-    if ( !isDefined( value ) )
-        value = getScoreInfoValue( type );
+    if (!isDefined(value))
+        value = getScoreInfoValue(type);
 
-    if ( !isDefined( self.xpGains[type] ) )
+    if (!isDefined(self.xpGains[type]))
         self.xpGains[type] = 0;
 
     /*switch( type )
@@ -372,17 +384,17 @@ giveRankXP(type, value)
 
     self.xpGains[type] += value;
 
-    self incRankXP( value );
+    self incRankXP(value);
 
-    if (  updateRank() )
+    if (updateRank())
         self thread updateRankAnnounceHUD();
 
     //if ( isDefined( self.enableText ) && self.enableText && !level.hardcoreMode )
     //{
-        if ( type == "teamkill" )
-            self thread updateRankScoreHUD( 0 - getScoreInfoValue( "kill" ) );
-        else
-            self thread updateRankScoreHUD( value );
+    if (type == "teamkill")
+        self thread updateRankScoreHUD(0 - getScoreInfoValue("kill"));
+    else
+        self thread updateRankScoreHUD(value);
     //}
 
     /*switch( type )
@@ -431,24 +443,29 @@ giveRankXP(type, value)
         );*/
 }
 
-
 setPrestige(newPrestige)
 {
     debugPrint("in _rank::setPrestige()", "fn", level.lowVerbosity);
 
-    if (true) {return;} // for disabling function
-    if (newPrestige > level.maxPrestige) {return;}
+    if (true)
+    {
+        return;
+    } // for disabling function
+    if (newPrestige > level.maxPrestige)
+    {
+        return;
+    }
 
     self.pers["prestige"] = newPrestige;
     self setStat(2326, self.pers["prestige"]);
     self setStat(210, self.pers["prestige"]);
 
-    self scripts\players\_persistence::statSet( "rankxp", 0 );
-    self scripts\players\_persistence::statSet( "rank", 0 );
-    self scripts\players\_persistence::statSet( "minxp", int(level.rankTable[0][2]) );
-    self scripts\players\_persistence::statSet( "maxxp", int(level.rankTable[0][7]) );
-    self setStat( 252, 0 );
-    self setStat( 253, 0 );
+    self scripts\players\_persistence::statSet("rankxp", 0);
+    self scripts\players\_persistence::statSet("rank", 0);
+    self scripts\players\_persistence::statSet("minxp", int(level.rankTable[0][2]));
+    self scripts\players\_persistence::statSet("maxxp", int(level.rankTable[0][7]));
+    self setStat(252, 0);
+    self setStat(253, 0);
     self.pers["rankxp"] = 0;
     self setRank(0, self.pers["prestige"]);
     self thread resetRank(.5);
@@ -461,13 +478,19 @@ prestigeUp()
     //if (self.rankHacker)
     //return;
 
-    if (self.pers["prestige"] == level.maxPrestige) {return;}
-    if (self getRank() < level.maxRank) {return;}
+    if (self.pers["prestige"] == level.maxPrestige)
+    {
+        return;
+    }
+    if (self getRank() < level.maxRank)
+    {
+        return;
+    }
 
     self.canGetSpecialWeapons = true;
 
     //self.pers["rank"] = 0;
-    self.pers["prestige"]+=int(self.pers["rankxp"]/(getRankInfoMaxXp(level.maxRank)-10));
+    self.pers["prestige"] += int(self.pers["rankxp"] / (getRankInfoMaxXp(level.maxRank) - 10));
     self setStat(2326, self.pers["prestige"]);
     self setStat(210, self.pers["prestige"]);
     /*rankId = 0;
@@ -484,12 +507,12 @@ prestigeUp()
     self scripts\players\_persistence::statSet( "minxp", int(level.rankTable[rankId][2]) );
     self scripts\players\_persistence::statSet( "maxxp", int(level.rankTable[rankId][7]) );
     self updateRankAnnounceHUD();*/
-    self scripts\players\_persistence::statSet( "rankxp", 0 );
-    self scripts\players\_persistence::statSet( "rank", 0 );
-    self scripts\players\_persistence::statSet( "minxp", int(level.rankTable[0][2]) );
-    self scripts\players\_persistence::statSet( "maxxp", int(level.rankTable[0][7]) );
-    self setStat( 252, 0 );
-    self setStat( 253, 0 );
+    self scripts\players\_persistence::statSet("rankxp", 0);
+    self scripts\players\_persistence::statSet("rank", 0);
+    self scripts\players\_persistence::statSet("minxp", int(level.rankTable[0][2]));
+    self scripts\players\_persistence::statSet("maxxp", int(level.rankTable[0][7]));
+    self setStat(252, 0);
+    self setStat(253, 0);
     self.pers["rankxp"] = 0;
     self setRank(0, self.pers["prestige"]);
     //updateRank();
@@ -502,7 +525,7 @@ resetRank(delay)
 
     self endon("disconnect");
     wait delay;
-    rankId = self getRankForXp( self getRankXP() );
+    rankId = self getRankForXp(self getRankXP());
     self.pers["rank"] = rankId;
 
     self scripts\players\_classes::getSkillpoints(rankId);
@@ -513,33 +536,31 @@ updateRank()
     debugPrint("in _rank::updateRank()", "fn", level.veryHighVerbosity);
 
     if (self.rankHacker)
-    return;
+        return;
 
     newRankId = self getRank();
-    if ( newRankId == self.pers["rank"] )
+    if (newRankId == self.pers["rank"])
         return false;
 
     oldRank = self.pers["rank"];
     rankId = self.pers["rank"];
     self.pers["rank"] = newRankId;
 
-    while ( rankId <= newRankId )
+    while (rankId <= newRankId)
     {
-        self scripts\players\_persistence::statSet( "rank", rankId );
-        self scripts\players\_persistence::statSet( "minxp", int(level.rankTable[rankId][2]) );
-        self scripts\players\_persistence::statSet( "maxxp", int(level.rankTable[rankId][7]) );
+        self scripts\players\_persistence::statSet("rank", rankId);
+        self scripts\players\_persistence::statSet("minxp", int(level.rankTable[rankId][2]));
+        self scripts\players\_persistence::statSet("maxxp", int(level.rankTable[rankId][7]));
 
         // set current new rank index to stat#252
-        self setStat( 252, rankId );
-        self setStat( 253, rankId );
-
-
+        self setStat(252, rankId);
+        self setStat(253, rankId);
 
         rankId++;
     }
-    self logString( "promoted from " + oldRank + " to " + newRankId + " timeplayed: " + self scripts\players\_persistence::statGet( "time_played_total" ) );
+    self logString("promoted from " + oldRank + " to " + newRankId + " timeplayed: " + self scripts\players\_persistence::statGet("time_played_total"));
 
-    self setRank( newRankId, self.pers["prestige"] );
+    self setRank(newRankId, self.pers["prestige"]);
     self scripts\players\_classes::getSkillpoints(newRankId);
     return true;
 }
@@ -554,10 +575,10 @@ updateRankAnnounceHUD()
     self endon("update_rank");
 
     team = self.pers["team"];
-    if ( !isdefined( team ) )
+    if (!isdefined(team))
         return;
 
-    newRankName = self getRankInfoFull( self.pers["rank"] );
+    newRankName = self getRankInfoFull(self.pers["rank"]);
 
     /*subRank = int(rank_char[rank_char.size-1]);
 
@@ -579,23 +600,22 @@ updateRankAnnounceHUD()
     thread scripts\players\_hud_message::notifyMessage( notifyData );*/
 
     rank_char = level.rankTable[self.pers["rank"]][1];
-    subRank = int(rank_char[rank_char.size-1]);
+    subRank = int(rank_char[rank_char.size - 1]);
 
-    self glowMessage(&"RANK_PROMOTED", "", (0,1,0), 5, 90, 2, "mp_level_up");
+    self glowMessage(&"RANK_PROMOTED", "", (0, 1, 0), 5, 90, 2, "mp_level_up");
 
     rank_char = level.rankTable[self.pers["rank"]][1];
-    subRank = int(rank_char[rank_char.size-1]);
+    subRank = int(rank_char[rank_char.size - 1]);
 
     if (subRank == 1)
     {
-        for ( i = 0; i < level.players.size; i++ )
+        for (i = 0; i < level.players.size; i++)
         {
             player = level.players[i];
-            player iprintln( &"RANK_PLAYER_WAS_PROMOTED", self, newRankName);
+            player iprintln(&"RANK_PLAYER_WAS_PROMOTED", self, newRankName);
         }
     }
 }
-
 
 endGameUpdate()
 {
@@ -607,44 +627,6 @@ endGameUpdate()
 updateRankScoreHUD(amount)
 {
     debugPrint("in _rank::updateRankScoreHUD()", "fn", level.absurdVerbosity);
-
-    /*self endon( "disconnect" );
-    self endon( "joined_team" );
-    self endon( "joined_spectators" );
-
-    if ( amount == 0 )
-        return;
-
-    self notify( "update_score" );
-    self endon( "update_score" );
-
-    self.rankUpdateTotal += amount;
-
-    wait ( 0.05 );
-
-    if( isDefined( self.hud_rankscroreupdate ) )
-    {
-        if ( self.rankUpdateTotal < 0 )
-        {
-            self.hud_rankscroreupdate.label = &"";
-            self.hud_rankscroreupdate.color = (1,0,0);
-        }
-        else
-        {
-            self.hud_rankscroreupdate.label = &"MP_PLUS";
-            self.hud_rankscroreupdate.color = (1,1,0.5);
-        }
-
-        self.hud_rankscroreupdate setValue(self.rankUpdateTotal);
-        self.hud_rankscroreupdate.alpha = 0.85;
-        self.hud_rankscroreupdate thread maps\mp\gametypes\_hud::fontPulse( self );
-
-        wait 1.25;
-        self.hud_rankscroreupdate fadeOverTime( 0.75 );
-        self.hud_rankscroreupdate.alpha = 0;
-
-        self.rankUpdateTotal = 0;
-    }*/
 }
 
 getRank()
@@ -654,9 +636,12 @@ getRank()
     rankXp = self.pers["rankxp"];
     rankId = self.pers["rank"];
 
-    if (rankXp < (getRankInfoMinXP(rankId) + getRankInfoXPAmt(rankId))) {
+    if (rankXp < (getRankInfoMinXP(rankId) + getRankInfoXPAmt(rankId)))
+    {
         return rankId;
-    } else {
+    }
+    else
+    {
         return self getRankForXp(rankXp);
     }
 }
@@ -669,15 +654,20 @@ getRankForXp(xpVal)
     rankName = level.rankTable[rankId][1];
     assert(isDefined(rankName));
 
-    while (isDefined(rankName) && rankName != "") {
-        if (xpVal < getRankInfoMinXP(rankId) + getRankInfoXPAmt(rankId)) {
+    while (isDefined(rankName) && rankName != "")
+    {
+        if (xpVal < getRankInfoMinXP(rankId) + getRankInfoXPAmt(rankId))
+        {
             return rankId;
         }
 
         rankId++;
-        if (isDefined(level.rankTable[rankId])) {
+        if (isDefined(level.rankTable[rankId]))
+        {
             rankName = level.rankTable[rankId][1];
-        } else {
+        }
+        else
+        {
             rankName = undefined;
         }
     }
@@ -715,47 +705,78 @@ incRankXP(amount)
     xp = self getRankXP();
     newXp = (xp + amount);
 
-    if (self.pers["rank"] == level.maxRank && newXp >= getRankInfoMaxXP(level.maxRank)) {
+    if (self.pers["rank"] == level.maxRank && newXp >= getRankInfoMaxXP(level.maxRank))
+    {
         newXp = getRankInfoMaxXP(level.maxRank);
-        if (self.pers["prestige"] != level.maxPrestige) {
+        if (self.pers["prestige"] != level.maxPrestige)
+        {
             // ready to prestige
             self.canGetSpecialWeapons = false;
         }
     }
 
     self.pers["rankxp"] = newXp;
-    self scripts\players\_persistence::statSet( "rankxp", newXp );
+    self scripts\players\_persistence::statSet("rankxp", newXp);
 }
 
 increaseDemerits(amount, reason)
 {
     debugPrint("in _rank::increaseDemerits()", "fn", level.nonVerbose);
 
-    if(!isDefined(self)) {return;}
+    if (!isDefined(self))
+    {
+        return;
+    }
 
     message1 = &"ROTUSCRIPT_EMPTY";
     message2 = &"ROTUSCRIPT_EMPTY";
-    if (amount == 1) {message1 = &"ROTUSCRIPT_DEMERIT_1";}
-    else {message1 = &"ROTUSCRIPT_DEMERIT_MANY";}
+    if (amount == 1)
+    {
+        message1 = &"ROTUSCRIPT_DEMERIT_1";
+    }
+    else
+    {
+        message1 = &"ROTUSCRIPT_DEMERIT_MANY";
+    }
 
-    switch(reason) {
-        case "burning":
-            if (amount == 0) {message1 = &"ROTUSCRIPT_DEMERIT_CHECK_FIRE";}
-            else {message2 = &"ROTUSCRIPT_DEMERIT_KILL_BURN_NEAR_PLRS";}
-            break;
-        case "wave_intermission_revive":
-            if (amount == 0) {message1 = &"ROTUSCRIPT_DEMERIT_REVIVE";}
-            else {message2 = &"ROTUSCRIPT_DEMERIT_IGNORE_REVIVE";}
-            break;
-        case "gone_zombie":
-            if (amount == 0) {message1 = &"ROTUSCRIPT_DEMERIT_CURE_SELF";}
-            else {message2 = &"ROTUSCRIPT_DEMERIT_IGNORING_CURE_YOURSELF";}
-            break;
+    switch (reason)
+    {
+    case "burning":
+        if (amount == 0)
+        {
+            message1 = &"ROTUSCRIPT_DEMERIT_CHECK_FIRE";
+        }
+        else
+        {
+            message2 = &"ROTUSCRIPT_DEMERIT_KILL_BURN_NEAR_PLRS";
+        }
+        break;
+    case "wave_intermission_revive":
+        if (amount == 0)
+        {
+            message1 = &"ROTUSCRIPT_DEMERIT_REVIVE";
+        }
+        else
+        {
+            message2 = &"ROTUSCRIPT_DEMERIT_IGNORE_REVIVE";
+        }
+        break;
+    case "gone_zombie":
+        if (amount == 0)
+        {
+            message1 = &"ROTUSCRIPT_DEMERIT_CURE_SELF";
+        }
+        else
+        {
+            message2 = &"ROTUSCRIPT_DEMERIT_IGNORING_CURE_YOURSELF";
+        }
+        break;
     }
     self iPrintLnBold(message1, message2);
-    
+
     demerits = self.pers["demerits"] + amount;
-    if (demerits >= level.maxDemerits) {
+    if (demerits >= level.maxDemerits)
+    {
         noticePrint("Taking 500 rank points from " + self.name + " for being a poor team player.");
         self decreaseRankPoints(500);
         demerits = 0;
@@ -763,7 +784,6 @@ increaseDemerits(amount, reason)
     self.pers["demerits"] = demerits;
     self setStat(2356, self.pers["demerits"]);
 }
-
 
 /**
  * @brief Reduces a players rank XP, possibly demoting the player
@@ -776,18 +796,23 @@ decreaseRankPoints(amount)
 {
     debugPrint("in _rank::decreaseRankPoints()", "fn", level.lowVerbosity);
 
-    if(!isDefined(self)) {return;}
+    if (!isDefined(self))
+    {
+        return;
+    }
 
     currentRankXP = self getRankXP();
     currentPrestigeLevel = self getPrestigeLevel();
     previousPrestigeLevel = currentPrestigeLevel - 1;
     currentRankId = self getRank();
 
-    if (currentRankXP > amount) {
+    if (currentRankXP > amount)
+    {
         // we can reduce the points without worrying about prestige level
         newRankXp = currentRankXP - amount;
         newRankId = getRankForXp(newRankXp);
-        if (currentRankId != newRankId) {
+        if (currentRankId != newRankId)
+        {
             // player was demoted
 
             self.pers["rankxp"] = newRankXp;
@@ -808,7 +833,9 @@ decreaseRankPoints(amount)
             rankCount = currentRankId - newRankId;
             noticePrint("Demoted " + self.name + " " + rankCount + " ranks.");
             self thread demotionAnnouncement(newRankId);
-        } else {
+        }
+        else
+        {
             // just took rank points
 
             self.pers["rankxp"] = newRankXp;
@@ -817,11 +844,14 @@ decreaseRankPoints(amount)
             self iPrintLnBold(&"ROTUSCRIPT_YOU_LOST_POINTS_BECAUSE_DEMERITS", amount);
             noticePrint("Took " + amount + " rank points from " + self.name);
         }
-    } else if (currentPrestigeLevel == 0) {
+    }
+    else if (currentPrestigeLevel == 0)
+    {
         // new player, just take all their points
         newRankXp = 0;
         newRankId = getRankForXp(newRankXp);
-        if (currentRankId != newRankId) {
+        if (currentRankId != newRankId)
+        {
             // player was demoted
 
             self.pers["rankxp"] = newRankXp;
@@ -842,13 +872,16 @@ decreaseRankPoints(amount)
             rankCount = currentRankId - newRankId;
             noticePrint("Demoted " + self.name + " " + rankCount + " ranks.");
             self thread demotionAnnouncement(newRankId);
-        } else {
+        }
+        else
+        {
             self.pers["rankxp"] = newRankXp;
             self scripts\players\_persistence::statSet("rankxp", newRankXp);
             self iPrintLnBold(&"ROTUSCRIPT_YOU_LOST_POINTS_BECAUSE_DEMERITS", currentRankXP);
         }
-
-    } else {
+    }
+    else
+    {
         // we can take the points, but we will cross a prestige boundary, & player is demoted
         newRankXp = int(level.rankTable[level.maxRank][7]) + currentRankXP - amount;
         newRankId = getRankForXp(newRankXp);
@@ -884,14 +917,18 @@ demotionAnnouncement(newRankId)
 {
     debugPrint("in _rank::demotionAnnouncement()", "fn", level.lowVerbosity);
 
-    if(!isDefined(self)) {return;}
+    if (!isDefined(self))
+    {
+        return;
+    }
 
     self glowMessage(&"ROTUSCRIPT_RANK_DEMOTED", "", decimalRgbToColor(255, 0, 0), 5, 90, 2, "mp_level_up");
 
-    newRankName = tableLookupIString( "mp/ranktable.csv", 0, newRankId, 5 );
+    newRankName = tableLookupIString("mp/ranktable.csv", 0, newRankId, 5);
 
     // Inform other players that player was demoted
-    for (i = 0; i < level.players.size; i++) {
+    for (i = 0; i < level.players.size; i++)
+    {
         player = level.players[i];
         player iprintln(&"ROTUSCRIPT_RANK_PLAYER_WAS_DEMOTED", self.name, newRankName);
     }

@@ -40,7 +40,7 @@ init()
     debugPrint("in _classes::init()", "fn", level.nonVerbose);
 
     precache();
-
+    // TODO: move numbers to stattable.csv
     level.player_stat_rank["soldier"] = 430;
     level.player_stat_rank["stealth"] = 431;
     level.player_stat_rank["armored"] = 432;

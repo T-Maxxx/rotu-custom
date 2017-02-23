@@ -63,6 +63,7 @@ restoreData()
 {
     debugPrint("in _persistence::restoreData()", "fn", level.nonVerbose);
 
+    // Restore in case of reconnect.
     struct = level.persPlayerData[self.guid];
     if (!isdefined(struct)) {
         struct = spawnstruct();
@@ -119,10 +120,6 @@ Returns the value of the named stat
 statGet(dataName)
 {
     debugPrint("in _persistence::statGet()", "fn", level.veryLowVerbosity);
-
-    //if ( !level.onlineGame )
-    //  return 0;
-
     return self getStat(int(tableLookup("mp/playerStatsTable.csv", 1, dataName, 0)));
 }
 
@@ -136,10 +133,6 @@ Sets the value of the named stat
 statSet(dataName, value)
 {
     debugPrint("in _persistence::statSet()", "fn", level.absurdVerbosity);
-
-    //if ( !level.rankedMatch )
-    //  return;
-
     self setStat(int(tableLookup("mp/playerStatsTable.csv", 1, dataName, 0)), value);
 }
 
@@ -154,9 +147,6 @@ statAdd(dataName, value)
 {
     debugPrint("in _persistence::statAdd()", "fn", level.lowVerbosity);
 
-    //if ( !level.rankedMatch )
-    //  return;
-
-    curValue = self getStat(int(tableLookup("mp/playerStatsTable.csv", 1, dataName, 0)));
-    self setStat(int(tableLookup("mp/playerStatsTable.csv", 1, dataName, 0)), value + curValue);
+    stat = int(tableLookup("mp/playerStatsTable.csv", 1, dataName, 0));
+    self setStat(stat, self getStat(stat) + value);
 }

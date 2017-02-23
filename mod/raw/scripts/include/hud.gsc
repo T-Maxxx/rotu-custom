@@ -34,7 +34,7 @@
 
 #include scripts\include\utility;
 
-updateWaveHud(killed,total)
+updateWaveHud(killed, total)
 {
     // 19th most-called function (0.5% of all function calls).
     // Do *not* put a function entrance debugPrint statement here!
@@ -42,17 +42,32 @@ updateWaveHud(killed,total)
     level.waveHUD = 1;
     level.waveHUD_Killed = killed;
     level.waveHUD_Total = total;
-    for (i=0; i<level.players.size; i++) {
-        if (!isDefined(level.players[i])) {continue;}
-        level.players[i] setclientdvars("ui_wavetext", level.waveHUD_Killed + "/" +  level.waveHUD_Total, "ui_waveprogress", level.waveHUD_Killed / level.waveHUD_Total);
+    for (i = 0; i < level.players.size; i++)
+    {
+        if (!isDefined(level.players[i]))
+        {
+            continue;
+        }
+        level.players[i] setclientdvars("ui_wavetext", level.waveHUD_Killed + "/" + level.waveHUD_Total, "ui_waveprogress", level.waveHUD_Killed / level.waveHUD_Total);
     }
+}
+
+precacheUIStrings()
+{
+    debugPrint("in hud::precacheUIStrings()", "fn", level.nonVerbose);
+
+    precacheString(&"ROTUSCRIPT_PLUS");
+    precacheString(&"ROTUSCRIPT_MINUS");
+    precacheString(&"ROTUSCRIPT_DIDYOUKNOW");
+    precacheString(&"ROTUSCRIPT_ADMIN_PREFIX");
+    precacheString(&"ROTUSCRIPT_MOD");
 }
 
 createTeamObjpoint(origin, shader, alpha)
 {
     debugPrint("in hud::createTeamObjpoint()", "fn", level.nonVerbose);
 
-    scripts\gamemodes\_hud::createTeamObjpoint( origin, shader, alpha);
+    scripts\gamemodes\_hud::createTeamObjpoint(origin, shader, alpha);
 }
 
 addTimer(label, string, time)
@@ -73,7 +88,8 @@ announceMessage(label, text, glowcolor, duration, speed, size)
 {
     debugPrint("in hud::announceMessage()", "fn", level.nonVerbose);
 
-    for (i=0; i<level.players.size; i++) {
+    for (i = 0; i < level.players.size; i++)
+    {
         level.players[i] thread scripts\gamemodes\_hud::glowMessage(label, text, glowcolor, duration, speed, size);
     }
 }
@@ -103,11 +119,13 @@ fadeout(time)
 {
     debugPrint("in hud::fadeout()", "fn", level.nonVerbose);
 
-    if (isDefined(self)) {
-        self fadeOverTime( time );
+    if (isDefined(self))
+    {
+        self fadeOverTime(time);
         self.alpha = 0;
         wait time;
-        if (isDefined(self)) {
+        if (isDefined(self))
+        {
             self destroy();
         }
     }
@@ -118,9 +136,15 @@ fadein(time, alpha)
     debugPrint("in hud::fadein()", "fn", level.lowVerbosity);
 
     self.alpha = 0;
-    self fadeOverTime( time );
-    if (!isdefined(alpha)) {alpha = 1;}
-    else {alpha = alpha;}
+    self fadeOverTime(time);
+    if (!isdefined(alpha))
+    {
+        alpha = 1;
+    }
+    else
+    {
+        alpha = alpha;
+    }
 }
 
 fontPulseInit()
@@ -137,21 +161,23 @@ fontPulse(player)
 {
     debugPrint("in hud::fontPulse()", "fn", level.medVerbosity);
 
-    self notify ( "fontPulse" );
-    self endon ( "fontPulse" );
+    self notify("fontPulse");
+    self endon("fontPulse");
     player endon("disconnect");
     player endon("joined_team");
     player endon("joined_spectators");
 
     scaleRange = self.maxFontScale - self.baseFontScale;
 
-    while (self.fontScale < self.maxFontScale) {
-        self.fontScale = min( self.maxFontScale, self.fontScale + (scaleRange / self.inFrames) );
+    while (self.fontScale < self.maxFontScale)
+    {
+        self.fontScale = min(self.maxFontScale, self.fontScale + (scaleRange / self.inFrames));
         wait 0.05;
     }
 
-    while (self.fontScale > self.baseFontScale) {
-        self.fontScale = max( self.baseFontScale, self.fontScale - (scaleRange / self.outFrames) );
+    while (self.fontScale > self.baseFontScale)
+    {
+        self.fontScale = max(self.baseFontScale, self.fontScale - (scaleRange / self.outFrames));
         wait 0.05;
     }
 }
@@ -163,7 +189,6 @@ progressBar(time)
     self destroyProgressBar();
     self thread scripts\gamemodes\_hud::progressBar(time);
 }
-
 
 bar(color, initial, y)
 {
@@ -184,8 +209,14 @@ destroyProgressBar()
 {
     debugPrint("in hud::destroyProgressBar()", "fn", level.lowVerbosity);
 
-    if (isDefined(self.bar_bg)) {self.bar_bg destroy();}
-    if (isDefined(self.bar_fg)) {self.bar_fg destroy();}
+    if (isDefined(self.bar_bg))
+    {
+        self.bar_bg destroy();
+    }
+    if (isDefined(self.bar_fg))
+    {
+        self.bar_fg destroy();
+    }
 }
 
 streakHud()
@@ -207,7 +238,7 @@ streakHud()
     self.hud_streak.horzAlign = "center";
     self.hud_streak.vertAlign = "middle";
     self.hud_streak.color = rgb(224, 178, 27);
-    self.hud_streak.glowColor = (.7,0,0);
+    self.hud_streak.glowColor = (.7, 0, 0);
     self.hud_streak fontPulseInit();
 }
 
@@ -215,49 +246,59 @@ rgb(r, g, b)
 {
     debugPrint("in hud::rgb()", "fn", level.nonVerbose);
 
-    return (r/255,g/255,b/255);
+    return (r / 255, g / 255, b / 255);
 }
 
+/////////////////////////////////
+// Show +/-'points' on screen. //
+/////////////////////////////////
 upgradeHud(points)
 {
     debugPrint("in hud::upgradeHud()", "fn", level.absurdVerbosity);
 
     self endon("disconnect");
-    hud_score = NewClientHudElem(self);
-    hud_score.alpha = 0;
-    hud_score.font = "objective";
-    hud_score.fontscale = 1.6;
-    hud_score.x = 0;
-    hud_score.y = 0;
-    hud_score.glowAlpha = 1;
-    hud_score.hideWhenInMenu = false;
-    hud_score.archived = true;
-    hud_score.alignX = "center";
-    hud_score.alignY = "middle";
-    hud_score.horzAlign = "center";
-    hud_score.vertAlign = "middle";
-    if (points > 0) {
-        hud_score.glowColor = (.1, .9, .2);
-        hud_score settext("+"+points);
-    } else {
-        hud_score.glowColor = (.9, .1, .2);
-        hud_score setvalue(points);
+
+    if (points == 0)
+        return;
+
+    pts_feedback = NewClientHudElem(self);
+    pts_feedback.alpha = 0;
+    pts_feedback.font = "objective";
+    pts_feedback.fontscale = 1.6;
+    pts_feedback.x = 0;
+    pts_feedback.y = 0;
+    pts_feedback.glowAlpha = 1;
+    pts_feedback.hideWhenInMenu = false;
+    pts_feedback.archived = true;
+    pts_feedback.alignX = "center";
+    pts_feedback.alignY = "middle";
+    pts_feedback.horzAlign = "center";
+    pts_feedback.vertAlign = "middle";
+    if (points > 0)
+    {
+        pts_feedback.label = &"ROTUSCRIPT_PLUS";
+        pts_feedback.glowColor = (.1, .9, .2);
     }
+    else
+    {
+        pts_feedback.label = &"ROTUSCRIPT_MINUS";
+        pts_feedback.glowColor = (.9, .1, .2);
+    }
+    pts_feedback setvalue(points);
 
     direction = randomint(360);
 
-    hud_score FadeOverTime(.5);
-    hud_score.alpha = 1;
+    pts_feedback FadeOverTime(.5);
+    pts_feedback.alpha = 1;
 
-    hud_score MoveOverTime(1.5);
-    hud_score.x = cos(direction)*64;
-    hud_score.y = sin(direction)*64;
+    pts_feedback MoveOverTime(1.5);
+    pts_feedback.x = cos(direction) * 64;
+    pts_feedback.y = sin(direction) * 64;
     wait 1.3;
-    hud_score FadeOverTime(.3);
-    hud_score.alpha = 0;
+    pts_feedback FadeOverTime(.3);
+    pts_feedback.alpha = 0;
     wait .3;
-    hud_score destroy();
-
+    pts_feedback destroy();
 }
 
 updateHealthHud(delta)
@@ -287,7 +328,7 @@ screenFlash(color, time, alpha)
 
     whitescreen.alpha = alpha;
     whitescreen setShader("white", 640, 480);
-    whitescreen fadeOverTime( time );
+    whitescreen fadeOverTime(time);
     whitescreen.alpha = 0;
     wait time;
     whitescreen destroy();
@@ -313,25 +354,28 @@ createHealthOverlay(color)
     return whitescreen;
 }
 
-playerFilmTweaks(enable, invert, desaturation, darktint,  lighttint, brightness, contrast, fovscale)
+playerFilmTweaks(enable, invert, desaturation, darktint, lighttint, brightness, contrast, fovscale)
 {
     debugPrint("in hud::playerFilmTweaks()", "fn", level.veryLowVerbosity);
 
     self.tweaksOverride = 1;
-    self setClientDvars( "r_filmusetweaks", 1, "r_filmtweaks", 1 , "r_filmtweakenable", enable , "r_filmtweakinvert", invert , "r_filmtweakdesaturation", desaturation , "r_filmtweakdarktint",
-    darktint , "r_filmtweaklighttint", lighttint , "r_filmtweakbrightness", brightness ,"r_filmtweakcontrast", contrast, "cg_fovscale", fovscale );
+    self setClientDvars("r_filmusetweaks", 1, "r_filmtweaks", 1, "r_filmtweakenable", enable, "r_filmtweakinvert", invert, "r_filmtweakdesaturation", desaturation, "r_filmtweakdarktint",
+                        darktint, "r_filmtweaklighttint", lighttint, "r_filmtweakbrightness", brightness, "r_filmtweakcontrast", contrast, "cg_fovscale", fovscale);
 }
 
 playerFilmTweaksOff()
 {
     debugPrint("in hud::playerFilmTweaksOff()", "fn", level.nonVerbose);
 
-    self setClientDvars( "r_filmusetweaks", 0, "cg_fovscale", 1 );
+    self setClientDvars("r_filmusetweaks", 0, "cg_fovscale", 1);
     self.tweaksOverride = 0;
-    if (self.tweaksPermanent) {doPermanentTweaks();}
+    if (self.tweaksPermanent)
+    {
+        doPermanentTweaks();
+    }
 }
 
-playerSetPermanentTweaks(invert, desaturation, darktint,  lighttint, brightness, contrast, fovscale)
+playerSetPermanentTweaks(invert, desaturation, darktint, lighttint, brightness, contrast, fovscale)
 {
     debugPrint("in hud::playerSetPermanentTweaks()", "fn", level.nonVerbose);
 
@@ -351,8 +395,8 @@ doPermanentTweaks()
 {
     debugPrint("in hud::doPermanentTweaks()", "fn", level.nonVerbose);
 
-    self setClientDvars("r_filmusetweaks", 1, "r_filmtweaks", 1 , "r_filmtweakenable", 1 , "r_filmtweakinvert", self.tweakInvert , "r_filmtweakdesaturation", self.tweakDesaturation , "r_filmtweakdarktint",
-    self.tweakDarkTint , "r_filmtweaklighttint", self.tweakLightTint , "r_filmtweakbrightness", self.tweakBrightness ,"r_filmtweakcontrast", self.tweakContrast, "cg_fovscale", self.tweakFovScale );
+    self setClientDvars("r_filmusetweaks", 1, "r_filmtweaks", 1, "r_filmtweakenable", 1, "r_filmtweakinvert", self.tweakInvert, "r_filmtweakdesaturation", self.tweakDesaturation, "r_filmtweakdarktint",
+                        self.tweakDarkTint, "r_filmtweaklighttint", self.tweakLightTint, "r_filmtweakbrightness", self.tweakBrightness, "r_filmtweakcontrast", self.tweakContrast, "cg_fovscale", self.tweakFovScale);
 }
 
 permanentTweaksOff()

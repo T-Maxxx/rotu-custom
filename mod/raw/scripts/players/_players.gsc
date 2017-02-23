@@ -88,10 +88,10 @@ precache()
     precacheHeadIcon("headicon_engineer");
 
     // scoreboard status icons
-    precacheStatusIcon( "icon_down" );
-    precacheStatusIcon( "icon_admin");
-    precacheStatusIcon( "icon_spec" );
-    precacheStatusIcon( "icon_dev" );
+    precacheStatusIcon("icon_down");
+    precacheStatusIcon("icon_admin");
+    precacheStatusIcon("icon_spec");
+    precacheStatusIcon("icon_dev");
 
     precacheString(&"ROTUSCRIPT_AUTOTEXT_IM_DOWN_HELP");
     precacheString(&"ROTUSCRIPT_HOLD_USE_TO_REVIVE");
@@ -117,20 +117,28 @@ uav()
 
     level endon("game_ended");
 
-    if (getDvar("ui_always_show_zombies") == "0") {
+    if (getDvar("ui_always_show_zombies") == "0")
+    {
         visibleDuration = getDvarInt("ui_show_zombies_duration");
         hiddenDuration = getDvarInt("ui_hide_zombies_duration");
 
-        if ((visibleDuration == 0) && (hiddenDuration == 0)) {return;}
+        if ((visibleDuration == 0) && (hiddenDuration == 0))
+        {
+            return;
+        }
 
-        while (1) {
+        while (1)
+        {
             wait hiddenDuration;
-            for (i = 0; i < level.players.size; i++) {
+            for (i = 0; i < level.players.size; i++)
+            {
                 level.players[i] setClientDvar("g_compassShowEnemies", 1);
             }
             wait visibleDuration;
-            for (i = 0; i < level.players.size; i++) {
-                if (level.players[i].curClass != "scout") { // do not turn off scout's drone ability
+            for (i = 0; i < level.players.size; i++)
+            {
+                if (level.players[i].curClass != "scout")
+                { // do not turn off scout's drone ability
                     level.players[i] setClientDvar("g_compassShowEnemies", 0);
                 }
             }
@@ -144,11 +152,11 @@ setDown(isDown)
 
     self.isDown = isDown;
     self.persData.isDown = isDown;
-    if (isDown) {
+    if (isDown)
+    {
         self.downOrigin = self.origin;
     }
 }
-
 
 /**
  * @brief Informs teammates a player is down and where they are
@@ -161,14 +169,19 @@ downed()
 
     self endon("disconnect");
 
-    while(1) {
+    while (1)
+    {
         self waittill("downed");
-        if (self isNewPlayer()) {
+        if (self isNewPlayer())
+        {
             // Do Nothing.  No minimap or autotext feedback if we are giving new
             // player assistance
-        } else {
+        }
+        else
+        {
             self autoText(&"ROTUSCRIPT_AUTOTEXT_IM_DOWN_HELP");
-            while((self.isDown) && (!self.isZombie)) {
+            while ((self.isDown) && (!self.isZombie))
+            {
                 self pingplayer();
                 wait 3;
             }
@@ -187,14 +200,15 @@ autoText(message)
 {
     debugPrint("in _players::autoText()", "fn", level.nonVerbose);
 
-    if(!isDefined(message)) {
+    if (!isDefined(message))
+    {
         errorPrint("_players::autoText() called with undefined message.");
         return;
     }
     self sayall(message);
 }
 
-Callback_PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration )
+Callback_PlayerLastStand(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
     debugPrint("in _players::Callback_PlayerLastStand()", "fn", level.nonVerbose);
 
@@ -205,7 +219,8 @@ Callback_PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon,
     self endon("disconnect");
 
     useObjects = level.useObjects;
-    for (i=0; i<useObjects.size; i++) {
+    for (i = 0; i < useObjects.size; i++)
+    {
         if (((useObjects[i].type == "extras") || (useObjects[i].type == "ammobox")) &&
             (distance(self.origin, useObjects[i].origin) < 80))
         {
@@ -222,14 +237,14 @@ Callback_PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon,
     self setDown(true);
     self.isTargetable = false;
 
-
     // abort any usables this player was using when they went down
     self scripts\players\_usables::usableAbort();
 
     self.lastStandWeapons = self getweaponslist();
     self.lastStandAmmoStock = [];
     self.lastStandAmmoClip = [];
-    for( i = 0; i < self.lastStandWeapons.size; i++ ) {
+    for (i = 0; i < self.lastStandWeapons.size; i++)
+    {
         self.lastStandAmmoClip[i] = self getWeaponAmmoClip(self.lastStandWeapons[i]);
         self.lastStandAmmoStock[i] = self getWeaponAmmoStock(self.lastStandWeapons[i]);
     }
@@ -241,18 +256,25 @@ Callback_PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon,
     level scripts\players\_usables::addUsable(self, "revive", &"ROTUSCRIPT_HOLD_USE_TO_REVIVE", 96);
     wait 0.05;
 
-    for (i=0; i<level.useObjects.size; i++) {
+    for (i = 0; i < level.useObjects.size; i++)
+    {
         ent = level.useObjects[i];
-        if (ent != self) {continue;}
-        if (ent.type == "revive") {
+        if (ent != self)
+        {
+            continue;
+        }
+        if (ent.type == "revive")
+        {
             debugPrint(self.name + " has a revive usable.", "val");
-        } else {
+        }
+        else
+        {
             debugPrint(self.name + " does NOT have a revive usable.", "val");
         }
     }
 
     iPrintln(&"ROTUSCRIPT_PLAYER_DOWNED", self.name);
-    self.deaths ++;
+    self.deaths++;
     self.isAlive = false;
 
     self setStatusIcon("icon_down");
@@ -265,22 +287,26 @@ Callback_PlayerLastStand( eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon,
     self updateHealthHud(0);
 
     weaponslist = self getweaponslist();
-    for( i = 0; i < weaponslist.size; i++ )
+    for (i = 0; i < weaponslist.size; i++)
     {
         weapon = weaponslist[i];
 
-        if ( weapon == self.secondary  ) //scripts\players\_weapons::isPistol( weapon )
+        if (weapon == self.secondary) //scripts\players\_weapons::isPistol( weapon )
         {
             self switchtoweapon(weapon);
             continue;
         }
         else
-        self takeweapon(weapon);
+            self takeweapon(weapon);
     }
 
     // Help new players out
-    if (self isNewPlayer()) {self thread assistNewPlayers();}
-    else {
+    if (self isNewPlayer())
+    {
+        self thread assistNewPlayers();
+    }
+    else
+    {
         // only decrement counter if player isn't a noob, so the game won't end
         // when they go down if they are the only player
         level.alivePlayers--;
@@ -329,15 +355,25 @@ assistNewPlayers()
 
     wait 0.05;
 
-    if (self.infected) {
+    if (self.infected)
+    {
         self scripts\players\_infection::cureInfection();
     }
 
     rank = self.pers["rank"];
     max = level.dvar["game_assistance_max_rank"];
-    if (rank < int(0.33 * max)) {self scripts\players\_players::incUpgradePoints(1000);}
-    else if (rank < int(0.66 * max)) {self scripts\players\_players::incUpgradePoints(500);}
-    else if (rank < max) {self scripts\players\_players::incUpgradePoints(250);}
+    if (rank < int(0.33 * max))
+    {
+        self scripts\players\_players::incUpgradePoints(1000);
+    }
+    else if (rank < int(0.66 * max))
+    {
+        self scripts\players\_players::incUpgradePoints(500);
+    }
+    else if (rank < max)
+    {
+        self scripts\players\_players::incUpgradePoints(250);
+    }
     self iprintlnbold(&"ROTUSCRIPT_KEEP_RUNNING_TO_SURVIVE");
 }
 
@@ -346,9 +382,10 @@ restoreAmmo()
     debugPrint("in _players::restoreAmmo()", "fn", level.nonVerbose);
 
     weapons = self getweaponslist();
-    for( i = 0; i < weapons.size; i++ )
+    for (i = 0; i < weapons.size; i++)
     {
-        if (scripts\players\_weapons::canRestoreAmmo(weapons[i])) {
+        if (scripts\players\_weapons::canRestoreAmmo(weapons[i]))
+        {
             self GiveMaxAmmo(weapons[i]);
             self setWeaponAmmoClip(weapons[i], weaponClipSize(weapons[i]));
         }
@@ -359,16 +396,22 @@ onPlayerConnect()
 {
     debugPrint("in _players::onPlayerConnect()", "fn", level.nonVerbose);
 
-    if (level.gameEnded) {self.sessionstate = "intermission";}
+    if (level.gameEnded)
+    {
+        self.sessionstate = "intermission";
+    }
 
     // Keep track of players that have already joined this game at least once
     self.uniqueId = self.name + self.guid;
-    if (!inArray(level.uniquePlayers, self.uniqueId)) {
+    if (!inArray(level.uniquePlayers, self.uniqueId))
+    {
         // never joined this game, so add them to the array
         level.uniquePlayers[level.uniquePlayers.size] = self.uniqueId;
         debugPrint(self.name + " has joined the game for the first time", "val");
         self.hasPreviouslyJoined = false;
-    } else {
+    }
+    else
+    {
         debugPrint(self.name + " has previously joined this game", "val");
         self.hasPreviouslyJoined = true;
     }
@@ -382,35 +425,38 @@ onPlayerConnect()
     self.isActive = false;
     self.isSpectating = true;
     self.isDown = false;
-    self.reviveCount = 0;               // How many players they revived
-    self.reviveCoverCount = 0;          // How many times they provided covering fire during the revival of another player
-    self.friendlyDamageCount = 0;       // How many teammates have you damaged by killing flamers this game
-    self.intermissionReviveCount = 0;   // How many players they revived during intermission
-    self.lastUpTime = getTime();        // The time the player was last revived or not a zombie
-    self.lastDownTime = getTime();      // The time the player was last downed
-    self.isReviving = false;            // Is the player currently reviving another player?
+    self.reviveCount = 0;                      // How many players they revived
+    self.reviveCoverCount = 0;                 // How many times they provided covering fire during the revival of another player
+    self.friendlyDamageCount = 0;              // How many teammates have you damaged by killing flamers this game
+    self.intermissionReviveCount = 0;          // How many players they revived during intermission
+    self.lastUpTime = getTime();               // The time the player was last revived or not a zombie
+    self.lastDownTime = getTime();             // The time the player was last downed
+    self.isReviving = false;                   // Is the player currently reviving another player?
     self.waveIntermissionZombieAttackers = []; // tracks players that damage this player-zombie during wave intermission
     self.canGetSpecialWeapons = false;
-    self.ammoBoxRestoreTime = 40;       // for engineers, default to 40 sec restore time for ammo boxes
-    self.ownsTurret = false;            // does the player own a defense turret?
-    self.spawnCount = 0;                // how many times has the player spawned this session
-    self.isChangingClass = false;       // is the player trying to change their class?
-    self.newPlayerAssistCount = 0;      // keep track of new player assistance counts
+    self.ammoBoxRestoreTime = 40;  // for engineers, default to 40 sec restore time for ammo boxes
+    self.ownsTurret = false;       // does the player own a defense turret?
+    self.spawnCount = 0;           // how many times has the player spawned this session
+    self.isChangingClass = false;  // is the player trying to change their class?
+    self.newPlayerAssistCount = 0; // keep track of new player assistance counts
 
     self.pers["generalWarnings"] = self getStat(2354);
-    if (!isDefined(self.pers["generalWarnings"])) {
+    if (!isDefined(self.pers["generalWarnings"]))
+    {
         self.pers["generalWarnings"] = 0;
         self setStat(2354, self.pers["generalWarnings"]);
     }
 
     self.pers["badLanguageWarnings"] = self getStat(2355);
-    if (!isDefined(self.pers["badLanguageWarnings"])) {
+    if (!isDefined(self.pers["badLanguageWarnings"]))
+    {
         self.pers["badLanguageWarnings"] = 0;
         self setStat(2355, self.pers["badLanguageWarnings"]);
     }
 
     self.pers["demerits"] = self getStat(2356);
-    if (!isDefined(self.pers["demerits"])) {
+    if (!isDefined(self.pers["demerits"]))
+    {
         self.pers["demerits"] = 0;
         self setStat(2356, self.pers["demerits"]);
     }
@@ -426,42 +472,53 @@ onPlayerConnect()
 
     /// Force open the change class menu when a player joins the server
     self thread scripts\players\_classes::monitorEnabledClasses();
-    self openMenu( game["menu_changeclass_allies"] );
+    self openMenu(game["menu_changeclass_allies"]);
 
     wait 0.05;
 
     if ((self scripts\players\_rank::getRankXP() == int(level.rankTable[level.maxRank][7])) &&
-        (self.pers["prestige"] != level.maxPrestige)) {
+        (self.pers["prestige"] != level.maxPrestige))
+    {
         needToPrestige = true;
-    } else {needToPrestige = false;}
+    }
+    else
+    {
+        needToPrestige = false;
+    }
 
     // Players that prestige can get special weapons in last half of game
     if ((self scripts\players\_rank::getPrestigeLevel() < 1) || // have never prestiged
-        (needToPrestige)) // need to prestige
+        (needToPrestige))                                       // need to prestige
     {
         self.canGetSpecialWeapons = false;
-    } else {
+    }
+    else
+    {
         self.canGetSpecialWeapons = true;
     }
 
-    if ((level.canBuyRaygun) && (self.canGetSpecialWeapons)) {
+    if ((level.canBuyRaygun) && (self.canGetSpecialWeapons))
+    {
         self setclientdvar("ui_raygun", 1); // enable raygun in shop
-    } else {
+    }
+    else
+    {
         self setclientdvar("ui_raygun", 0); // disable raygun in shop
     }
 
     self setclientdvars("g_scriptMainMenu", game["menu_class"], "cg_thirdperson", 0, "r_filmusetweaks", 0, "ui_class_ranks", (1 - level.dvar["game_class_ranks"]), "ui_specialrecharge", 0);
 
     // Always show zombies on minimap if configured in server.cfg
-    if (getDvar("ui_always_show_zombies") == "1") {
+    if (getDvar("ui_always_show_zombies") == "1")
+    {
         self setClientDvar("g_compassShowEnemies", 1);
     }
 
     // Let teammates know the player needs help
     self thread downed();
 
-    self.isLocked = false;      // is the player locked due to pending admin action?
-    self.lockedBy = "";         // name of admin that locked the player
+    self.isLocked = false; // is the player locked due to pending admin action?
+    self.lockedBy = "";    // name of admin that locked the player
 
     markAdminMenuAsDirty();
 
@@ -470,7 +527,6 @@ onPlayerConnect()
     self thread scripts\level\signals::death();
     self thread scripts\level\signals::disconnect();
 }
-
 
 /**
  * @brief Restores a player's default headicon when they are no longer infected or have low health
@@ -481,31 +537,44 @@ defaultHeadicon()
 {
     debugPrint("in _players::defaultHeadicon()", "fn", level.fullVerbosity);
 
-    if(!isDefined(self)) {return;}
+    if (!isDefined(self))
+    {
+        return;
+    }
 
     // Ensure we don't remove the infected icon on revive
-    if (self.infected) {
-        if (self.headicon != "icon_infection") {
+    if (self.infected)
+    {
+        if (self.headicon != "icon_infection")
+        {
             self.headicon = "icon_infection";
         }
         return;
     }
 
     headicon = "";
-    if (self.curClass=="medic") {headicon = "headicon_medic";}
-    else if (self.curClass=="engineer") {headicon = "headicon_engineer";}
-    else if ((scripts\server\_adminInterface::isAdmin(self)) && (!self.admin.isStealthSession)) {
+    if (self.curClass == "medic")
+    {
+        headicon = "headicon_medic";
+    }
+    else if (self.curClass == "engineer")
+    {
+        headicon = "headicon_engineer";
+    }
+    else if ((scripts\server\_adminInterface::isAdmin(self)) && (!self.admin.isStealthSession))
+    {
         headicon = "headicon_admin";
-        if ((self.sessionstate == "playing") || (self.sessionstate == "dead")) {
+        if ((self.sessionstate == "playing") || (self.sessionstate == "dead"))
+        {
             self.statusicon = "icon_admin";
         }
     }
-    if (self.headicon != headicon) {
+    if (self.headicon != headicon)
+    {
         self.headicon = headicon;
         self.headiconteam = "allies";
     }
 }
-
 
 onWaveIntermissionBegins()
 {
@@ -513,10 +582,12 @@ onWaveIntermissionBegins()
 
     level endon("game_ended");
 
-    while(1) {
+    while (1)
+    {
         level waittill("wave_finished");
         players = level.players;
-        for (i=0; i<players.size; i++) {
+        for (i = 0; i < players.size; i++)
+        {
             players[i].intermissionReviveCount = 0;
             // reset new player assistance counts between waves
             players[i].newPlayerAssistCount = 0;
@@ -527,14 +598,14 @@ onWaveIntermissionBegins()
     }
 }
 
-
 onWaveIntermissionEnds()
 {
     debugPrint("in _players::onWaveIntermissionEnds()", "fn", level.nonVerbose);
 
     level endon("game_ended");
 
-    while(1) {
+    while (1)
+    {
         level waittill("start_monitoring");
         level.waveIntermission = false;
         level.waveBeganTime = getTime();
@@ -545,11 +616,14 @@ onWaveIntermissionEnds()
         downPlayerCount = level.activePlayers - level.alivePlayers;
         debugPrint("level.waveBeganTime: " + level.waveBeganTime, "val");
 
-        if (downPlayerCount > 0) {
+        if (downPlayerCount > 0)
+        {
             // We may need to punish for failing to revive
             players = level.players;
-            for (i=0; i<players.size; i++) {
-                if ((players[i].isDown) && (players[i].lastDownTime < level.waveEndedTime)) {
+            for (i = 0; i < players.size; i++)
+            {
+                if ((players[i].isDown) && (players[i].lastDownTime < level.waveEndedTime))
+                {
                     // player was down when wave ended, and was still down when the next wave began
                     // so we need to see who we punish, if anyone
                     debugPrint("Punish players for: " + players[i].name + " lastDownTime: " + players[i].lastDownTime + " waveEndedTime: " + level.waveEndedTime, "val");
@@ -559,22 +633,38 @@ onWaveIntermissionEnds()
             }
 
             // Give players revive credit for damaging a player-zombie during intermission
-            for (i=0; i<players.size; i++) {
-                for (j=0; j<players[i].waveIntermissionZombieAttackers.size; j++) {
-                    if (!isDefined(players[i].waveIntermissionZombieAttackers[j])) {continue;}
+            for (i = 0; i < players.size; i++)
+            {
+                for (j = 0; j < players[i].waveIntermissionZombieAttackers.size; j++)
+                {
+                    if (!isDefined(players[i].waveIntermissionZombieAttackers[j]))
+                    {
+                        continue;
+                    }
                     creditPlayer = scripts\include\adminCommon::getPlayerByEntityNumber(players[i].waveIntermissionZombieAttackers[j]);
-                    if (!isDefined(creditPlayer)) {continue;}
+                    if (!isDefined(creditPlayer))
+                    {
+                        continue;
+                    }
                     creditPlayer.intermissionReviveCount++;
                 }
                 emptyArray = [];
                 players[i].waveIntermissionZombieAttackers = emptyArray;
             }
 
-            if (punishPlayers) {
-                for (i=0; i<players.size; i++) {
+            if (punishPlayers)
+            {
+                for (i = 0; i < players.size; i++)
+                {
                     // don't punish players that aren't actually in the game
-                    if(!players[i].isActive) {continue;}
-                    if(players[i].isSpectating) {continue;}
+                    if (!players[i].isActive)
+                    {
+                        continue;
+                    }
+                    if (players[i].isSpectating)
+                    {
+                        continue;
+                    }
 
                     // Assume player was up the entire intermission
                     aliveTime = level.waveBeganTime - level.waveEndedTime;
@@ -583,54 +673,70 @@ onWaveIntermissionEnds()
                     {
                         // player did not go up or down during the intermission, so
                         // is their most recent event lastDownTime or lastUpTime?
-                        if (players[i].lastDownTime > players[i].lastUpTime) {
+                        if (players[i].lastDownTime > players[i].lastUpTime)
+                        {
                             // player was actually down the entire intermission
                             aliveTime = 0;
                         }
-                    } else if ((players[i].lastDownTime < level.waveEndedTime) &&
-                               (players[i].lastUpTime > level.waveEndedTime)) {
+                    }
+                    else if ((players[i].lastDownTime < level.waveEndedTime) &&
+                             (players[i].lastUpTime > level.waveEndedTime))
+                    {
                         // player was down when wave ended, and
                         // player was revived during the intermission, so subtract
                         // the amount of intermission time they were down
                         aliveTime -= players[i].lastUpTime - level.waveEndedTime;
-                    } else if ((players[i].lastDownTime > level.waveEndedTime) &&
-                               (players[i].lastUpTime > level.waveEndedTime) &&
-                               (players[i].lastUpTime < level.waveBeganTime)) {
+                    }
+                    else if ((players[i].lastDownTime > level.waveEndedTime) &&
+                             (players[i].lastUpTime > level.waveEndedTime) &&
+                             (players[i].lastUpTime < level.waveBeganTime))
+                    {
                         // player went down during the intermission, and was
                         // up before the intermission ended, so subtract the
                         // time they were down during the intermission, plus a buffer
                         aliveTime -= int(1.25 * (players[i].lastUpTime - players[i].lastDownTime));
-                    } else if ((players[i].lastDownTime > level.waveEndedTime) &&
-                               (players[i].lastUpTime < level.waveEndedTime)) {
+                    }
+                    else if ((players[i].lastDownTime > level.waveEndedTime) &&
+                             (players[i].lastUpTime < level.waveEndedTime))
+                    {
                         // player went down during the intermission, and was
                         // still down when the intermission ended, so recalculate
                         // their alive time
                         aliveTime = players[i].lastDownTime - level.waveEndedTime;
                     }
 
-//                     aliveTime = level.waveBeganTime - players[i].lastUpTime;
+                    //                     aliveTime = level.waveBeganTime - players[i].lastUpTime;
                     debugPrint(players[i].name + " lastUpTime: " + players[i].lastUpTime, "val");
                     debugPrint(players[i].name + " aliveTime: " + aliveTime, "val");
                     timeout = level.dvar["surv_timeout"];
                     twoReviveTime = (timeout - 2) * 1000;
                     oneReviveTime = (int(timeout / 2) + 1) * 1000;
                     debugPrint("twoReviveTime: " + twoReviveTime + "ms oneReviveTime: " + oneReviveTime + "ms", "val");
-                    if (aliveTime > twoReviveTime) { // time in ms
+                    if (aliveTime > twoReviveTime)
+                    { // time in ms
                         // player was alive long enough to revive at least two people
-                        if (players[i].intermissionReviveCount < 2) {
+                        if (players[i].intermissionReviveCount < 2)
+                        {
                             debugPrint(downPlayerCount + " down players, " + players[i].name + " revived " + players[i].intermissionReviveCount + ", could have revived two.", "val");
                             demeritCount = int((2 - players[i].intermissionReviveCount) * level.reviveFailureDemeritFactor);
                             players[i] thread scripts\players\_rank::increaseDemerits(demeritCount, "wave_intermission_revive");
-                        } else {
+                        }
+                        else
+                        {
                             debugPrint("No Demerits: " + players[i].name + " revived " + players[i].intermissionReviveCount + ", could have revived two.", "val");
                         }
-                    } else if (aliveTime > oneReviveTime) { // time in ms
+                    }
+                    else if (aliveTime > oneReviveTime)
+                    { // time in ms
                         // player was alive long enough to revive at least one person
-                        if (players[i].intermissionReviveCount < 1) {
+                        if (players[i].intermissionReviveCount < 1)
+                        {
                             debugPrint(downPlayerCount + " down players, " + players[i].name + " revived " + players[i].intermissionReviveCount + ", could have revived one.", "val");
                             demeritCount = int((1 * level.reviveFailureDemeritFactor));
                             players[i] thread scripts\players\_rank::increaseDemerits(demeritCount, "wave_intermission_revive");
-                        } else {
+                        }
+                        else
+                        {
                             debugPrint("No Demerit: " + players[i].name + " revived " + players[i].intermissionReviveCount + ", could have revived one.", "val");
                         }
                     }
@@ -640,13 +746,15 @@ onWaveIntermissionEnds()
         }
         // revive any players that were down the entire wave intermission
         players = level.players;
-        for (i=0; i<players.size; i++) {
+        for (i = 0; i < players.size; i++)
+        {
             if ((players[i].isDown) &&
                 (!players[i].isZombie) &&
-                (players[i].lastDownTime < level.waveEndedTime)) {
+                (players[i].lastDownTime < level.waveEndedTime))
+            {
                 // player was down when wave ended, and was still down when the next wave began
                 players[i] thread scripts\players\_players::revive();
-                players[i] notify ("damage", 0);
+                players[i] notify("damage", 0);
                 iprintln(&"ROTUSCRIPT_GOT_AUTOREVIVED", players[i].name);
                 players[i] setclientdvar("ui_reviveby", "");
                 players[i].lastUpTime = getTime();
@@ -655,29 +763,39 @@ onWaveIntermissionEnds()
     }
 }
 
-
 onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
     debugPrint("in _players::onPlayerKilled()", "fn", level.nonVerbose);
 
     self endon("death");
     self endon("disconnect");
-    if (self.isZombie) {
+    if (self.isZombie)
+    {
         wait 1;
         self TakeAllWeapons();
         self.isZombie = false;
         self.lastUpTime = getTime();
         self notify("no_longer_a_zombie");
         debugPrint("signal no_longer_a_zombie emitted for " + self.name, "val");
-        if (self.myBody != "") {self setmodel(self.myBody);}
-        if (self.myHead != "") {self attach(self.myHead);}
+        if (self.myBody != "")
+        {
+            self setmodel(self.myBody);
+        }
+        if (self.myHead != "")
+        {
+            self attach(self.myHead);
+        }
         self setclientdvar("cg_thirdperson", 0);
         self permanentTweaksOff();
-        if (self.sessionstate != "spectator") {
-            if (isDefined(self.tombEnt)) {
+        if (self.sessionstate != "spectator")
+        {
+            if (isDefined(self.tombEnt))
+            {
                 self setorigin(self.tombEnt.origin, self.tombEnt.angles);
-                self.tombEnt delete();
-            } else {
+                self.tombEnt delete ();
+            }
+            else
+            {
                 self setorigin(self.origin, self.angles);
                 self iprintlnbold(&"ROTUSCRIPT_YOURE_BUGGED");
             }
@@ -696,14 +814,14 @@ onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHit
     self notify("killed_player");
     self.lastDownTime = getTime();
 
-    if(self.sessionteam == "spectator")
+    if (self.sessionteam == "spectator")
         return;
 
-    if(sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
+    if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
         sMeansOfDeath = "MOD_HEAD_SHOT";
 
     if (level.dvar["zom_orbituary"])
-    obituary(self, attacker, sWeapon, sMeansOfDeath);
+        obituary(self, attacker, sWeapon, sMeansOfDeath);
 
     self.sessionstate = "dead";
 
@@ -713,16 +831,16 @@ onPlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHit
     //attacker.score++;
     //self.deaths++;
 
-    body = self clonePlayer( deathAnimDuration );
+    body = self clonePlayer(deathAnimDuration);
 
     doRagdoll = true;
 
     if (doRagdoll)
     {
-        if ( self isOnLadder() || self isMantling() )
-        body startRagDoll();
+        if (self isOnLadder() || self isMantling())
+            body startRagDoll();
 
-        thread delayStartRagdoll( body, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath );
+        thread delayStartRagdoll(body, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath);
     }
 }
 
@@ -730,7 +848,8 @@ resetSpawning()
 {
     debugPrint("in _players::resetSpawning()", "fn", level.nonVerbose);
 
-    for (i=0; i<level.players.size; i++) {
+    for (i = 0; i < level.players.size; i++)
+    {
         self.mayRespawn = true;
     }
 }
@@ -739,48 +858,71 @@ onPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, 
 {
     debugPrint("in _players::onPlayerDamage()", "fn", level.veryHighVerbosity);
 
-    if(self.sessionteam == "spectator") {return;}
+    if (self.sessionteam == "spectator")
+    {
+        return;
+    }
 
-    if (isdefined(eAttacker)) {
-        if (isplayer(eAttacker)) {
-            if (eAttacker.team == self.team) {
-                if (self.isZombie) {
-                    if(level.waveIntermission) {
+    if (isdefined(eAttacker))
+    {
+        if (isplayer(eAttacker))
+        {
+            if (eAttacker.team == self.team)
+            {
+                if (self.isZombie)
+                {
+                    if (level.waveIntermission)
+                    {
                         // track the players that damage a player-zombie during wave intermission,
                         // so we can credit their intermission revive count appropriately
                         attackerEntityNumber = eAttacker getEntityNumber();
-                        if (!inIntArray(self.waveIntermissionZombieAttackers, attackerEntityNumber)) {
+                        if (!inIntArray(self.waveIntermissionZombieAttackers, attackerEntityNumber))
+                        {
                             self.waveIntermissionZombieAttackers[self.waveIntermissionZombieAttackers.size] = attackerEntityNumber;
                         }
                     }
                     // Give the player attacking the player-zombie some points to
                     // pay for expended ammo
-//                     eAttacker scripts\players\_players::incUpgradePoints(iDamage);
+                    //                     eAttacker scripts\players\_players::incUpgradePoints(iDamage);
                     /// Attempt to limit number of unique strings to stop string overflow errors
                     eAttacker scripts\players\_players::incUpgradePoints(20);
                     self scripts\bots\_bots::Callback_BotDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
-                    updateHealthHud(self.health/self.maxhealth);
+                    updateHealthHud(self.health / self.maxhealth);
                     return;
-                } else if (!getDvarInt("game_allowfriendlyfire") && eAttacker != self) { // level.dvar["game_allowfriendlyfire"]
+                }
+                else if (!getDvarInt("game_allowfriendlyfire") && eAttacker != self)
+                { // level.dvar["game_allowfriendlyfire"]
                     // if we don't allow friendly fire, a player can only injure teammates
                     // if they are a player-zombie
-                    if (!eAttacker.isZombie) {return;}
+                    if (!eAttacker.isZombie)
+                    {
+                        return;
+                    }
                 }
-            } else {
-                if (!level.hasReceivedDamage) {
+            }
+            else
+            {
+                if (!level.hasReceivedDamage)
+                {
                     level.hasReceivedDamage = 1;
                 }
             }
         }
     }
 
-    if (self.god) {return;}
-    if (self.isDown) {return;}
+    if (self.god)
+    {
+        return;
+    }
+    if (self.isDown)
+    {
+        return;
+    }
 
-    if(!isDefined(vDir))
+    if (!isDefined(vDir))
         iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
-    if(!(iDFlags & level.iDFLAGS_NO_PROTECTION))
+    if (!(iDFlags & level.iDFLAGS_NO_PROTECTION))
     {
         iDamage = int(iDamage * self.damageDoneMP);
         if (self.heavyArmor)
@@ -788,29 +930,33 @@ onPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, 
             if (self.health / self.maxhealth >= .65)
             {
                 iDamage = int(iDamage / 2);
-                self thread screenFlash((0,0,.7), .35, .5);
+                self thread screenFlash((0, 0, .7), .35, .5);
             }
         }
-        if(iDamage < 1)
-        iDamage = 1;
+        if (iDamage < 1)
+            iDamage = 1;
 
         if (sWeapon == "ak74u_acog_mp" || sWeapon == "barrett_acog_mp")
-        return;
+            return;
 
         iDamage = int(iDamage * self.incdammod);
 
         if (issubstr(sMeansOfDeath, "GRENADE"))
-        return;
+            return;
 
         // Last Man Standing ability
         // 80% less damage when busy(reviving, shop, weapon upgrades) if last man standing
-        if (level.alivePlayers == 1 && self.hasLastManStanding && self.isBusy) {
+        if (level.alivePlayers == 1 && self.hasLastManStanding && self.isBusy)
+        {
             iDamage = int(iDamage * 0.20);
-            if (iDamage < 1) {iDamage = 1;}
+            if (iDamage < 1)
+            {
+                iDamage = 1;
+            }
         }
 
         self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
-        updateHealthHud(self.health/self.maxhealth);
+        updateHealthHud(self.health / self.maxhealth);
     }
 }
 
@@ -820,28 +966,45 @@ watchHP()
 
     self endon("death");
     self endon("disconnect");
-    self endon("spawned");      // end this instance before a respawn
+    self endon("spawned"); // end this instance before a respawn
 
-    while (1) {
+    while (1)
+    {
         wait 0.5;
-        if (!self.infected) {
-            if ((self.isDown) && (self.headicon == "")) {continue;}
-            if ((self.isDown) && (self.headicon != "")) {
+        if (!self.infected)
+        {
+            if ((self.isDown) && (self.headicon == ""))
+            {
+                continue;
+            }
+            if ((self.isDown) && (self.headicon != ""))
+            {
                 // If you aren't infected, and are down, ensure there is no headicon
                 self.headicon = "";
                 continue;
             }
-            if (self.health <= 40) {
+            if (self.health <= 40)
+            {
                 // if you aren't infected, have really low health, are not down,
                 // then toggle the lowhp headicon every half second
-                if (self.headicon == "hud_icon_lowhp") {self.headicon = "";}
-                else {self.headicon = "hud_icon_lowhp";}
+                if (self.headicon == "hud_icon_lowhp")
+                {
+                    self.headicon = "";
+                }
+                else
+                {
+                    self.headicon = "hud_icon_lowhp";
+                }
                 continue;
             }
-            if (self.health <= 75) {
+            if (self.health <= 75)
+            {
                 // if you aren't infected, have low health, are not down,
                 // then show the medium hp headicon
-                if (self.headicon != "headicon_medhp") {self.headicon = "headicon_medhp";}
+                if (self.headicon != "headicon_medhp")
+                {
+                    self.headicon = "headicon_medhp";
+                }
                 continue;
             }
             self defaultHeadicon(); // restore default headicon
@@ -853,50 +1016,58 @@ doAreaDamage(range, damage, attacker)
 {
     debugPrint("in _players::doAreaDamage()", "fn", level.nonVerbose);
 
-    for (i=0; i<=level.bots.size; i++)
+    for (i = 0; i <= level.bots.size; i++)
     {
         target = level.bots[i];
-        if (isdefined(target) && isalive(target) )
+        if (isdefined(target) && isalive(target))
         {
             distance = distance(self.origin, target.origin);
-            if (distance < range )
+            if (distance < range)
             {
                 target.isPlayer = true;
                 target.entity = target;
                 target damageEnt(
-                    self, // eInflictor = the entity that causes the damage (e.g. a claymore)
-                    attacker, // eAttacker = the player that is attacking
-                    damage, // iDamage = the amount of damage to do
+                    self,            // eInflictor = the entity that causes the damage (e.g. a claymore)
+                    attacker,        // eAttacker = the player that is attacking
+                    damage,          // iDamage = the amount of damage to do
                     "MOD_EXPLOSIVE", // sMeansOfDeath = string specifying the method of death (e.g. "MOD_PROJECTILE_SPLASH")
-                    "none", // sWeapon = string specifying the weapon used (e.g. "claymore_mp")
-                    self.origin, // damagepos = the position damage is coming from
-                    vectorNormalize(target.origin-self.origin)
-                );
+                    "none",          // sWeapon = string specifying the weapon used (e.g. "claymore_mp")
+                    self.origin,     // damagepos = the position damage is coming from
+                    vectorNormalize(target.origin - self.origin));
             }
         }
     }
 }
-
 
 printPlayersData()
 {
     debugPrint("in _players::printPlayersData()", "fn", level.veryLowVerbosity);
 
     players = level.players;
-    if (players.size == 0) {return;}
+    if (players.size == 0)
+    {
+        return;
+    }
     header = "name                   index playerNumber    guid                    active alive down bot spectating";
     debugPrint(header, "val");
-    for (i=0; i<players.size; i++) {
-        if (!isDefined(players[i])) {continue;}
+    for (i = 0; i < players.size; i++)
+    {
+        if (!isDefined(players[i]))
+        {
+            continue;
+        }
         name = leftPad(players[i].name, " ", 20);
         index = i;
         number = players[i] getEntityNumber();
         guid = players[i] getGuid();
         active = players[i].isActive;
-        alive =  players[i].isAlive;
+        alive = players[i].isAlive;
         spectating = players[i].isSpectating;
         down = players[i].isDown;
-        if (!isDefined(down)) { down = "undef";}
+        if (!isDefined(down))
+        {
+            down = "undef";
+        }
         bot = players[i].isBot;
         line = name + " \t" + index + " \t" + number + " " + guid + " \t" + active + " \t" + alive + " \t" + down + " \t" + bot + "\t" + spectating;
         debugPrint(line, "val");
@@ -911,12 +1082,12 @@ watchPlayersData()
 {
     debugPrint("in _players::watchPlayersData()", "fn", level.nonVerbose);
 
-    while(1) {
+    while (1)
+    {
         wait 30;
         printPlayersData();
     }
 }
-
 
 /**
  * @brief Manually correct the number of Alive/Down players
@@ -935,24 +1106,37 @@ correctPlayerCounts()
 
     self endon("game_ended");
 
-    while(1) {
+    while (1)
+    {
         wait 3;
         alivePlayers = 0;
         downPlayers = 0;
         activePlayers = 0;
         players = level.players;
-        for (i=0; i<players.size; i++) {
+        for (i = 0; i < players.size; i++)
+        {
             // spectators have isActive == false, and isAlive == true
-            if ((isDefined(players[i].isActive)) && (players[i].isActive)) {activePlayers++;}
-            if ((isDefined(players[i].isAlive)) && (players[i].isAlive)) {alivePlayers++;}
-            if ((isDefined(players[i].isDown)) && (players[i].isDown)) {downPlayers++;}
+            if ((isDefined(players[i].isActive)) && (players[i].isActive))
+            {
+                activePlayers++;
+            }
+            if ((isDefined(players[i].isAlive)) && (players[i].isAlive))
+            {
+                alivePlayers++;
+            }
+            if ((isDefined(players[i].isDown)) && (players[i].isDown))
+            {
+                downPlayers++;
+            }
         }
-        if (level.activePlayers != activePlayers) {
+        if (level.activePlayers != activePlayers)
+        {
             level.activePlayers = activePlayers;
             level.downPlayers = downPlayers;
             debugPrint("level.activePlayers was incorrect; correcting.");
         }
-        if (level.alivePlayers != alivePlayers) {
+        if (level.alivePlayers != alivePlayers)
+        {
             level.alivePlayers = alivePlayers;
             level.downPlayers = downPlayers;
             debugPrint("level.alivePlayers was incorrect; correcting.");
@@ -965,23 +1149,31 @@ cleanup(message)
 {
     debugPrint("in _players::cleanup()", "fn", level.nonVerbose);
 
-    if(!isDefined(self)) {
+    if (!isDefined(self))
+    {
         noticePrint("Player disconnected before _players::cleanup() could run.");
-        if (isDefined(message)) {noticePrint(message);}
+        if (isDefined(message))
+        {
+            noticePrint(message);
+        }
         markAdminMenuAsDirty();
         level.activePlayers--;
         level.alivePlayers--;
         return;
     }
 
-    for (i=0; i<level.minigunTurrets.size; i++) {
-        if ((isDefined(level.minigunTurrets[i].gun.owner)) && (level.minigunTurrets[i].gun.owner == self)) {
+    for (i = 0; i < level.minigunTurrets.size; i++)
+    {
+        if ((isDefined(level.minigunTurrets[i].gun.owner)) && (level.minigunTurrets[i].gun.owner == self))
+        {
             debugPrint("From players::cleanup(), trying to remove turret " + level.minigunTurrets[i].id, "val");
             thread scripts\players\_turrets::removeTurret(level.minigunTurrets[i]);
         }
     }
-    for (i=0; i<level.grenadeTurrets.size; i++) {
-        if ((isDefined(level.grenadeTurrets[i].gun.owner)) && (level.grenadeTurrets[i].gun.owner == self)) {
+    for (i = 0; i < level.grenadeTurrets.size; i++)
+    {
+        if ((isDefined(level.grenadeTurrets[i].gun.owner)) && (level.grenadeTurrets[i].gun.owner == self))
+        {
             debugPrint("From players::cleanup(), trying to remove turret " + level.grenadeTurrets[i].id, "val");
             thread scripts\players\_turrets::removeTurret(level.grenadeTurrets[i]);
         }
@@ -989,13 +1181,27 @@ cleanup(message)
 
     playerName = self.name;
 
-    if (self.isDown) {level scripts\players\_usables::removeUsable(self);}
+    if (self.isDown)
+    {
+        level scripts\players\_usables::removeUsable(self);
+    }
     self scripts\players\_usables::usableAbort();
-    if (isDefined(self.parachute)) {self.parachute delete();}
-    if (isdefined(self.infection_overlay)) {self.infection_overlay destroy();}
-    if (isdefined(self.tombEnt)) {self.tombEnt delete();}
-    if (isdefined(self.carryObj)) {
-        if (isDefined(self.carryObj.gun)) { // the player is carrying a defense turret
+    if (isDefined(self.parachute))
+    {
+        self.parachute delete ();
+    }
+    if (isdefined(self.infection_overlay))
+    {
+        self.infection_overlay destroy();
+    }
+    if (isdefined(self.tombEnt))
+    {
+        self.tombEnt delete ();
+    }
+    if (isdefined(self.carryObj))
+    {
+        if (isDefined(self.carryObj.gun))
+        { // the player is carrying a defense turret
             turret = self.carryObj;
             self.carryObj unlink();
             wait .05;
@@ -1010,14 +1216,17 @@ cleanup(message)
             // good attempt to get turret.gun to rotate
             turret.gun unlink();
             thread scripts\players\_turrets::removeTurret(turret);
-        } else {
+        }
+        else
+        {
             debugPrint("Deleting self.carryObj", "val");
-            self.carryObj delete();
+            self.carryObj delete ();
         }
     }
 
     // if player was a zombie, remove the kill objective
-    if ((isDefined(self.zombieObjectiveIndex)) && (self.zombieObjectiveIndex != -1)) {
+    if ((isDefined(self.zombieObjectiveIndex)) && (self.zombieObjectiveIndex != -1))
+    {
         objective_state(self.zombieObjectiveIndex, "empty");
         objective_delete(self.zombieObjectiveIndex);
         // mark index as available
@@ -1047,21 +1256,22 @@ cleanup(message)
             level.alivePlayers--;
             self.isAlive = false;
 
-            if (self.primary!="none"){
+            if (self.primary != "none")
+            {
                 self.persData.primaryAmmoClip = self getweaponammoclip(self.primary);
                 self.persData.primaryAmmoStock = self getweaponammostock(self.primary);
             }
-            if (self.secondary!="none"){
+            if (self.secondary != "none")
+            {
                 self.persData.secondaryAmmoClip = self getweaponammoclip(self.secondary);
                 self.persData.secondaryAmmoStock = self getweaponammostock(self.secondary);
             }
-            if (self.extra!="none"){
+            if (self.extra != "none")
+            {
                 self.persData.extraAmmoClip = self getweaponammoclip(self.extra);
                 self.persData.extraAmmoStock = self getweaponammostock(self.extra);
             }
-
         }
-
     }
 
     self notify("end_trance");
@@ -1069,7 +1279,6 @@ cleanup(message)
 
     debugPrint("Finished _players::cleanup() for player: " + playerName, "val");
 }
-
 
 /**
  * @brief For each admin, mark their admin menu as dirty
@@ -1082,8 +1291,10 @@ markAdminMenuAsDirty()
     debugPrint("in _players::markAdminMenuAsDirty()", "fn", level.nonVerbose);
 
     players = level.players;
-    for ( i = 0; i < players.size; i++ ) {
-        if (isDefined(players[i].admin)) {
+    for (i = 0; i < players.size; i++)
+    {
+        if (isDefined(players[i].admin))
+        {
             players[i].admin.isAdminMenuDirty = true;
         }
     }
@@ -1112,14 +1323,16 @@ spawnPlayerWhenMorePlayersAreAlive()
 
     self endon("disconnect");
     level endon("game_ended");
-//     self endon("spawned");
+    //     self endon("spawned");
     self endon("spawned_player");
 
     debugPrint("Waiting until enough players are alive to spawn " + self.name, "val");
 
-    while (1) {
+    while (1)
+    {
         wait 2;
-        if (enoughPlayersAlive()) {
+        if (enoughPlayersAlive())
+        {
             self joinAllies();
             self spawnPlayer();
         }
@@ -1168,7 +1381,8 @@ changeClassNextIntermission()
 
     debugPrint("Waiting until wave intermission to change " + self.name + " class from " + self.curClass + " to " + self.class, "val");
 
-    while (1) {
+    while (1)
+    {
         level waittill("wave_finished");
         wait 1;
         debugPrint("Wave intermission began, changing class of " + self.name, "val");
@@ -1187,9 +1401,13 @@ spawnPlayerNextIntermission(preserveState)
 
     debugPrint("Waiting until wave intermission to spawn " + self.name, "val");
 
-    if (!isDefined(preserveState)) {preserveState = false;}
+    if (!isDefined(preserveState))
+    {
+        preserveState = false;
+    }
 
-    while (1) {
+    while (1)
+    {
         level waittill("wave_finished");
         wait 1;
         debugPrint("Wave intermission began, trying to spawn " + self.name, "val");
@@ -1210,11 +1428,18 @@ spawnPlayer(preserveState)
 
     debugPrint(self.name + " spawning as " + self.class, "val");
 
-    if (!isDefined(preserveState)) {preserveState = false;}
+    if (!isDefined(preserveState))
+    {
+        preserveState = false;
+    }
 
-    if (level.gameEnded) {return;}
+    if (level.gameEnded)
+    {
+        return;
+    }
 
-    if (self.sessionteam == "spectator") {
+    if (self.sessionteam == "spectator")
+    {
         debugPrint(self.name + "'s self.sessionteam is spectator, aborting spawnPlayer()", "val");
         return;
     }
@@ -1231,7 +1456,8 @@ spawnPlayer(preserveState)
     self.archivetime = 0;
     self.psoffsettime = 0;
 
-    if (!preserveState) {
+    if (!preserveState)
+    {
         self.health = 100;
         self.infected = false;
     }
@@ -1274,15 +1500,22 @@ spawnPlayer(preserveState)
     self setStatusIcon("");
 
     // Getting spawn loc and spawning
-    if (level.playerspawns == "") {spawn = getRandomTdmSpawn();}
-    else {spawn = getRandomEntity(level.playerspawns);}
+    if (level.playerspawns == "")
+    {
+        spawn = getRandomTdmSpawn();
+    }
+    else
+    {
+        spawn = getRandomEntity(level.playerspawns);
+    }
 
     origin = spawn.origin;
     angles = spawn.angles;
 
     self spawn(origin, angles);
 
-    if (self.persData.class != self.curClass) {
+    if (self.persData.class != self.curClass)
+    {
         resetUnlocks();
     }
 
@@ -1297,10 +1530,13 @@ spawnPlayer(preserveState)
     self scripts\players\_abilities::loadClassAbilities(self.curClass);
 
     self SetMoveSpeedScale(self.speed);
-    if (!preserveState) {
+    if (!preserveState)
+    {
         self.health = self.maxhealth;
         self updateHealthHud(1);
-    } else {
+    }
+    else
+    {
         self.health = int(self.savedHealthRatio * self.maxhealth);
         self updateHealthHud(self.health / self.maxhealth);
     }
@@ -1309,9 +1545,10 @@ spawnPlayer(preserveState)
 
     /// Set up action slots
     /// action slot 4 is reserved for class ability items, such as medkits for medics
-    self.nightvision = true;    // Enable night vision by default, at no cost
-    if (self.nightvision) {
-        self setActionSlot( 1, "nightvision" );
+    self.nightvision = true; // Enable night vision by default, at no cost
+    if (self.nightvision)
+    {
+        self setActionSlot(1, "nightvision");
     }
 
     // Give weapons
@@ -1336,8 +1573,6 @@ spawnPlayer(preserveState)
     self thread scripts\players\_abilities::watchSpecialAbility();
     self thread watchHP();
 
-    // Thes functions aren't looped, so they don't need to be ended on re-spawn
-    self thread scripts\players\_rank::onPlayerSpawned();
     self thread scripts\server\_welcome::onPlayerSpawn();
     self thread scripts\players\_spree::onPlayerSpawn();
 
@@ -1356,7 +1591,8 @@ removeSpawnProtection(time)
 {
     debugPrint("in _players::removeSpawnProtection()", "fn", level.nonVerbose);
 
-    while (time > 0) {
+    while (time > 0)
+    {
         time -= 1;
         wait 1;
     }
@@ -1377,8 +1613,8 @@ resetUnlocks()
     self.persData.unlock["secondary"] = 0;
     self.persData.unlock["extra"] = 0;
 
-    self.persData.primary =  getdvar("surv_"+self.class+"_unlockprimary"+self.unlock["primary"]);
-    self.persData.secondary = getdvar("surv_"+self.class+"_unlocksecondary"+self.unlock["secondary"]);
+    self.persData.primary = getdvar("surv_" + self.class + "_unlockprimary" + self.unlock["primary"]);
+    self.persData.secondary = getdvar("surv_" + self.class + "_unlocksecondary" + self.unlock["secondary"]);
 
     self.persData.primaryAmmoClip = WeaponClipSize(self.persData.primary);
     self.persData.primaryAmmoStock = WeaponMaxAmmo(self.persData.primary);
@@ -1390,12 +1626,14 @@ resetUnlocks()
     self.persData.extraAmmoStock = 0;
 }
 
-
 setStatusIcon(icon)
 {
     debugPrint("in _players::setStatusIcon()", "fn", level.veryLowVerbosity);
 
-    if (self.overrideStatusIcon == "") {self.statusicon = icon;}
+    if (self.overrideStatusIcon == "")
+    {
+        self.statusicon = icon;
+    }
 }
 
 bounce(direction)
@@ -1404,7 +1642,7 @@ bounce(direction)
 
     self endon("disconnect");
     self endon("death");
-    for (i=0; i<2; i++)
+    for (i = 0; i < 2; i++)
     {
         self.health = (self.health + 899);
         self finishPlayerDamage(self, self, 900, 0, "MOD_PROJECTILE", "rpg_mp", direction, direction, "none", 0);
@@ -1422,39 +1660,44 @@ fullHeal(speed)
     while (self.health < self.maxhealth)
     {
         self.health += speed;
-        updateHealthHud(self.health/self.maxhealth);
+        updateHealthHud(self.health / self.maxhealth);
         wait .1;
     }
 }
 
+////////////////////////////////////////////////////////
+// Increase player upgrade points by amount of 'inc'. //
+////////////////////////////////////////////////////////
 incUpgradePoints(inc)
 {
     debugPrint("in _players::incUpgradePoints()", "fn", level.absurdVerbosity);
 
     self endon("disconnect");
 
-    if (!isDefined(inc)) {return;}
-    if (!isDefined(self)) {return;}
-
-    if (!isDefined(self.points)) {
-        errorPrint("self.points is indefined for " + self.name);
+    if (!isDefined(inc) || !isDefined(self))
         return;
-    }
 
     self.points += inc;
     self.persData.points += inc;
-    if (inc > 0) {self.score += inc;}
+    if (inc > 0)
+    {
+        self.score += inc;
+    }
     self setclientdvar("ui_upgradepoints", self.points);
-    thread upgradeHud(inc);
+    self thread upgradeHud(inc);
 }
 
 joinAllies()
 {
     debugPrint("in _players::joinAllies()", "fn", level.nonVerbose);
 
-    if (level.gameEnded) {return;}
+    if (level.gameEnded)
+    {
+        return;
+    }
 
-    if (self.pers["team"] != "allies"){
+    if (self.pers["team"] != "allies")
+    {
         //if (isalive(self))
         //self suicide();
 
@@ -1470,10 +1713,15 @@ joinSpectator()
 {
     debugPrint("in _players::joinSpectator()", "fn", level.nonVerbose);
 
-    if (level.gameEnded) {return;}
+    if (level.gameEnded)
+    {
+        return;
+    }
 
-    if (self.pers["team"] != "spectator"){
-        if (isalive(self)) {
+    if (self.pers["team"] != "spectator")
+    {
+        if (isalive(self))
+        {
             // save health ratio, as we may need it later
             self.savedHealthRatio = self.health / self.maxhealth;
             self suicide();
@@ -1513,17 +1761,20 @@ spawnSpectator(origin, angles)
     self.spectatorclient = -1;
     self.friendlydamage = undefined;
 
-    self spawn( origin, angles );
+    self spawn(origin, angles);
 }
 
 revive()
 {
     debugPrint("in _players::revive()", "fn", level.nonVerbose);
 
-    if (level.gameEnded) {return;}
+    if (level.gameEnded)
+    {
+        return;
+    }
 
     // Give me back my weapons!
-    level.alivePlayers ++;
+    level.alivePlayers++;
     self.isAlive = true;
     weapons = self.lastStandWeapons;
 
@@ -1533,7 +1784,7 @@ revive()
     keptWeapons = self getweaponslist();
     keptAmmoStock = [];
     keptAmmoClip = [];
-    for( i = 0; i < keptWeapons.size; i++ )
+    for (i = 0; i < keptWeapons.size; i++)
     {
         keptAmmoClip[i] = self getWeaponAmmoClip(keptWeapons[i]);
         keptAmmoStock[i] = self getWeaponAmmoStock(keptWeapons[i]);
@@ -1541,37 +1792,41 @@ revive()
 
     self takeallweapons();
 
-    if (self.lastStandWeapon == "none") {
-        if (weapons.size == 0) {
-            if (keptWeapons.size != 0) {
+    if (self.lastStandWeapon == "none")
+    {
+        if (weapons.size == 0)
+        {
+            if (keptWeapons.size != 0)
+            {
                 self.lastStandWeapon = keptWeapons[0];
             }
-        } else {
+        }
+        else
+        {
             self.lastStandWeapon = weapons[0];
         }
     }
 
-    self spawn( self.origin, self.angles );
+    self spawn(self.origin, self.angles);
 
-    for( i = 0; i < keptWeapons.size; i++ )
+    for (i = 0; i < keptWeapons.size; i++)
     {
         self giveweapon(keptWeapons[i]);
         self setWeaponAmmoClip(keptWeapons[i], keptAmmoClip[i]);
-        self setWeaponAmmoStock(keptWeapons[i],  keptAmmoStock[i]);
+        self setWeaponAmmoStock(keptWeapons[i], keptAmmoStock[i]);
     }
-    for( i = 0; i < weapons.size; i++ )
+    for (i = 0; i < weapons.size; i++)
     {
         if (!self HasWeapon(weapons[i]))
         {
             self giveweapon(weapons[i]);
             self setWeaponAmmoClip(weapons[i], ammoClip[i]);
-            self setWeaponAmmoStock(weapons[i],  ammoStock[i]);
+            self setWeaponAmmoStock(weapons[i], ammoStock[i]);
         }
     }
 
     self setspawnweapon(self.lastStandWeapon);
     self switchtoweapon(self.lastStandWeapon);
-
 
     list = self getweaponslist();
 
@@ -1582,7 +1837,7 @@ revive()
     self notify("revived");
 
     if (self.infected)
-    level scripts\players\_usables::addUsable(self, "infected", &"ROTUSCRIPT_PRESS_USE_TO_CURE", 96);
+        level scripts\players\_usables::addUsable(self, "infected", &"ROTUSCRIPT_PRESS_USE_TO_CURE", 96);
 
     self scripts\players\_abilities::loadClassAbilities(self.curClass);
 
@@ -1606,8 +1861,9 @@ revive()
 
     // Restore night vision after a player is revived
     self.nightvision = true;
-    if (self.nightvision) {
-        self setActionSlot( 1, "nightvision" );
+    if (self.nightvision)
+    {
+        self setActionSlot(1, "nightvision");
     }
 
     self thread scripts\players\_usables::checkForUsableObjects();
@@ -1633,4 +1889,3 @@ execClientCommand(cmd)
     self setClientDvar("ui_clientcmd", cmd);
     self openMenuNoMouse(game["menu_clientcmd"]);
 }
-

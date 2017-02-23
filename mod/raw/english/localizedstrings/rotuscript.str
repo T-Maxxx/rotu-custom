@@ -817,4 +817,14 @@ LANG_ENGLISH        "exploded"
 REFERENCE           MAP_RESTARTING_IN3
 LANG_ENGLISH        "Map restarting in 3 seconds..."
 
+/////////
+// hud //
+/////////
+
+REFERENCE           PLUS
+LANG_ENGLISH        "+&&1"
+
+REFERENCE           MINUS
+LANG_ENGLISH        "-&&1"
+
 ENDMARKER
