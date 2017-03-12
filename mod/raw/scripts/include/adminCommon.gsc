@@ -652,7 +652,7 @@ adminActionConsoleMessage(player, message, reason)
 
     if (self.admin.showActionConsoleMessages)
     {
-        for (i = 0; i < level.players.size; ++i)
+        for (i = 0; i < level.players.size; i++)
             if (isDefined(level.players[i]))
                 level.players[i] setClientDvars(
                     "ui_hud_adminaction_player", player,
