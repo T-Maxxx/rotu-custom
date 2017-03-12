@@ -23,7 +23,8 @@ ROTU Change Log
 * Increasing upgrade score at HUD has been changed to localized string.
   It's cheaper (actually in cost of 2 localized strings) now to use any number.
 * WIP - stattable.csv
-
+* Admin actions log messages moved from script to hud file to avoid precached
+  strings overflow.
 //
 // 2.2
 //

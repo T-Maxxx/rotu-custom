@@ -41,7 +41,6 @@
 init()
 {
     precacheString(&"ROTUSCRIPT_REASON_ADMIN_DECISION");
-    precacheString(&"ROTUSCRIPT_MAP_RESTARTING_IN3");
 }
 
 /**
@@ -1302,7 +1301,7 @@ restartMap()
     // Bail if admin doesn't have this power
     if (!self.admin.canRestart) {onNoPermissions(); return;}
 
-    adminActionConsoleMessage(self, &"ROTUSCRIPT_MAP_RESTARTING_IN3");
+    adminActionConsoleMessage(self, "@ROTUUI_MAP_RESTARTING_IN3");
     displayAdminCommandFeedback("@ROTUUI_MAP_RESTARTING");
     wait 1.5;
     displayAdminCommandFeedback("@ROTUUI_EMPTY");  // clear feedback before actually restarting map

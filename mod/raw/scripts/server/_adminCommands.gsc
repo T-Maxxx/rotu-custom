@@ -121,7 +121,7 @@ warnPlayer(admin, reason)
     debugPrint("in _adminCommands::warnPlayer()", "fn", level.lowVerbosity);
 
     if(isDefined(self)) {
-        message = &"ROTUSCRIPT_GOT_WARNED_ON_THIS_SERVER";
+        message = "@ROTUUI_GOT_WARNED_ON_THIS_SERVER";
 
         if(reason == "silent") {
             self.pers["generalWarnings"]++;
@@ -159,9 +159,9 @@ warnPlayer(admin, reason)
 
             // Let player know if they will be banned/temp banned on their next warning
             if (self.pers["badLanguageWarnings"] == level.badLanguageWarningTempBanThreshold - 1) {
-                admin thread informPlayerOfAdminAction(self, "negative", "One more bad language warning and you will be temporarily banned.");
+                //admin thread informPlayerOfAdminAction(self, "negative", "One more bad language warning and you will be temporarily banned.");
             } else if (self.pers["badLanguageWarnings"] == level.badLanguageWarningBanThreshold - 1) {
-                admin thread informPlayerOfAdminAction(self, "negative", "One more bad language warning and you will be permanently banned.");
+                //admin thread informPlayerOfAdminAction(self, "negative", "One more bad language warning and you will be permanently banned.");
             }
         } else {
             self.pers["generalWarnings"]++;
@@ -183,9 +183,9 @@ warnPlayer(admin, reason)
 
             // Let player know if they will be banned/temp banned on their next warning
             if (self.pers["generalWarnings"] == level.generalWarningTempBanThreshold - 1) {
-                admin thread informPlayerOfAdminAction(self, "negative", "One more general warning and you will be temporarily banned.");
+                //admin thread informPlayerOfAdminAction(self, "negative", "One more general warning and you will be temporarily banned.");
             } else if (self.pers["generalWarnings"] == level.generalWarningBanThreshold - 1) {
-                admin thread informPlayerOfAdminAction(self, "negative", "One more general warning and you will be permanently banned.");
+                //admin thread informPlayerOfAdminAction(self, "negative", "One more general warning and you will be permanently banned.");
             }
         }
         noticePrint("Admin " + admin.name + " warned " + self.name + ". Reason: " + reason + ".");
@@ -210,8 +210,8 @@ removeOneWarning(admin)
         self setStat(2354, self.pers["generalWarnings"]);
 
         noticePrint("Admin " + admin.name + " removed one warning from " + self.name);
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_REMOVED_WARNING");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_ONE_WARNING_WAS_REMOVED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_REMOVED_WARNING");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_ONE_WARNING_WAS_REMOVED");
 
         unlockPlayer(self);
     }
@@ -236,8 +236,8 @@ removeOneLanguageWarning(admin)
         self setStat(2355, self.pers["badLanguageWarnings"]);
 
         noticePrint("Admin " + admin.name + " removed one language warning from " + self.name);
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_REMOVED_ONE_LANGUAGE_WARN_FROM_YOU");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_ONE_LANG_WARNING_WAS_REMOVED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_REMOVED_ONE_LANGUAGE_WARN_FROM_YOU");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_ONE_LANG_WARNING_WAS_REMOVED");
 
         unlockPlayer(self);
     }
@@ -263,8 +263,8 @@ removeAllWarnings(admin)
         self setStat(2354, self.pers["generalWarnings"]);
 
         noticePrint("Admin " + admin.name + " removed all warnings from " + self.name);
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_REMOVED_ALL_WARNS_FROM_YOU");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_ALL_WARNS_WAS_REMOVED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_REMOVED_ALL_WARNS_FROM_YOU");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_ALL_WARNS_WAS_REMOVED");
 
         unlockPlayer(self);
     }
@@ -376,16 +376,16 @@ demotePlayer(admin)
 
         if (rankTaken) {
             // Inform player they were demoted
-            self glowMessage(&"ROTUSCRIPT_RANK_DEMOTED", "", decimalRgbToColor(255, 0, 0), 5, 90, 2, "mp_level_up");
+            self glowMessage("@ROTUUI_RANK_DEMOTED", "", decimalRgbToColor(255, 0, 0), 5, 90, 2, "mp_level_up");
 
             noticePrint("Admin " + admin.name + " demoted " + self.name);
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_DEMOTED");
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_DEMOTED");
             unlockPlayer(self);
             return "@ROTUUI_PLR_DEMOTED_ONE_RANK";
         } else {
             noticePrint("Admin " + admin.name + " took 750 rank points from " + self.name);
-            admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_ADMIN_TOOK_750_RANKPTS_FROM_YOU");
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_750_RANKPTS_WAS_TAKEN");
+            //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_ADMIN_TOOK_750_RANKPTS_FROM_YOU");
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_750_RANKPTS_WAS_TAKEN");
             unlockPlayer(self);
             return "@ROTUUI_TOOK_750RANKPTS";
         }
@@ -430,14 +430,14 @@ promotePlayer(admin)
 
         if (rankGiven) {
             noticePrint("Admin " + admin.name + " promoted " + self.name);
-            admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_PROMOTED_YOU");
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_PROMOTED");
+            //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_PROMOTED_YOU");
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_PROMOTED");
             unlockPlayer(self);
             return "@ROTUUI_PLR_PROMOTED_1RANK";
         } else {
             noticePrint("Admin " + admin.name + " gave 750 rank points to " + self.name);
-            admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_GAVE_750RANKPTS_TO_YOU");
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_ADMIN_GAVE_750RANKPTS");
+            //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_GAVE_750RANKPTS_TO_YOU");
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_ADMIN_GAVE_750RANKPTS");
             unlockPlayer(self);
             return "@ROTUUI_GAVE_750RANKPTS";
         }
@@ -472,8 +472,8 @@ restorePlayersPrimaryWeapon(admin)
         self SwitchToWeapon(self.primary);
         self giveMaxAmmo(self.primary);
 
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_RESTORED_YOUR_DEF_PRIM_WEAP");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_RESTORED_PRIM_WEAP");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_RESTORED_YOUR_DEF_PRIM_WEAP");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_RESTORED_PRIM_WEAP");
 
         unlockPlayer(self);
     }
@@ -506,8 +506,8 @@ restorePlayersSidearm(admin)
         self SwitchToWeapon(self.secondary);
         self giveMaxAmmo(self.secondary);
 
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_RESTORED_YOUR_DEF_SIDEARM");
-        admin thread adminActionConsoleMessage(self.name, &"ROTUSCRIPT_RESTORED_SIDEARM");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_RESTORED_YOUR_DEF_SIDEARM");
+        admin thread adminActionConsoleMessage(self.name, "@ROTUUI_RESTORED_SIDEARM");
 
         unlockPlayer(self);
     }
@@ -527,8 +527,8 @@ givePlayerUpgradePoints(admin)
     if(isDefined(self)) {
         self scripts\players\_players::incUpgradePoints(2000);
 
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_GAVE_YOU_2K_UP");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_ADMIN_GAVE_2K_UP");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_GAVE_YOU_2K_UP");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_ADMIN_GAVE_2K_UP");
 
         unlockPlayer(self);
     }
@@ -549,10 +549,10 @@ banPlayer(admin, reason)
 
     if(isDefined(self)) {
         if(reason == "silent") {
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_GOT_BANNED", reason);
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_GOT_BANNED", reason);
         } else {
-            admin thread informAllPlayersOfAdminAction(self, "negative", &"ROTUSCRIPT_GOT_BANNED", reason);
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_GOT_BANNED", reason);
+            admin thread informAllPlayersOfAdminAction(self, "negative", "@ROTUUI_GOT_BANNED", reason);
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_GOT_BANNED", reason);
         }
 
         // In the case of banning, we do not need to unlock the player
@@ -586,9 +586,9 @@ kickPlayer(admin, reason)
     debugPrint("in _adminCommands::kickPlayer()", "fn", level.lowVerbosity);
 
     if(isDefined(self)) {
-        admin thread adminActionConsoleMessage(self.name, &"ROTUSCRIPT_GOT_KICKED", reason);
+        admin thread adminActionConsoleMessage(self.name, "@ROTUUI_GOT_KICKED", reason);
         if(reason != "silent")
-            admin thread informAllPlayersOfAdminAction(self, "negative", &"ROTUSCRIPT_GOT_KICKED", reason);
+            admin thread informAllPlayersOfAdminAction(self, "negative", "@ROTUUI_GOT_KICKED", reason);
 
         // In the case of kicking, we do not need to unlock the player
         // unlockPlayer(self);
@@ -633,9 +633,9 @@ temporarilyBanPlayer(admin, reason)
     debugPrint("in _adminCommands::temporarilyBanPlayer()", "fn", level.lowVerbosity);
 
     if(isDefined(self)) {
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_GOT_TEMPBANNED", reason);
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_GOT_TEMPBANNED", reason);
         if(reason != "silent")
-            admin thread informAllPlayersOfAdminAction(self, "negative", &"ROTUSCRIPT_GOT_TEMPBANNED", reason);
+            admin thread informAllPlayersOfAdminAction(self, "negative", "@ROTUUI_GOT_TEMPBANNED", reason);
 
         // In the case of temp banning, we do not need to unlock the player
         // unlockPlayer(self);
@@ -675,7 +675,7 @@ killZombies(admin)
     }
 
     noticePrint("Admin " + admin.name + " killed all zombies.");
-    admin thread adminActionConsoleMessage(undefined, &"ROTUSCRIPT_ADMIN_KILLED_ZOMBIES");
+    admin thread adminActionConsoleMessage(undefined, "@ROTUUI_ADMIN_KILLED_ZOMBIES");
 }
 
 
@@ -729,7 +729,7 @@ restartWave(admin)
     }
     level.playWave = true;
 
-    admin thread adminActionConsoleMessage(undefined, &"ROTUSCRIPT_WAVE_RESTARTING");
+    admin thread adminActionConsoleMessage(undefined, "@ROTUUI_WAVE_RESTARTING");
     noticePrint("Admin " + admin.name + " restarted the wave.");
 }
 
@@ -838,8 +838,8 @@ dropPlayerWeapon(admin)
             self dropItem( currentWeapon );
             weaponName = currentWeapon;
 
-            admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_ADMIN_MADE_YOU_DROP_WEAPON");
-            admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_DROPPED_THEIR_WEAPON");
+            //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_ADMIN_MADE_YOU_DROP_WEAPON");
+            admin thread adminActionConsoleMessage(self, "@ROTUUI_DROPPED_THEIR_WEAPON");
             unlockPlayer(self);
             return true;
         } else {
@@ -872,8 +872,8 @@ ammoBox(admin)
                 adminAmmoBox SetModel("ammobox");
         }
         adminAmmoBox thread beAmmobox(ammoBoxTime);
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_PLACED_AMMOBOX_NEAR");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_AMMOBOX_HAS_BEEN_PLACED_NEAR");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_PLACED_AMMOBOX_NEAR");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_AMMOBOX_HAS_BEEN_PLACED_NEAR");
     }
     unlockPlayer(self);
 }
@@ -1003,8 +1003,8 @@ healingAura(admin)
         healObject.master = self;
         healObject thread scripts\players\_abilities::beHealingAura(time);
 
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_ADMIN_PLACED_HEALING_AURA_NEAR");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_HEALING_AURA_PLACED_NEAR");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_ADMIN_PLACED_HEALING_AURA_NEAR");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_HEALING_AURA_PLACED_NEAR");
     }
     unlockPlayer(self);
 }
@@ -1024,8 +1024,8 @@ disarmPlayer(admin)
     if(isDefined(self) && self.isAlive)
     {
         self takeAllWeapons();
-        admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_YOU_WERE_DISARMED");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_DISARMED");
+        //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_YOU_WERE_DISARMED");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_DISARMED");
     }
     unlockPlayer(self);
 }
@@ -1047,8 +1047,8 @@ takePlayersCurrentWeapon(admin)
     {
         currentWeapon = self getCurrentWeapon();
         self takeWeapon(currentWeapon);
-        admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_ADMIN_TOOK_YOUR_WEAPON");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_WEAPON_TAKEN");
+        //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_ADMIN_TOOK_YOUR_WEAPON");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_WEAPON_TAKEN");
     }
     unlockPlayer(self);
 }
@@ -1070,8 +1070,8 @@ healPlayer(admin)
     {
         self.health = self.maxhealth;
         scripts\include\hud::updateHealthHud(1);
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_HEALTH_RESTORED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_HEALTH_RESTORED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_HEALTH_RESTORED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_HEALTH_RESTORED");
     }
     unlockPlayer(self);
 }
@@ -1092,8 +1092,8 @@ curePlayer(admin)
     if(isDefined(self) && self.isAlive && self.infected)
     {
         self scripts\players\_infection::cureInfection();
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_INFECTION_CURED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_CURED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_INFECTION_CURED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_CURED");
     }
     unlockPlayer(self);
 }
@@ -1126,12 +1126,12 @@ spawnPlayer(admin)
         }
         self.class = class;
         self scripts\players\_classes::acceptClass(true);
-        admin thread informPlayerOfAdminAction(self, "nuetral", &"ROTUSCRIPT_YOU_SPAWNED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_SPAWNED");
+        //admin thread informPlayerOfAdminAction(self, "nuetral", "@ROTUUI_YOU_SPAWNED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_SPAWNED");
         unlockPlayer(self);
         return true;
     } else {
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_CANT_SPAWN_NONSPECTATOR");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_CANT_SPAWN_NONSPECTATOR");
         unlockPlayer(self);
         return false;
     }
@@ -1158,8 +1158,8 @@ bouncePlayer(admin)
         for( i = 0; i < 2; i++ ) {
             self doBounce(vectorNormalize(self.origin - (self.origin - (0,0,20)) ), 200 );
         }
-        admin thread informPlayerOfAdminAction(self, "nuetral", &"ROTUSCRIPT_YOU_BOUNCED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_BOUNCED");
+        //admin thread informPlayerOfAdminAction(self, "nuetral", "@ROTUUI_YOU_BOUNCED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_BOUNCED");
 
         self thread restoreFallDamageMinHeight();
     }
@@ -1252,8 +1252,8 @@ teleportPlayerToSpawn(admin)
     {
         /// HACK: part of origin hack described in scripts\server\_welcome::onPlayerSpawn()
         self setOrigin(self.originalSpawnLocation);
-        admin thread informPlayerOfAdminAction(self, "nuetral", &"ROTUSCRIPT_YOU_TELEPORTED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_WAS_TELEPORTED_TO_SPAWNPOINT");
+        //admin thread informPlayerOfAdminAction(self, "nuetral", "@ROTUUI_YOU_TELEPORTED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_WAS_TELEPORTED_TO_SPAWNPOINT");
     }
     unlockPlayer(self);
 }
@@ -1274,8 +1274,8 @@ teleportPlayerToAdmin(location, admin)
     if(isDefined(self) && self.isAlive)
     {
         self setOrigin(location);
-        admin thread informPlayerOfAdminAction(self, "nuetral", &"ROTUSCRIPT_YOU_TELEPORTED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_WAS_TELEPORTED_TO_ADMIN");
+        //admin thread informPlayerOfAdminAction(self, "nuetral", "@ROTUUI_YOU_TELEPORTED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_WAS_TELEPORTED_TO_ADMIN");
     }
     unlockPlayer(self);
 }
@@ -1302,8 +1302,8 @@ teleportPlayerForward(admin)
         positionOffset = (distance * cos(playerAngles[1]), distance * sin(playerAngles[1]), 45);
         newPosition = position + positionOffset;
         self setOrigin(newPosition);
-        admin thread informPlayerOfAdminAction(self, "nuetral", &"ROTUSCRIPT_YOU_TELEPORTED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_WAS_TELEPORTED_FORWARD");
+        //admin thread informPlayerOfAdminAction(self, "nuetral", "@ROTUUI_YOU_TELEPORTED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_WAS_TELEPORTED_FORWARD");
     }
     unlockPlayer(self);
 }
@@ -1349,8 +1349,8 @@ downPlayer(admin)
                 );
             wait interval;
         }
-        admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_YOU_DOWNED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_DOWNED");
+        //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_YOU_DOWNED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_DOWNED");
     }
     unlockPlayer(self);
 }
@@ -1373,8 +1373,8 @@ revivePlayer(admin)
        (!self.infected))
     {
         self scripts\players\_players::revive();
-        admin thread informPlayerOfAdminAction(self, "positive", &"ROTUSCRIPT_YOU_REVIVED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_REVIVED");
+        //admin thread informPlayerOfAdminAction(self, "positive", "@ROTUUI_YOU_REVIVED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_REVIVED");
         noticePrint(admin.name + " revived " + self.name);
     }
     unlockPlayer(self);
@@ -1395,8 +1395,8 @@ explodePlayer(admin)
 
     if(isDefined(self) && self.isAlive)
     {
-        admin thread informPlayerOfAdminAction(self, "negative", &"ROTUSCRIPT_YOU_EXPLODED_BY_ADMIN");
-        admin thread adminActionConsoleMessage(self, &"ROTUSCRIPT_EXPLODED");
+        //admin thread informPlayerOfAdminAction(self, "negative", "@ROTUUI_YOU_EXPLODED_BY_ADMIN");
+        admin thread adminActionConsoleMessage(self, "@ROTUUI_EXPLODED");
 
         playFx( level.fx["bombexplosion"], self.origin );
         self suicide();

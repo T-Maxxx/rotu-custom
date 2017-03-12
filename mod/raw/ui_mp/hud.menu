@@ -18,21 +18,11 @@
 
 #define NOT_SPECTATING (!spectatingClient())
 
-#define OBJICON( teamName, idx, texture, dvarName, showValue ) \
-    itemDef \
-    { \
-        style           WINDOW_STYLE_SHADER \
-        rect            (30*idx) -74 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_BOTTOM \
-        exp             rect X( (30*idx) - ((FLASH_OFS) * dvarInt( dvarName+"_flash" )) ) \
-        exp             rect Y( -74 - ((FLASH_OFS) * dvarInt( dvarName+"_flash" )) ) \
-        exp             rect W( 24 + (FLASH_OFS2 * dvarInt( dvarName+"_flash" )) ) \
-        exp             rect H( 24 + (FLASH_OFS2 * dvarInt( dvarName+"_flash" )) ) \
-        origin          20 0 \
-        background      texture \
-        forecolor       1 1 1 0.61 \
-        visible         when( dvarString( dvarName ) == showValue && team( name ) == teamName ); \
-        decoration \
-    }
+// Wolframalpha: plot min{1.5sin(Pi*x/(4000)), 1}, x from 0 to 4000
+// Just hide if time passed.
+#define ANIMATION_FADEINOUT(timeSec, dvarTime) \
+    exp foreColor   A( min(1.5 * sin(3.141592 * (milliseconds() - dvarInt(dvarTime)) / (timeSec * 1000) ), 1) ); \
+    visible         when(milliseconds() - dvarInt(dvarTime) < timeSec * 1000)
 
 #define SCOREBAR_BORDER( setting, alliesColor, axisColor ) \
     itemDef \
@@ -841,43 +831,21 @@
             visible     when ( (timeLeft() >= 0 && timeLeft() < 30) || dvarBool( ui_bomb_timer ) );
             decoration
         }
-
-        /*
-        OBJICON( "TEAM_ALLIES", 0, "compass_waypoint_captureneutral_a", "scr_obj_a", "neutral" )
-        OBJICON( "TEAM_ALLIES", 0, "compass_waypoint_defend_a", "scr_obj_a", "allies" )
-        OBJICON( "TEAM_ALLIES", 0, "compass_waypoint_capture_a", "scr_obj_a", "axis" )
-        OBJICON( "TEAM_AXIS", 0, "compass_waypoint_captureneutral_a", "scr_obj_a", "neutral" )
-        OBJICON( "TEAM_AXIS", 0, "compass_waypoint_capture_a", "scr_obj_a", "allies" )
-        OBJICON( "TEAM_AXIS", 0, "compass_waypoint_defend_a", "scr_obj_a", "axis" )
-
-        OBJICON( "TEAM_ALLIES", 1, "compass_waypoint_captureneutral_b", "scr_obj_b", "neutral" )
-        OBJICON( "TEAM_ALLIES", 1, "compass_waypoint_defend_b", "scr_obj_b", "allies" )
-        OBJICON( "TEAM_ALLIES", 1, "compass_waypoint_capture_b", "scr_obj_b", "axis" )
-        OBJICON( "TEAM_AXIS", 1, "compass_waypoint_captureneutral_b", "scr_obj_b", "neutral" )
-        OBJICON( "TEAM_AXIS", 1, "compass_waypoint_capture_b", "scr_obj_b", "allies" )
-        OBJICON( "TEAM_AXIS", 1, "compass_waypoint_defend_b", "scr_obj_b", "axis" )
-
-        OBJICON( "TEAM_ALLIES", 2, "compass_waypoint_captureneutral_c", "scr_obj_c", "neutral" )
-        OBJICON( "TEAM_ALLIES", 2, "compass_waypoint_defend_c", "scr_obj_c", "allies" )
-        OBJICON( "TEAM_ALLIES", 2, "compass_waypoint_capture_c", "scr_obj_c", "axis" )
-        OBJICON( "TEAM_AXIS", 2, "compass_waypoint_captureneutral_c", "scr_obj_c", "neutral" )
-        OBJICON( "TEAM_AXIS", 2, "compass_waypoint_capture_c", "scr_obj_c", "allies" )
-        OBJICON( "TEAM_AXIS", 2, "compass_waypoint_defend_c", "scr_obj_c", "axis" )
-
-        OBJICON( "TEAM_ALLIES", 3, "compass_waypoint_captureneutral_d", "scr_obj_d", "neutral" )
-        OBJICON( "TEAM_ALLIES", 3, "compass_waypoint_defend_d", "scr_obj_d", "allies" )
-        OBJICON( "TEAM_ALLIES", 3, "compass_waypoint_capture_d", "scr_obj_d", "axis" )
-        OBJICON( "TEAM_AXIS", 3, "compass_waypoint_captureneutral_d", "scr_obj_d", "neutral" )
-        OBJICON( "TEAM_AXIS", 3, "compass_waypoint_capture_d", "scr_obj_d", "allies" )
-        OBJICON( "TEAM_AXIS", 3, "compass_waypoint_defend_d", "scr_obj_d", "axis" )
-
-        OBJICON( "TEAM_ALLIES", 4, "compass_waypoint_captureneutral_e", "scr_obj_e", "neutral" )
-        OBJICON( "TEAM_ALLIES", 4, "compass_waypoint_defend_e", "scr_obj_e", "allies" )
-        OBJICON( "TEAM_ALLIES", 4, "compass_waypoint_capture_e", "scr_obj_e", "axis" )
-        OBJICON( "TEAM_AXIS", 4, "compass_waypoint_captureneutral_e", "scr_obj_e", "neutral" )
-        OBJICON( "TEAM_AXIS", 4, "compass_waypoint_capture_e", "scr_obj_e", "allies" )
-        OBJICON( "TEAM_AXIS", 4, "compass_waypoint_defend_e", "scr_obj_e", "axis" )
-        */
+        // Animated admin log line.
+        // Because of animation formula, will be shown fine if new 'show' called.
+        itemDef
+        {
+            rect        0 20 640 40 HORIZONTAL_ALIGN_CENTER VERTICAL_ALIGN_TOP
+            origin      6 0
+            exp text    (locString("@ROTUUI_ADMINACTIONNOTIFY", dvarString("ui_hud_adminaction_player"), dvarString("ui_hud_adminaction_message"), dvarString("ui_hud_adminaction_reason")));
+            textfont    UI_FONT_OBJECTIVE
+            textscale   0.35
+            textalign   ITEM_ALIGN_LEFT
+            textstyle   ITEM_TEXTSTYLE_SHADOWED
+            forecolor   1 1 1 1
+            ANIMATION_FADEINOUT(4.0, "ui_hud_adminaction_time");
+            decoration
+        }
     }
 
     //#define WEAPINFO_X -150
@@ -1184,64 +1152,6 @@
             decoration
         }
     }
-
-    /// Taff test
-    // Remote Talking Status
-//  menuDef
-//  {
-//      name            "talkers"
-//      rect            0 120 24 24 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-//      fullScreen      0
-//      visible         when( dvarint( ui_hud_hardcore ) == 0 );
-//
-//      itemDef
-//      {
-//          name            "talker1Rect"
-//          rect            0 0 24 24
-//          forecolor       1 1 1 1
-//          textscale       TEXTSIZE_SMALL
-//          textstyle       ITEM_TEXTSTYLE_SHADOWED
-//          ownerdraw       CG_TALKER1
-//          visible         1
-//          decoration
-//      }
-//
-//      itemDef
-//      {
-//          name            "talker2Rect"
-//          rect            0 24 24 24
-//          forecolor       1 1 1 1
-//          textscale       TEXTSIZE_SMALL
-//          textstyle       ITEM_TEXTSTYLE_SHADOWED
-//          ownerdraw       CG_TALKER2
-//          visible         1
-//          decoration
-//      }
-//
-//      itemDef
-//      {
-//          name            "talker3Rect"
-//          rect            0 48 24 24
-//          forecolor       1 1 1 1
-//          textscale       TEXTSIZE_SMALL
-//          textstyle       ITEM_TEXTSTYLE_SHADOWED
-//          ownerdraw       CG_TALKER3
-//          visible         1
-//          decoration
-//      }
-//
-//      itemDef
-//      {
-//          name            "talker4Rect"
-//          rect            0 72 24 24
-//          forecolor       1 1 1 1
-//          textscale       TEXTSIZE_SMALL
-//          textstyle       ITEM_TEXTSTYLE_SHADOWED
-//          ownerdraw       CG_TALKER4
-//          visible         1
-//          decoration
-//      }
-//  }
 
     menuDef
     {

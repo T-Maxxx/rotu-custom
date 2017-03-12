@@ -1,540 +1,0 @@
-index,type,type,name,usage(KB),total(KB)
-1,  string,string,,
-,
-
-2,  techset,techset,sm2/mc_l_sm_r0c0,,
-3,  techset,techset,sm2/mc_l_hsm_r0c0,,
-4,  techset,techset,mc_l_sm_r0c0,,
-5,  techset,techset,mc_l_hsm_r0c0,,
-6,  xmodel,xmodel,cyclops,,
-7,  xanim,xanim,boss_jump,,
-8,    menu,menu,changeclass_marines_mw,\‚w,,\‚w,
-9,  menufile,menufile,ui_mp/scriptmenus/changeclass_marines_mw.menu,€_@,€_@
-10,    menu,menu,team_marinesopfor,\‚w,,\‚w,
-11,  menufile,menufile,ui_mp/scriptmenus/team_marinesopfor.menu,€_@,€_@
-12,    menu,menu,playermenu,,
-13,  menufile,menufile,ui_mp/scriptmenus/playermenu.menu,€_@,€_@
-14,    menu,menu,changeclass_ability,,
-15,  menufile,menufile,ui_mp/scriptmenus/changeclass_ability.menu,€_@,€_@
-16,    menu,menu,extras_shop,,
-17,  menufile,menufile,ui_mp/scriptmenus/extras_shop.menu,€_@,€_@
-18,    menu,menu,skillpoints,,
-19,  menufile,menufile,ui_mp/scriptmenus/skillpoints.menu,€_@,€_@
-20,    menu,menu,admin,,
-21,  menufile,menufile,ui_mp/scriptmenus/admin.menu,€_@,€_@
-22,    menu,menu,admin_kick,,
-23,  menufile,menufile,ui_mp/scriptmenus/admin_kick.menu,€_@,€_@
-24,    menu,menu,admin_ban,,
-25,  menufile,menufile,ui_mp/scriptmenus/admin_ban.menu,€_@,€_@
-26,    menu,menu,admin_temp_ban,,
-27,  menufile,menufile,ui_mp/scriptmenus/admin_temp_ban.menu,€_@,€_@
-28,    menu,menu,admin_warn,,
-29,  menufile,menufile,ui_mp/scriptmenus/admin_warn.menu,€_@,€_@
-30,    menu,menu,admin_changemap,‹— ,‹— 
-31,  menufile,menufile,ui_mp/scriptmenus/admin_changemap.menu,,
-32,    menu,menu,development,,
-33,  menufile,menufile,ui_mp/scriptmenus/development.menu,,
-34,    menu,menu,class,,
-35,    menu,menu,prestige_reset1,,
-36,    menu,menu,prestige_reset3,,
-37,  menufile,menufile,ui_mp/scriptmenus/class.menu,,
-38,    menu,menu,compass_old,\‚w,,\‚w,
-39,    menu,menu,xpbar,\‚w,,\‚w,
-40,    menu,menu,scorebars,\‚w,,\‚w,
-41,    menu,menu,weaponinfo,\‚w,,\‚w,
-42,    menu,menu,fullscreenmap,\‚w,,\‚w,
-43,    menu,menu,dpad,\‚w,,\‚w,
-44,    menu,menu,killcam,\‚w,,\‚w,
-45,  menufile,menufile,ui_mp/hud.menu,€_@,€_@
-46,    menu,menu,main_text,\‚w,,\‚w,
-47,    menu,menu,pc_cac_popup,\‚w,,\‚w,
-48,    menu,menu,about_rotu,\‚w,,\‚w,
-49,  menufile,menufile,ui_mp/main.menu,€_@,€_@
-50,    menu,menu,quickmessage,,
-51,  menufile,menufile,ui_mp/wm_quickmessage.menu,€_@,€_@
-52,    menu,menu,controls_multi,,
-53,  menufile,menufile,ui_mp/controls_multi.menu,€_@,€_@
-54,    menu,menu,createserver,\‚w,,\‚w,
-55,    menu,menu,reset_gamesettings,\‚w,,\‚w,
-56,  menufile,menufile,ui_mp/createserver.menu,€_@,€_@
-57,    menu,menu,settings_quick_war_@mpui_initialzombs,,
-58,    menu,menu,settings_quick_war_@mpui_preparetime,,
-59,    menu,menu,settings_quick_war_@mpui_spawnspeed,,
-60,    menu,menu,settings_quick_war_@mpui_healthincrease,,
-61,    menu,menu,settings_quick_war,,
-62,    menu,menu,settings_quick_war_@mpui_rules_spectating,,
-63,  menufile,menufile,ui_mp/settings_quick_war.menu,€_@,€_@
-64,    menu,menu,player_profile,,
-65,    menu,menu,profile_create_popmenu,,
-66,    menu,menu,profile_must_create_popmenu,,
-67,    menu,menu,profile_del_sure_popmenu,,
-68,    menu,menu,profile_exists_popmenu,,
-69,    menu,menu,profile_create_fail_popmenu,,
-70,    menu,menu,profile_create_too_many_popmenu,,
-71,    menu,menu,profile_delete_fail_popmenu,,
-72,  menufile,menufile,ui/playerprofile.menu,€_@,€_@
-73,    menu,menu,menu_challenges,\‚w,,\‚w,
-74,    menu,menu,popup_tier,\‚w,,\‚w,
-75,  menufile,menufile,ui_mp/challenges.menu,€_@,€_@
-76,  techset,techset,mc_l_sm_r0c0s0,€_@,€_@
-77,  techset,techset,mc_l_hsm_r0c0s0,€_@,€_@
-78,  xmodel,xmodel,weapon_g36,,
-79,  techset,techset,sm2/mc_reflexsight,,
-80,  techset,techset,mc_reflexsight,,
-81,  techset,techset,sm2/mc_l_sm_b0c0s0,,
-82,  techset,techset,sm2/mc_l_hsm_b0c0,,
-83,  techset,techset,mc_l_sm_b0c0s0,,
-84,  techset,techset,mc_l_sm_b0c0,,
-85,  techset,techset,mc_l_hsm_b0c0,,
-86,  techset,techset,mc_l_hsm_b0c0s0,,
-87,  xmodel,xmodel,viewmodel_g36c,,
-88,  xmodel,xmodel,weapon_p90_sd,(,(
-89,  xmodel,xmodel,viewmodel_p90_silencer,(,(
-90,  xmodel,xmodel,viewmodel_m4m203_silencer_reflex,,
-91,  xmodel,xmodel,weapon_m4gre_sp_silencer_reflex,,
-92,  techset,techset,sm2/mc_l_sm_r0c0n0s0,,
-93,  techset,techset,sm2/mc_l_hsm_r0c0n0,,
-94,  techset,techset,mc_l_sm_r0c0n0s0,,
-95,  techset,techset,mc_l_sm_r0c0n0,,
-96,  techset,techset,mc_l_hsm_r0c0n0,,
-97,  techset,techset,mc_l_hsm_r0c0n0s0,,
-98,  techset,techset,sm2/mc_l_sm_t0c0n0s0,,
-99,  techset,techset,sm2/mc_l_sm_t0c0,,
-100,  techset,techset,sm2/mc_l_hsm_t0c0,,
-101,  techset,techset,sm2/mc_l_hsm_t0c0n0,,
-102,  techset,techset,mc_l_sm_t0c0n0s0,,
-103,  techset,techset,mc_l_sm_t0c0,,
-104,  techset,techset,mc_l_sm_t0c0s0,,
-105,  techset,techset,mc_l_sm_t0c0n0,,
-106,  techset,techset,mc_l_hsm_t0c0,,
-107,  techset,techset,mc_l_hsm_t0c0s0,,
-108,  techset,techset,mc_l_hsm_t0c0n0,,
-109,  techset,techset,mc_l_hsm_t0c0n0s0,,
-110,  xmodel,xmodel,viewmodel_m21sd,,
-111,  xmodel,xmodel,weapon_m21sd_woodland,,
-112,  xmodel,xmodel,weapon_minigun,,
-113,  xanim,xanim,viewmodel_m4m203_ads_fire,,
-114,  rawfile,rawfile,animtrees/multiplayer.atr,,
-115,  rawfile,rawfile,mp/playeranim.script,,
-116,  rawfile,rawfile,mp/cod2maps.arena,,
-117,  xmodel,xmodel,body_complete_sp_vip,,
-118,  xmodel,xmodel,body_complete_sp_russian_farmer,,
-119,  techset,techset,sm2/mc_l_sm_b0c0n0s0,,
-120,  techset,techset,sm2/mc_l_hsm_b0c0n0,,
-121,  techset,techset,mc_l_sm_b0c0n0s0,,
-122,  techset,techset,mc_l_sm_b0c0n0,,
-123,  techset,techset,mc_l_hsm_b0c0n0,,
-124,  techset,techset,mc_l_hsm_b0c0n0s0,,
-125,  xmodel,xmodel,body_mp_usmc_rifleman,,
-126,  xmodel,xmodel,body_mp_usmc_support,,
-127,  xmodel,xmodel,body_mp_usmc_woodland_sniper,,
-128,  xmodel,xmodel,body_mp_opforce_support,,
-129,  xmodel,xmodel,body_mp_usmc_woodland_support,,
-130,  xmodel,xmodel,body_mp_usmc_woodland_recon,,
-131,  xmodel,xmodel,body_mp_usmc_woodland_specops,,
-132,  xmodel,xmodel,body_mp_usmc_woodland_assault,,
-133,  xmodel,xmodel,body_mp_usmc_sniper,,
-134,  xmodel,xmodel,head_sp_usmc_zach_zach_body_goggles,,
-135,  xmodel,xmodel,head_sp_usmc_sami_goggles_zach_body,,
-136,  xmodel,xmodel,head_mp_usmc_ghillie,,
-137,  xmodel,xmodel,head_sp_opforce_derik_body_f,,
-138,  xmodel,xmodel,head_sp_sas_woodland_mac,,
-139,  xmodel,xmodel,head_sp_opforce_geoff_headset_body_c,,
-140,  xmodel,xmodel,head_sp_sas_woodland_peter,,
-141,  xmodel,xmodel,head_sp_sas_woodland_todd,,
-142,  xmodel,xmodel,head_sp_sas_woodland_hugh,,
-143,  xmodel,xmodel,head_sp_spetsnaz_collins_vladbody,,
-144,  techset,techset,mc_l_sm_skin_r0c0,,
-145,  techset,techset,mc_l_hsm_skin_r0c0,,
-146,  xmodel,xmodel,body_hellknight,,
-147,  xmodel,xmodel,mw3_sentry_gl_base,,
-148,  xmodel,xmodel,mw3_sentry_gl_turret,,
-149,  techset,techset,sm2/l_sm_r0c0,,
-150,  techset,techset,sm2/l_hsm_r0c0,,
-151,  techset,techset,l_sm_r0c0,,
-152,  techset,techset,l_sm_skin_r0c0,,
-153,  techset,techset,l_hsm_skin_r0c0,,
-154,  xanim,xanim,ai_zombie_sprint_v4,,
-155,  xanim,xanim,ai_zombie_attack_v1,,
-156,  xanim,xanim,german_shepherd_sitting_looking_idle,,
-157,  xanim,xanim,german_shepherd_run,,
-158,  xanim,xanim,german_shepherd_run_attack,,
-159,  xanim,xanim,german_shepherd_death_front,,
-160,  xanim,xanim,hunted_dazed_walk_a_zombie,,
-161,  xanim,xanim,standunarmed_idle_loop,,
-162,  xanim,xanim,unarmed_panickedrun_loop_v1,,
-163,  techset,techset,sm2/effect_zfeather,,
-164,  techset,techset,effect_zfeather,,
-165,  fx,fx,impacts/flesh_hit_body_nonfatal,,
-166,  techset,techset,sm2/effect_zfeather_falloff_add_nofog,,
-167,  techset,techset,sm2/effect_falloff_add_nofog,,
-168,  techset,techset,effect_zfeather_falloff_add_nofog,,
-169,  techset,techset,effect_falloff_add_nofog,,
-170,  fx,fx,misc/healing,,
-171,  techset,techset,sm2/effect_zfeather_add_nofog,,
-172,  techset,techset,effect_zfeather_add_nofog,,
-173,  fx,fx,misc/heal_glow_body,–,–
-174,  techset,techset,sm2/effect_add_eyeoffset,–,–
-175,  techset,techset,effect_add_eyeoffset,–,–
-176,  fx,fx,misc/heal_glow,,
-177,  fx,fx,misc/flashlight,0,0
-178,  fx,fx,smoke/flare_smoke,–,–
-179,  fx,fx,misc/spirit,–,–
-180,  fx,fx,misc/toxic_gas,–,–
-181,  techset,techset,sm2/wc_l_sm_b0c0,–,–
-182,  techset,techset,sm2/wc_l_hsm_b0c0,–,–
-183,  techset,techset,wc_l_sm_b0c0,–,–
-184,  techset,techset,wc_l_hsm_b0c0,–,–
-185,  fx,fx,misc/ground_rising,–,–
-186,  fx,fx,explosions/pyromaniac,–,–
-187,  fx,fx,dust/dust_trail_ir,–,–
-188,  xmodel,xmodel,ch_tombstone3,,
-189,  xanim,xanim,ai_zombie_quad_idle,,
-190,  xanim,xanim,ai_zombie_quad_crawl_sprint,,
-191,  xanim,xanim,ai_zombie_quad_crawl,,
-192,  xanim,xanim,ai_zombie_quad_attack,,
-193,  rawfile,rawfile,shock/toxic_gas_mp.shock,,
-194,  rawfile,rawfile,shock/teleporter.shock,,
-195,  rawfile,rawfile,shock/infection.shock,,
-196,  rawfile,rawfile,shock/boss.shock,,
-197,  rawfile,rawfile,shock/default_mp.shock,,
-198,  techset,techset,sm2/l_sm_scroll_r0c0,»,»
-199,  techset,techset,sm2/l_hsm_scroll_r0c0,»,»
-200,  techset,techset,l_sm_scroll_r0c0,»,»
-201,  techset,techset,l_hsm_scroll_r0c0,»,»
-202,  techset,techset,sm2/mc_l_sm_scroll_r0c0,»,»
-203,  techset,techset,sm2/mc_l_hsm_scroll_r0c0,»,»
-204,  techset,techset,mc_l_sm_scroll_r0c0,»,»
-205,  techset,techset,mc_l_hsm_scroll_r0c0,»,»
-206,  techset,techset,sm2/mc_l_sm_scroll_b0c0,»,»
-207,  techset,techset,mc_l_sm_scroll_b0c0,»,»
-208,  xmodel,xmodel,bx_teleporter,(,(
-209,  rawfile,rawfile,shock/zombiedamage.shock,(,(
-210,  techset,techset,sm2/distortion_scale_zfeather,(,(
-211,  techset,techset,sm2/distortion_scale,(,(
-212,  techset,techset,distortion_scale_zfeather,(,(
-213,  techset,techset,distortion_scale,(,(
-214,  techset,techset,sm2/effect_zfeather_falloff_add,(,(
-215,  techset,techset,sm2/effect_falloff_add,(,(
-216,  techset,techset,effect_zfeather_falloff_add,(,(
-217,  techset,techset,effect_falloff_add,(,(
-218,  fx,fx,fire/firelp_small_pm_rotu,,
-219,  xmodel,xmodel,bx_medkit,(,(
-220,  techset,techset,sm2/effect_zfeather_add_eyeoffset,(,(
-221,  techset,techset,effect_zfeather_add_eyeoffset,(,(
-222,  fx,fx,misc/fumes,0,0
-223,  fx,fx,misc/soul,0,0
-224,  fx,fx,misc/soulspawn,0,0
-225,  fx,fx,misc/medkit,0,0
-226,  fx,fx,misc/laser_sight_red,0,0
-227,  fx,fx,misc/laser_sight_green,0,0
-228,  fx,fx,misc/laser_sight_blue,0,0
-229,  xmodel,xmodel,izmb_zombie1_body,,
-230,  xmodel,xmodel,izmb_zombie2_body,,
-231,  xmodel,xmodel,izmb_zombie2_head,,
-232,  xmodel,xmodel,izmb_zombie3,,
-233,  xmodel,xmodel,ammobox,,
-234,  xmodel,xmodel,bo_quad,,
-235,  xmodel,xmodel,mw2_mp5k_viewmodel,,
-236,  xmodel,xmodel,mw2_mp5k_worldmodel,,
-237,  xmodel,xmodel,mw2_mp5k_worldmodel_silencer,,
-238,  xmodel,xmodel,worldmodel_thundergun,(,(
-239,  xmodel,xmodel,viewmodel_thundergun,(,(
-240,  fx,fx,muzzleflashes/thundergun,–,–
-241,  xanim,xanim,viewmodel_aug_ads_fire,–,–
-242,  xanim,xanim,viewmodel_aug_fire,–,–
-243,  xanim,xanim,viewmodel_aug_idle,–,–
-244,  xanim,xanim,viewmodel_aug_pullout,–,–
-245,  xanim,xanim,viewmodel_aug_putaway,,
-246,  xanim,xanim,viewmodel_aug_reload,,
-247,  xanim,xanim,viewmodel_aug_sprint_in,,
-248,  xanim,xanim,viewmodel_aug_sprint_loop,,
-249,  xanim,xanim,viewmodel_aug_sprint_out,,
-250,  xmodel,xmodel,weapon_aug,,
-251,  xmodel,xmodel,viewmodel_aug,,
-252,  techset,techset,sm2/l_sm_r0c0n0s0,,
-253,  techset,techset,sm2/l_hsm_r0c0n0,,
-254,  techset,techset,l_sm_r0c0n0s0,,
-255,  techset,techset,l_hsm_r0c0n0,,
-256,  xmodel,xmodel,mw2_sentry_turret,,
-257,  techset,techset,sm2/wc_l_sm_b0c0n0s0,,
-258,  techset,techset,sm2/wc_l_hsm_b0c0n0,,
-259,  techset,techset,wc_l_sm_b0c0n0s0,,
-260,  techset,techset,wc_l_sm_b0c0s0,,
-261,  techset,techset,wc_l_sm_b0c0n0,,
-262,  techset,techset,wc_l_hsm_b0c0s0,,
-263,  techset,techset,wc_l_hsm_b0c0n0,,
-264,  techset,techset,wc_l_hsm_b0c0n0s0,,
-265,  fx,fx,impacts/large_metalhit_1,–,–
-266,  fx,fx,smoke/heli_engine_smolder, , 
-267,  xmodel,xmodel,viewmodel_bo_minigun,,
-268,  xmodel,xmodel,worldmodel_bo_minigun,,
-269,  xanim,xanim,viewmodel_minigun_pullout,,
-270,  xanim,xanim,viewmodel_minigun_putaway,,
-271,  xanim,xanim,viewmodel_minigun_fire,,
-272,  xanim,xanim,viewmodel_minigun_idle,,
-273,  xanim,xanim,viewmodel_minigun_sprint_in,,
-274,  xanim,xanim,viewmodel_minigun_sprint_loop,,
-275,  xanim,xanim,viewmodel_minigun_sprint_out,,
-276,  xanim,xanim,pb_minigun_stand_idle,,
-277,  xanim,xanim,pb_minigun_crouch_idle,,
-278,  xanim,xanim,pt_minigun_stand_flinch_forward,,
-279,  xanim,xanim,pt_minigun_stand_flinch_back,,
-280,  xanim,xanim,pt_minigun_stand_flinch_left,,
-281,  xanim,xanim,pt_minigun_stand_flinch_right,,
-282,  xanim,xanim,pt_minigun_crouch_flinch_forward,,
-283,  xanim,xanim,pt_minigun_crouch_flinch_back,,
-284,  xanim,xanim,pt_minigun_crouch_flinch_left,,
-285,  xanim,xanim,pt_minigun_crouch_flinch_right,,
-286,  xanim,xanim,pb_minigun_stand_walk,,
-287,  xanim,xanim,pb_minigun_stand_walk_back,,
-288,  xanim,xanim,pb_minigun_crouch_run_forward,,
-289,  xanim,xanim,pb_minigun_crouch_run_back,,
-290,  xanim,xanim,pb_minigun_stand_run,,
-291,  xanim,xanim,pb_minigun_stand_run_back,,
-292,  xanim,xanim,pb_minigun_crouch_turn_90right,,
-293,  xanim,xanim,pb_minigun_crouch_turn_90left,,
-294,  xanim,xanim,pb_minigun_stand_turn_90right,,
-295,  xanim,xanim,pb_minigun_stand_turn_90left,,
-296,  xanim,xanim,pt_minigun_stand_fire,,
-297,  xanim,xanim,pt_minigun_crouch_fire,,
-298,  xanim,xanim,pt_minigun_crouch_raise,,
-299,  xanim,xanim,pt_minigun_stand_raise,,
-300,  xanim,xanim,pb_minigun_runjump_takeoff,,
-301,  xanim,xanim,pb_minigun_standjump_takeoff,,
-302,  xanim,xanim,pt_minigun_stand_putaway,,
-303,  xanim,xanim,pt_minigun_crouch_putaway,,
-304,  fx,fx,muzzleflashes/custom_minigun_flash,–,–
-305,  techset,techset,mc_l_sm_skin_r0c0n0s0,–,–
-306,  techset,techset,mc_l_sm_skin_r0c0s0,–,–
-307,  techset,techset,mc_l_sm_skin_r0c0n0,–,–
-308,  techset,techset,mc_l_hsm_skin_r0c0s0,–,–
-309,  techset,techset,mc_l_hsm_skin_r0c0n0,–,–
-310,  techset,techset,mc_l_hsm_skin_r0c0n0s0,–,–
-311,  xmodel,xmodel,wm_mw3_aa12,,
-312,  xmodel,xmodel,vm_mw3_aa12,,
-313,  xanim,xanim,viewmodel_aa12_fire,,
-314,  xanim,xanim,viewmodel_aa12_fire_ads,,
-315,  xanim,xanim,viewmodel_aa12_idle,,
-316,  xanim,xanim,viewmodel_aa12_pullout,,
-317,  xanim,xanim,viewmodel_aa12_pullout_quick,,
-318,  xanim,xanim,viewmodel_aa12_putaway,,
-319,  xanim,xanim,viewmodel_aa12_putaway_quick,,
-320,  xanim,xanim,viewmodel_aa12_reload,,
-321,  xanim,xanim,viewmodel_aa12_reload_empty,,
-322,  xanim,xanim,viewmodel_aa12_sprint_in,,
-323,  xanim,xanim,viewmodel_aa12_sprint_loop,,
-324,  xanim,xanim,viewmodel_aa12_sprint_out,,
-325,  xmodel,xmodel,fx_shotgun_shell,,
-326,  fx,fx,shellejects/shotgun_resting,,
-327,  xmodel,xmodel,raygun_viewmodel,,
-328,  xmodel,xmodel,weapon_raygun,,
-329,  xanim,xanim,viewmodel_ray_gun_idle,,
-330,  xanim,xanim,viewmodel_ray_gun_fire,,
-331,  xanim,xanim,viewmodel_ray_gun_reload,,
-332,  xanim,xanim,viewmodel_ray_gun_raise,,
-333,  xanim,xanim,viewmodel_ray_gun_drop,,
-334,  fx,fx,raygun/raygun_trail, , 
-335,  fx,fx,raygun/raygun_muzzle, , 
-336,  fx,fx,raygun/raygun_impact,–,–
-337,  fx,fx,wunderwaffe/wunderwaffe_muzzle,–,–
-338,  fx,fx,wunderwaffe/wunderwaffe_trail,–,–
-339,  fx,fx,wunderwaffe/wunderwaffe_impact,–,–
-340,  xmodel,xmodel,tesla_viewmodel,(,(
-341,  xmodel,xmodel,weapon_tesla,(,(
-342,  xanim,xanim,viewmodel_tesla_pullout,(,(
-343,  xanim,xanim,viewmodel_tesla_pullout_fast,(,(
-344,  xanim,xanim,viewmodel_tesla_putaway,(,(
-345,  xanim,xanim,viewmodel_tesla_putaway_fast,(,(
-346,  xanim,xanim,viewmodel_tesla_reload,(,(
-347,  xanim,xanim,viewmodel_tesla_ads_fire,(,(
-348,  xanim,xanim,viewmodel_tesla_fire,(,(
-349,  xanim,xanim,viewmodel_tesla_first_raise,(,(
-350,  xanim,xanim,viewmodel_tesla_idle,(,(
-351,  xanim,xanim,pt_flamethrower_fire_center,(,(
-352,  xanim,xanim,pt_flamethrower_crouch_fire_center,(,(
-353,  fx,fx,flamethrower/muzzle,,
-354,  xmodel,xmodel,flamethrower_viewmodel,8,8
-355,  xmodel,xmodel,weapon_flamethrower,,
-356,  xanim,xanim,viewmodel_flamethrower_idle,,
-357,  xanim,xanim,viewmodel_flamethrower_fire,,
-358,  xanim,xanim,viewmodel_flamethrower_pullout,,
-359,  xanim,xanim,viewmodel_flamethrower_putaway,,
-360,  xanim,xanim,viewmodel_flamethrower_pullout_fast,,
-361,  xanim,xanim,viewmodel_flamethrower_putaway_fast,,
-362,  xmodel,xmodel,mw2_intervention_vm,,
-363,  xmodel,xmodel,mw2_intervention_wm,,
-364,  xanim,xanim,viewmodel_intervention_idle,,
-365,  xanim,xanim,viewmodel_intervention_reload,,
-366,  xanim,xanim,viewmodel_intervention_pullout,,
-367,  xanim,xanim,viewmodel_intervention_putaway,,
-368,  xanim,xanim,viewmodel_intervention_sprint_in,,
-369,  xanim,xanim,viewmodel_intervention_sprint_loop,,
-370,  xanim,xanim,viewmodel_intervention_sprint_out,,
-371,  xanim,xanim,viewmodel_intervention_fire,,
-372,  xanim,xanim,viewmodel_intervention_bolt,,
-373,  xmodel,xmodel,weapon_bo_tomahawk,(,(
-374,  xmodel,xmodel,weapon_bo_tomahawk_wm,(,(
-375,  xmodel,xmodel,weapon_bo_tomahawk_wm_knife,(,(
-376,  xanim,xanim,viewmodel_tomahawk_attack,(,(
-377,  xanim,xanim,viewmodel_tomahawk_attack2,(,(
-378,  xanim,xanim,viewmodel_tomahawk_pullout,(,(
-379,  xanim,xanim,viewmodel_tomahawk_putaway,(,(
-380,  xanim,xanim,viewmodel_tomahawk_idle,(,(
-381,  xanim,xanim,viewmodel_tomahawk_sprint_in,(,(
-382,  xanim,xanim,viewmodel_tomahawk_sprint_loop,(,(
-383,  xanim,xanim,viewmodel_tomahawk_sprint_out,(,(
-384,  xmodel,xmodel,weapon_crossbow_1,(,(
-385,  xmodel,xmodel,weapon_crossbow_viewhands,(,(
-386,  xanim,xanim,viewmodel_crossbow_empty_pullout,(,(
-387,  xanim,xanim,viewmodel_crossbow_empty_putaway,(,(
-388,  xanim,xanim,viewmodel_crossbow_fire,(,(
-389,  xanim,xanim,viewmodel_crossbow_idle,(,(
-390,  xanim,xanim,viewmodel_crossbow_idle_empty,(,(
-391,  xanim,xanim,viewmodel_crossbow_pullout,(,(
-392,  xanim,xanim,viewmodel_crossbow_putaway,(,(
-393,  xanim,xanim,viewmodel_crossbow_reload,(,(
-394,  xanim,xanim,viewmodel_crossbow_sprint_in,(,(
-395,  xanim,xanim,viewmodel_crossbow_sprint_loop,(,(
-396,  xanim,xanim,viewmodel_crossbow_sprint_out,(,(
-397,  xmodel,xmodel,viewmodel_mw2_f2000_mp,,
-398,  xmodel,xmodel,weapon_mw2_f2000_acog_mp,(,(
-399,  xmodel,xmodel,weapon_mw2_f2000_mp,(,(
-400,  xmodel,xmodel,weapon_mw2_f2000_scope_mp,(,(
-401,  xmodel,xmodel,weapon_mw2_f2000_silencer_mp,(,(
-402,  xanim,xanim,viewmodel_mw2_f2000_ads_fire,Ñœi ,Ñœi 
-403,  xanim,xanim,viewmodel_mw2_f2000_fire,Ñœi ,Ñœi 
-404,  xanim,xanim,viewmodel_mw2_f2000_idle,Ñœi ,Ñœi 
-405,  xanim,xanim,viewmodel_mw2_f2000_pullout,Ñœi ,Ñœi 
-406,  xanim,xanim,viewmodel_mw2_f2000_pullout_first,Ñœi ,Ñœi 
-407,  xanim,xanim,viewmodel_mw2_f2000_putaway,Ñœi ,Ñœi 
-408,  xanim,xanim,viewmodel_mw2_f2000_reload,Ñœi ,Ñœi 
-409,  xanim,xanim,viewmodel_mw2_f2000_reload_empty,Ñœi ,Ñœi 
-410,  xanim,xanim,viewmodel_mw2_f2000_sprint_in,Ñœi ,Ñœi 
-411,  xanim,xanim,viewmodel_mw2_f2000_sprint_loop,Ñœi ,Ñœi 
-412,  xanim,xanim,viewmodel_mw2_f2000_sprint_out,Ñœi ,Ñœi 
-413,  xanim,xanim,viewmodel_mw2_spas12_ads_fire,Ö ,Ö 
-414,  xanim,xanim,viewmodel_mw2_spas12_ads_rechamber,Ö ,Ö 
-415,  xanim,xanim,viewmodel_mw2_spas12_fire,Ö ,Ö 
-416,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_fire,Ö ,Ö 
-417,  xanim,xanim,viewmodel_mw2_spas12_grip_ads_rechamber,Ö ,Ö 
-418,  xanim,xanim,viewmodel_mw2_spas12_grip_fire,Ö ,Ö 
-419,  xanim,xanim,viewmodel_mw2_spas12_grip_idle,Ö ,Ö 
-420,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout,Ö ,Ö 
-421,  xanim,xanim,viewmodel_mw2_spas12_grip_pullout_quick,Ö ,Ö 
-422,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway,Ö ,Ö 
-423,  xanim,xanim,viewmodel_mw2_spas12_grip_putaway_quick,Ö ,Ö 
-424,  xanim,xanim,viewmodel_mw2_spas12_grip_rechamber,Ö ,Ö 
-425,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_in,Ö ,Ö 
-426,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_loop,Ö ,Ö 
-427,  xanim,xanim,viewmodel_mw2_spas12_grip_reload_out,Ö ,Ö 
-428,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_in,Ö ,Ö 
-429,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_loop,Ö ,Ö 
-430,  xanim,xanim,viewmodel_mw2_spas12_grip_sprint_out,Ö ,Ö 
-431,  xanim,xanim,viewmodel_mw2_spas12_idle,Ö ,Ö 
-432,  xanim,xanim,viewmodel_mw2_spas12_pullout,Ö ,Ö 
-433,  xanim,xanim,viewmodel_mw2_spas12_pullout_quick,Ö ,Ö 
-434,  xanim,xanim,viewmodel_mw2_spas12_putaway,Ö ,Ö 
-435,  xanim,xanim,viewmodel_mw2_spas12_putaway_quick,Ö ,Ö 
-436,  xanim,xanim,viewmodel_mw2_spas12_rechamber,Ö ,Ö 
-437,  xanim,xanim,viewmodel_mw2_spas12_reload_in,Ö ,Ö 
-438,  xanim,xanim,viewmodel_mw2_spas12_reload_loop,Ö ,Ö 
-439,  xanim,xanim,viewmodel_mw2_spas12_reload_out,Ö ,Ö 
-440,  xanim,xanim,viewmodel_mw2_spas12_sprint_in,Ö ,Ö 
-441,  xanim,xanim,viewmodel_mw2_spas12_sprint_loop,Ö ,Ö 
-442,  xanim,xanim,viewmodel_mw2_spas12_sprint_out,Ö ,Ö 
-443,  xmodel,xmodel,viewmodel_mw2_spas12_mp,8,8
-444,  xmodel,xmodel,weapon_mw2_spas12_grip_mp,8,8
-445,  xmodel,xmodel,weapon_mw2_spas12_mp,8,8
-446,  xmodel,xmodel,weapon_mw2_spas12_reflex_mp,8,8
-447,  xmodel,xmodel,weapon_mw2_spas12_silencer_mp,8,8
-448,  rawfile,rawfile,maps/mp/_debug.gsc,Ö ,Ö 
-449,  rawfile,rawfile,maps/mp/_load.gsc,Ö ,Ö 
-450,  rawfile,rawfile,maps/mp/_umi.gsc,Ö ,Ö 
-451,  rawfile,rawfile,maps/mp/_umieditor.gsc,Ö ,Ö 
-452,  rawfile,rawfile,maps/mp/_unified_mapping_interface.gsc,Ö ,Ö 
-453,  rawfile,rawfile,maps/mp/_zombiescript.gsc,Ö ,Ö 
-454,  rawfile,rawfile,maps/mp/gametypes/dm.gsc,Ö ,Ö 
-455,  rawfile,rawfile,maps/mp/gametypes/surv.gsc,Ö ,Ö 
-456,  rawfile,rawfile,maps/mp/gametypes/war.gsc,Ö ,Ö 
-457,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic.gsc,Ö ,Ö 
-458,  rawfile,rawfile,maps/mp/gametypes/_spawnlogic_cod_original.gsc,Ö ,Ö 
-459,  rawfile,rawfile,scripts/bots/_bots.gsc,Ö ,Ö 
-460,  rawfile,rawfile,scripts/bots/_types.gsc,Ö ,Ö 
-461,  rawfile,rawfile,scripts/clients/_clients.gsc,Ö ,Ö 
-462,  rawfile,rawfile,scripts/gamemodes/_gamemodes.gsc,Ö ,Ö 
-463,  rawfile,rawfile,scripts/gamemodes/_hud.gsc,Ö ,Ö 
-464,  rawfile,rawfile,scripts/gamemodes/_mysterybox.gsc,Ö ,Ö 
-465,  rawfile,rawfile,scripts/gamemodes/_survival.gsc,Ö ,Ö 
-466,  rawfile,rawfile,scripts/gamemodes/_upgradables.gsc,Ö ,Ö 
-467,  rawfile,rawfile,scripts/include/admincommon.gsc,Ö ,Ö 
-468,  rawfile,rawfile,scripts/include/array.gsc,Ö ,Ö 
-469,  rawfile,rawfile,scripts/include/data.gsc,Ö ,Ö 
-470,  rawfile,rawfile,scripts/include/entities.gsc,Ö ,Ö 
-471,  rawfile,rawfile,scripts/include/hud.gsc,Ö ,Ö 
-472,  rawfile,rawfile,scripts/include/matrix.gsc,Ö ,Ö 
-473,  rawfile,rawfile,scripts/include/physics.gsc,Ö ,Ö 
-474,  rawfile,rawfile,scripts/include/strings.gsc,Ö ,Ö 
-475,  rawfile,rawfile,scripts/include/utility.gsc,Ö ,Ö 
-476,  rawfile,rawfile,scripts/include/waypoints.gsc,Ö ,Ö 
-477,  rawfile,rawfile,scripts/include/_map_util.gsc,Ö ,Ö 
-478,  rawfile,rawfile,scripts/level/signals.gsc,Ö ,Ö 
-479,  rawfile,rawfile,scripts/level/_levelsetup.gsc,Ö ,Ö 
-480,  rawfile,rawfile,scripts/level/_waypoints.gsc,Ö ,Ö 
-481,  rawfile,rawfile,scripts/players/_abilities.gsc,Ö ,Ö 
-482,  rawfile,rawfile,scripts/players/_barricades.gsc,Ö ,Ö 
-483,  rawfile,rawfile,scripts/players/_classes.gsc,Ö ,Ö 
-484,  rawfile,rawfile,scripts/players/_damagefeedback.gsc,Ö ,Ö 
-485,  rawfile,rawfile,scripts/players/_infection.gsc,Ö ,Ö 
-486,  rawfile,rawfile,scripts/players/_menus.gsc,Ö ,Ö 
-487,  rawfile,rawfile,scripts/players/_persistence.gsc,Ö ,Ö 
-488,  rawfile,rawfile,scripts/players/_playermodels.gsc,Ö ,Ö 
-489,  rawfile,rawfile,scripts/players/_players.gsc,Ö ,Ö 
-490,  rawfile,rawfile,scripts/players/_rank.gsc,Ö ,Ö 
-491,  rawfile,rawfile,scripts/players/_shop.gsc,Ö ,Ö 
-492,  rawfile,rawfile,scripts/players/_spree.gsc,Ö ,Ö 
-493,  rawfile,rawfile,scripts/players/_teleporter.gsc,Ö ,Ö 
-494,  rawfile,rawfile,scripts/players/_turrets.gsc,Ö ,Ö 
-495,  rawfile,rawfile,scripts/players/_usables.gsc,Ö ,Ö 
-496,  rawfile,rawfile,scripts/players/_weapons.gsc,Ö ,Ö 
-497,  rawfile,rawfile,scripts/server/_admincommands.gsc,Ö ,Ö 
-498,  rawfile,rawfile,scripts/server/_admininterface.gsc,Ö ,Ö 
-499,  rawfile,rawfile,scripts/server/_environment.gsc,Ö ,Ö 
-500,  rawfile,rawfile,scripts/server/_main_popup.gsc,Ö ,Ö 
-501,  rawfile,rawfile,scripts/server/_maprotation.gsc,Ö ,Ö 
-502,  rawfile,rawfile,scripts/server/_maps.gsc,Ö ,Ö 
-503,  rawfile,rawfile,scripts/server/_mapvoting22.gsc,Ö ,Ö 
-504,  rawfile,rawfile,scripts/server/_ranks.gsc,Ö ,Ö 
-505,  rawfile,rawfile,scripts/server/_rconinterface.gsc,Ö ,Ö 
-506,  rawfile,rawfile,scripts/server/_scoreboard.gsc,Ö ,Ö 
-507,  rawfile,rawfile,scripts/server/_server.gsc,Ö ,Ö 
-508,  rawfile,rawfile,scripts/server/_settings.gsc,Ö ,Ö 
-509,  rawfile,rawfile,scripts/server/_welcome.gsc,Ö ,Ö 
-510,  rawfile,rawfile,changelog.txt,Ö ,Ö 
-511,  xanim,xanim,death_stand_dropinplace,Ö ,Ö 
-512,  xmodel,xmodel,com_bottle4,,
-513,  xmodel,xmodel,com_barrel_blue_rust,,
-514,  xmodel,xmodel,ad_sodamachine,,
-515,  xmodel,xmodel,com_plasticcase_green_big,,
-516,  xmodel,xmodel,weapon_m60_clip,,
-517,  xmodel,xmodel,viewmodel_crossbow_mp,,
-518,  xmodel,xmodel,body_mp_usmc_grenadier,,
-519,  xmodel,xmodel,com_barrel_metal,,
-520,  xmodel,xmodel,com_barrel_biohazard,(,(
-521,  xmodel,xmodel,com_barrel_benzin,(,(
-522,  xmodel,xmodel,weapon_saw_mg_setup,,
-523,  xmodel,xmodel,body_complete_sp_zakhaevs_son,(,(
-524,  xmodel,xmodel,german_sheperd_dog,,
-525,  fx,fx,fire/emb_burst_a,,
-526,  fx,fx,fire/firelp_med_pm,,
-527,assetlist,assetlist,,ËÑ è,ËÑ è
-528,xanim,xanim,(misc),4,4
-529,material,material,(misc),4,4
-530,techset,techset,(misc),4,4
-531,image,image,(misc),4,4
-532,sound,sound,(misc),4,4
-533,loaded_sound,loaded_sound,(misc),4,4
-534,menu,menu,(misc),4,4
-535,localize,localize,(misc),4,4
-536,fx,fx,(misc),4,4
-537,rawfile,rawfile,(misc),4,4

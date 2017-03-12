@@ -56,64 +56,8 @@ precache()
     precacheMenu("admin_changemap");
 
     precacheString(&"ROTUSCRIPT_VISIBILITY_HIDDEN");
-    precacheString(&"ROTUSCRIPT_ADMINACTIONCONSOLEMSG");
     precacheString(&"ROTUSCRIPT_INFORM_ALL_FORMAT");
     precacheString(&"ROTUSCRIPT_INFORM_PLR_FORMAT");
-
-    precacheString(&"ROTUSCRIPT_GOT_WARNED_ON_THIS_SERVER");
-    precacheString(&"ROTUSCRIPT_ONE_WARNING_WAS_REMOVED");
-    precacheString(&"ROTUSCRIPT_ADMIN_REMOVED_WARNING");
-    precacheString(&"ROTUSCRIPT_ADMIN_REMOVED_ONE_LANGUAGE_WARN_FROM_YOU");
-    precacheString(&"ROTUSCRIPT_ONE_LANG_WARNING_WAS_REMOVED");
-    precacheString(&"ROTUSCRIPT_ADMIN_REMOVED_ALL_WARNS_FROM_YOU");
-    precacheString(&"ROTUSCRIPT_ALL_WARNS_WAS_REMOVED");
-    precacheString(&"ROTUSCRIPT_ADMIN_TOOK_750_RANKPTS_FROM_YOU");
-    precacheString(&"ROTUSCRIPT_DEMOTED");
-    precacheString(&"ROTUSCRIPT_750_RANKPTS_WAS_TAKEN");
-    precacheString(&"ROTUSCRIPT_ADMIN_PROMOTED_YOU");
-    precacheString(&"ROTUSCRIPT_PROMOTED");
-    precacheString(&"ROTUSCRIPT_ADMIN_GAVE_750RANKPTS_TO_YOU");
-    precacheString(&"ROTUSCRIPT_ADMIN_GAVE_750RANKPTS");
-    precacheString(&"ROTUSCRIPT_ADMIN_RESTORED_YOUR_DEF_PRIM_WEAP");
-    precacheString(&"ROTUSCRIPT_RESTORED_PRIM_WEAP");
-    precacheString(&"ROTUSCRIPT_ADMIN_RESTORED_YOUR_DEF_SIDEARM");
-    precacheString(&"ROTUSCRIPT_RESTORED_SIDEARM");
-    precacheString(&"ROTUSCRIPT_ADMIN_GAVE_YOU_2K_UP");
-    precacheString(&"ROTUSCRIPT_ADMIN_GAVE_2K_UP");
-    precacheString(&"ROTUSCRIPT_GOT_BANNED");
-    precacheString(&"ROTUSCRIPT_GOT_KICKED");
-    precacheString(&"ROTUSCRIPT_GOT_TEMPBANNED");
-    precacheString(&"ROTUSCRIPT_ADMIN_KILLED_ZOMBIES");
-    precacheString(&"ROTUSCRIPT_WAVE_RESTARTING");
-    precacheString(&"ROTUSCRIPT_ADMIN_MADE_YOU_DROP_WEAPON");
-    precacheString(&"ROTUSCRIPT_DROPPED_THEIR_WEAPON");
-    precacheString(&"ROTUSCRIPT_ADMIN_PLACED_AMMOBOX_NEAR");
-    precacheString(&"ROTUSCRIPT_AMMOBOX_HAS_BEEN_PLACED_NEAR");
-    precacheString(&"ROTUSCRIPT_ADMIN_PLACED_HEALING_AURA_NEAR");
-    precacheString(&"ROTUSCRIPT_HEALING_AURA_PLACED_NEAR");
-    precacheString(&"ROTUSCRIPT_YOU_WERE_DISARMED");
-    precacheString(&"ROTUSCRIPT_DISARMED");
-    precacheString(&"ROTUSCRIPT_ADMIN_TOOK_YOUR_WEAPON");
-    precacheString(&"ROTUSCRIPT_WEAPON_TAKEN");
-    precacheString(&"ROTUSCRIPT_HEALTH_RESTORED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_HEALTH_RESTORED");
-    precacheString(&"ROTUSCRIPT_INFECTION_CURED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_CURED");
-    precacheString(&"ROTUSCRIPT_YOU_SPAWNED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_SPAWNED");
-    precacheString(&"ROTUSCRIPT_CANT_SPAWN_NONSPECTATOR");
-    precacheString(&"ROTUSCRIPT_YOU_BOUNCED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_BOUNCED");
-    precacheString(&"ROTUSCRIPT_YOU_TELEPORTED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_WAS_TELEPORTED_TO_SPAWNPOINT");
-    precacheString(&"ROTUSCRIPT_WAS_TELEPORTED_TO_ADMIN");
-    precacheString(&"ROTUSCRIPT_WAS_TELEPORTED_FORWARD");
-    precacheString(&"ROTUSCRIPT_YOU_DOWNED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_DOWNED");
-    precacheString(&"ROTUSCRIPT_YOU_REVIVED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_REVIVED");
-    precacheString(&"ROTUSCRIPT_YOU_EXPLODED_BY_ADMIN");
-    precacheString(&"ROTUSCRIPT_EXPLODED");
 }
 
 /**
@@ -669,7 +613,7 @@ informPlayerOfAdminAction(player, color, message, reason)
 {
     debugPrint("in adminCommon::informPlayerOfAdminAction()", "fn", level.nonVerbose);
 
-    if (color == "positive")
+    /*if (color == "positive")
         color = "^2";
     else if (color == "negative")
         color = "^1";
@@ -681,7 +625,7 @@ informPlayerOfAdminAction(player, color, message, reason)
 
     if (self.admin.informPlayerOfAdminActions) {
         player iPrintlnBold(&"ROTUSCRIPT_INFORM_PLR_FORMAT", color, message, reason);
-    }
+    }*/
 }
 
 
@@ -701,14 +645,22 @@ adminActionConsoleMessage(player, message, reason)
     debugPrint("in adminCommon::adminActionConsoleMessage()", "fn", level.nonVerbose);
 
     if (!isDefined(player))
-        player = "";
+        player = "@ROTUUI_ALLPLAYERS";
     
     if (!isDefined(reason))
-        reason = &"ROTUSCRIPT_REASON_ADMIN_DECISION";
+        reason = "@ROTUSCRIPT_REASON_ADMIN_DECISION";
 
     if (self.admin.showActionConsoleMessages)
     {
-        iPrintln(&"ROTUSCRIPT_ADMINACTIONCONSOLEMSG", player, message, reason);
+        for (i = 0; i < level.players.size; ++i)
+            if (isDefined(level.players[i]))
+                level.players[i] setClientDvars(
+                    "ui_hud_adminaction_player", player,
+                    "ui_hud_adminaction_message", message,
+                    "ui_hud_adminaction_reason", reason, 
+                    "ui_hud_adminaction_time", getTime()
+                );
+        //iPrintln(&"ROTUSCRIPT_ADMINACTIONCONSOLEMSG", player, message, reason);
     }
 }
 

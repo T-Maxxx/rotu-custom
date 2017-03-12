@@ -231,12 +231,6 @@ LANG_ENGLISH        "No more upgrades for this weapon!"
 REFERENCE           VISIBILITY_HIDDEN
 LANG_ENGLISH        "^1Hidden"
 
-// &&1 Player.
-// &&2 Message.
-// &&3 Reason.
-REFERENCE           ADMINACTIONCONSOLEMSG
-LANG_ENGLISH        "^3[admin]: &&1: ^7&&2. Reason: &&3."
-
 // &&1 - COLOR
 // &&2 - PLAYER NAME
 // &&3 - MESSAGE
@@ -532,7 +526,7 @@ LANG_ENGLISH        "&&1 ^7covered the revival of &&2"
 /////////////
 
 REFERENCE           DIDYOUKNOW
-LANG_ENGLISH        "^3Did You Know: ^7&&1"
+LANG_ENGLISH        "^3Did you know: ^7&&1"
 
 REFERENCE           ADMIN_PREFIX
 LANG_ENGLISH        "^3[admin]: ^7&&1"
@@ -643,179 +637,6 @@ LANG_ENGLISH        "Hold [{+activate}] to rebuild"
 
 REFERENCE           REASON_ADMIN_DECISION
 LANG_ENGLISH        "admin decision"
-
-////////////////////
-// _adminCommands //
-////////////////////
-
-REFERENCE           GOT_WARNED_ON_THIS_SERVER
-LANG_ENGLISH        "got warned on this server"
-
-REFERENCE           ONE_WARNING_WAS_REMOVED
-LANG_ENGLISH        "one warning was removed"
-
-REFERENCE           ADMIN_REMOVED_WARNING
-LANG_ENGLISH        "Admin removed one warning from you"
-
-REFERENCE           ADMIN_REMOVED_ONE_LANGUAGE_WARN_FROM_YOU
-LANG_ENGLISH        "Admin removed one language warning from you"
-
-REFERENCE           ONE_LANG_WARNING_WAS_REMOVED
-LANG_ENGLISH        "one language warning was removed"
-
-REFERENCE           ADMIN_REMOVED_ALL_WARNS_FROM_YOU
-LANG_ENGLISH        "Admin removed all warnings from you"
-
-REFERENCE           ALL_WARNS_WAS_REMOVED
-LANG_ENGLISH        "all warnings were removed"
-
-REFERENCE           ADMIN_TOOK_750_RANKPTS_FROM_YOU
-LANG_ENGLISH        "Admin took 750 rank points from you"
-
-REFERENCE           DEMOTED
-LANG_ENGLISH        "demoted"
-
-REFERENCE           750_RANKPTS_WAS_TAKEN
-LANG_ENGLISH        "750 rank points was taken"
-
-REFERENCE           ADMIN_PROMOTED_YOU
-LANG_ENGLISH        "Admin promoted you"
-
-REFERENCE           PROMOTED
-LANG_ENGLISH        "promoted"
-
-REFERENCE           ADMIN_GAVE_750RANKPTS_TO_YOU
-LANG_ENGLISH        "Admin gave 750 rank points to you"
-
-REFERENCE           ADMIN_GAVE_750RANKPTS
-LANG_ENGLISH        "admin gave 750 rank points"
-
-REFERENCE           ADMIN_RESTORED_YOUR_DEF_PRIM_WEAP
-LANG_ENGLISH        "Admin restored your default primary weapon"
-
-REFERENCE           RESTORED_PRIM_WEAP
-LANG_ENGLISH        "primary weapon has been restored"
-
-REFERENCE           ADMIN_RESTORED_YOUR_DEF_SIDEARM
-LANG_ENGLISH        "Admin restored your default sidearm"
-
-REFERENCE           RESTORED_SIDEARM
-LANG_ENGLISH        "default sidearm has been restored"
-
-REFERENCE           ADMIN_GAVE_YOU_2K_UP
-LANG_ENGLISH        "Admin gave you 2000 upgrade points"
-
-REFERENCE           ADMIN_GAVE_2K_UP
-LANG_ENGLISH        "admin gave 2000 upgrade points"
-
-REFERENCE           GOT_BANNED
-LANG_ENGLISH        "got ^1BANNED^7 on this server"
-
-REFERENCE           GOT_KICKED
-LANG_ENGLISH        "got kicked from this server"
-
-REFERENCE           GOT_TEMPBANNED
-LANG_ENGLISH        "got temporarily banned from this server"
-
-REFERENCE           ADMIN_KILLED_ZOMBIES
-LANG_ENGLISH        "Admin killed all zombies"
-
-REFERENCE           WAVE_RESTARTING
-LANG_ENGLISH        "Wave restarting"
-
-REFERENCE           ADMIN_MADE_YOU_DROP_WEAPON
-LANG_ENGLISH        "Admin made you drop your weapon"
-
-REFERENCE           DROPPED_THEIR_WEAPON
-LANG_ENGLISH        "dropped their weapon"
-
-REFERENCE           ADMIN_PLACED_AMMOBOX_NEAR
-LANG_ENGLISH        "Admin placed an ammo box near you"
-
-REFERENCE           AMMOBOX_HAS_BEEN_PLACED_NEAR
-LANG_ENGLISH        "ammo box has been placed near"
-
-REFERENCE           ADMIN_PLACED_HEALING_AURA_NEAR
-LANG_ENGLISH        "Admin placed a healing aura near you"
-
-REFERENCE           HEALING_AURA_PLACED_NEAR
-LANG_ENGLISH        "a healing aura has been placed near"
-
-REFERENCE           YOU_WERE_DISARMED
-LANG_ENGLISH        "You were disarmed by the admin"
-
-REFERENCE           DISARMED
-LANG_ENGLISH        "disarmed"
-
-REFERENCE           ADMIN_TOOK_YOUR_WEAPON
-LANG_ENGLISH        "Admin took your weapon"
-
-REFERENCE           WEAPON_TAKEN
-LANG_ENGLISH        "weapon has been taken"
-
-REFERENCE           HEALTH_RESTORED_BY_ADMIN
-LANG_ENGLISH        "Your health was restored by admin"
-
-REFERENCE           HEALTH_RESTORED
-LANG_ENGLISH        "healed"
-
-REFERENCE           INFECTION_CURED_BY_ADMIN
-LANG_ENGLISH        "Your infection was cured by admin"
-
-REFERENCE           CURED
-LANG_ENGLISH        "cured"
-
-REFERENCE           YOU_SPAWNED_BY_ADMIN
-LANG_ENGLISH        "You were spawned by the admin"
-
-REFERENCE           SPAWNED
-LANG_ENGLISH        "spawned"
-
-REFERENCE           CANT_SPAWN_NONSPECTATOR
-LANG_ENGLISH        "can't spawn non-spectator player"
-
-REFERENCE           YOU_BOUNCED_BY_ADMIN
-LANG_ENGLISH        "You were bounced by the admin"
-
-REFERENCE           BOUNCED
-LANG_ENGLISH        "bounced"
-
-REFERENCE           YOU_TELEPORTED_BY_ADMIN
-LANG_ENGLISH        "You were teleported by admin"
-
-REFERENCE           WAS_TELEPORTED_TO_SPAWNPOINT
-LANG_ENGLISH        "was teleported to spawnpoint"
-
-REFERENCE           WAS_TELEPORTED_TO_ADMIN
-LANG_ENGLISH        "was teleported to admin"
-
-REFERENCE           WAS_TELEPORTED_FORWARD
-LANG_ENGLISH        "was teleported forward"
-
-REFERENCE           YOU_DOWNED_BY_ADMIN
-LANG_ENGLISH        "You were downed by the admin"
-
-REFERENCE           DOWNED
-LANG_ENGLISH        "downed"
-
-REFERENCE           YOU_REVIVED_BY_ADMIN
-LANG_ENGLISH        "You were revived by admin"
-
-REFERENCE           REVIVED
-LANG_ENGLISH        "revived"
-
-REFERENCE           YOU_EXPLODED_BY_ADMIN
-LANG_ENGLISH        "You were exploded by the admin"
-
-REFERENCE           EXPLODED
-LANG_ENGLISH        "exploded"
-
-/////////////////////
-// _adminInterface //
-/////////////////////
-
-REFERENCE           MAP_RESTARTING_IN3
-LANG_ENGLISH        "Map restarting in 3 seconds..."
 
 /////////
 // hud //
